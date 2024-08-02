@@ -1,0 +1,154 @@
+<div class="login" [style.background]="color.BACKGROUND">
+    <mat-card>
+        <mat-card-content style="z-index: 5;">
+            <mat-stepper #stepper>
+                <!-- Primera sección LOGIN -->
+                <mat-step>
+                    <mat-card-header>
+                        <mat-card-title [style.color]="color.TITLE_LOGIN"><b>Iniciar sesión</b></mat-card-title>
+                    </mat-card-header>
+                    <div class="contentInput">
+                        <!-- Campos de entrada para usuario y contraseña -->
+                        <span class="p-float-label">
+                            <input pInputText id="usuario" [style.color]="color.TITLE_LOGIN" style="width: 100%;"
+                                [(ngModel)]="user.usuario" />
+                            <label for="usuario" [style.color]="color.TITLE_LOGIN">Usuario</label>
+                        </span>
+                        <span class="p-float-label">
+                            <p-password [toggleMask]="true" [style.color]="color.TITLE_LOGIN" [feedback]="false"
+                                [(ngModel)]="user.password"></p-password>
+                            <label for="password" [style.color]="color.TITLE_LOGIN">Password</label>
+                        </span>
+                        @if(validateMessageErrorLogin){
+                        <div class="containerErrorLogin">
+                            <div class="containerImageErrorLogin">
+                                <svg>
+                                    <use
+                                        xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-admiracion">
+                                    </use>
+                                </svg>
+                            </div>
+                            <div class="containerTextErrorLogin">
+                                <p class="titleMesssageError">{{messageError}}</p>
+                                <p class="textExplication" [innerHTML]="AttemptsRegistered"></p>
+                            </div>
+
+                            <div class="containerCloseErrorLogin" (click)="closeMessageError()">
+                                <svg>
+                                    <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-cerrar">
+                                    </use>
+                                </svg>
+                            </div>
+                        </div>
+                        }
+                        @if(!validateMessageErrorLogin){
+                        <!-- Enlace para recuperar la contraseña -->
+                        <a href="" [style.color]="color.TITLE_LOGIN">¿Tienes problemas al iniciar? Recuperar la
+                            contraseña</a>
+                        }
+                    </div>
+                    <div class="contentButton">
+                        <!-- Botón para iniciar sesión -->
+                        <button mat-raised-button [style.background-color]="color.BUTTON_ACCEPT"
+                            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                            class="aceptar" (click)="validateUser(stepper)">Iniciar sesión</button>
+                    </div>
+                </mat-step>
+                <!-- Segunda Sección autenticación -->
+                @if(controlatorVisibility){
+                    <mat-step>
+                        <mat-card-header>
+                            <mat-card-title [style.color]="color.TITLE_LOGIN"
+                                style="font-size: 24px; text-align: center;"><b>Autenticación</b></mat-card-title>
+                        </mat-card-header>
+                        <div class="textoVerification">
+                            <p [style.color]="color.TITLE_LOGIN" class="autencacionQR">Copia el código en tu app de
+                                autenticación</p>
+                        </div>
+                        <div class="contentInput">
+                            <div class="seccionQR">
+                                <!-- Contenedor para mostrar código QR -->
+                                <div class="temp">
+                                    <div class="QR">
+                                        <qrcode [qrdata]="dataQR" [width]="143" [errorCorrectionLevel]="'M'"></qrcode>
+                                    </div>
+                                </div>
+                                <div class="icon sficon-escudo">
+                                    <svg>
+                                        <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-escudo">
+                                        </use>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="text-code">
+                                <div (click)="showDialog()" style="width: 75%;">
+                                    <input type="text" [(ngModel)]="clave_2fa" class="code-card" (click)="showDialog()"
+                                        [disabled]="validar">
+                                </div>
+                                <!-- Botón para copiar el código al portapapeles -->
+                                <button (click)="copyToClipboard()" class="buttonCopy"
+                                    [style]="{'border': '2px solid '+color.BORDER_TOP_COLOR_BUTTON, 'color': color.BUTTON_TEXT_COLOR_CANCEL}">
+                                    <svg>
+                                        <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-copiar">
+                                        </use>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="contentButton">
+                            <!-- Botón para finalizar la autenticación -->
+                            <button mat-raised-button [style.background-color]="color.BUTTON_ACCEPT"
+                                [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                                class="aceptar" matStepperNext>Listo</button>
+                        </div>
+                    </mat-step>
+                }
+                <!-- Tercera sección CODIGO QR -->
+                <mat-step>
+                    <mat-card-header>
+                        <mat-card-title [style.color]="color.TITLE_LOGIN" class="title-header">
+                            <b>{{ isSmallScreen ? 'Autenticar código' : 'Verificar tu app de autenticación' }}</b>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <div class="contentInput">
+                        <div class="textoVerification">
+                            <p [style.color]="color.TITLE_LOGIN" class="ingrsaCodigo">Ingresa el
+                                código de 6 digitos de autenticación o recuperación</p>
+                        </div>
+                        <!-- Entrada para ingresar código de autenticación -->
+                        <div class="verification-container">
+                            @for(digit of digits; track digit; let i = $index){
+                            <input #digitInput [(ngModel)]="digits[i]" class="codeVerification"
+                                (keyup)="onDigitKeyUp(i, $event)" maxlength="1" />
+                            }
+                        </div>
+                    </div>
+                    <div class="contentButton">
+                        <!-- Botones para verificar código y regresar -->
+                        <button mat-raised-button [style.background-color]="color.BUTTON_ACCEPT" 
+                            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                            class="aceptar" (click)="verificationCode()">Verificar código</button>
+                        <button mat-raised-button [style.background-color]="color.BUTTON_CANCEL"
+                            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'color': color.BUTTON_TEXT_COLOR_CANCEL,'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                            class="cancelar" matStepperPrevious>Regresar</button>
+                    </div>
+                </mat-step>
+            </mat-stepper>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<!-- Diálogo emergente -->
+<p-dialog header="Escribe el codigo en tu app de autenticación en tu dispositivo movil" [(visible)]="visible"
+    [style]="{color: color.TITLE_LOGIN}">
+    <div class="text-code">
+        <div (click)="showDialog()" style="width: 90%;">
+            <input type="text" [(ngModel)]="clave_2fa" class="code-card" (click)="showDialog()">
+        </div>
+        <!-- Botón para copiar el código al portapapeles -->
+        <button (click)="copyToClipboard()" class="buttonCopy"
+            [style]="{'border': '1px solid '+color.BORDER_TOP_COLOR_BUTTON, 'color': color.BUTTON_TEXT_COLOR_CANCEL}">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="content_copy"></mat-icon>
+        </button>
+    </div>
+</p-dialog>

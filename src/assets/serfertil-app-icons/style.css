@@ -1,0 +1,100 @@
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.sficon-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
+.sficon-abajo {
+  width: 1.8232421875em;
+}
+
+.sficon-abajo-c {
+  width: 1.6572265625em;
+}
+
+.sficon-agenda {
+  width: 0.7626953125em;
+}
+
+.sficon-arriba {
+  width: 1.8232421875em;
+}
+
+.sficon-arriba-c {
+  width: 1.6572265625em;
+}
+
+.sficon-ayuda {
+  width: 1.2265625em;
+}
+
+.sficon-chat {
+  width: 1.23828125em;
+}
+
+.sficon-copiar {
+  width: 0.8115234375em;
+}
+
+.sficon-der {
+  width: 0.548828125em;
+}
+
+.sficon-discoduro {
+  width: 0.7177734375em;
+}
+
+.sficon-escudo {
+  width: 0.955078125em;
+}
+
+.sficon-flecha-abajo {
+  width: 0.75390625em;
+}
+
+.sficon-flecha-arriba {
+  width: 0.75390625em;
+}
+
+.sficon-izq {
+  width: 0.548828125em;
+}
+
+.sficon-log-out {
+  width: 0.78515625em;
+}
+
+.sficon-ojo-abierto {
+  width: 2.6513671875em;
+}
+
+.sficon-ojo-cerrado {
+  width: 3.03125em;
+}
+
+.sficon-ram {
+  width: 2.3359375em;
+}
+
+.sficon-red {
+  width: 0.998046875em;
+}
+
+.sficon-temp {
+  width: 0.8515625em;
+}
+
+.sficon-usuario {
+  width: 0.76171875em;
+}

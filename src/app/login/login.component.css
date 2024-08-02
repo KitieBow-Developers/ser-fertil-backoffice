@@ -1,0 +1,408 @@
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../assets/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../assets/fonts/Poppins-Regular.ttf');
+}
+
+/*
+    Contenido principal de login
+*/
+.login {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-card {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.title-header {
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Añade un pseudo-elemento para crear una figura decorativa */
+mat-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    z-index: 1;
+}
+
+mat-card-header {
+    z-index: 5;
+    text-align: center;
+    margin: -8px auto;
+    margin-bottom: 23px;
+}
+
+mat-card-title {
+    font-family: 'Poppins-Bold';
+    margin: 0 auto;
+    font-size: 36px;
+    font-weight: 700 !important;
+}
+
+/*
+Primer contenido de la sección
+*/
+.contentInput {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.containerErrorLogin {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    background-color: #B13030;
+    display: inline-flex;
+    height: 41px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding-bottom: 12px;
+}
+
+.containerImageErrorLogin {
+    width: 15%;
+}
+
+.containerImageErrorLogin>svg {
+    width: 18px;
+    height: 18px;
+    fill: #F8F8F8 !important;
+    position: relative;
+    top: 25%;
+}
+
+.containerTextErrorLogin {
+    width: 70%;
+}
+
+.containerTextErrorLogin>p {
+    margin: 0 !important;
+}
+
+.containerTextErrorLogin>.titleMesssageError {
+    color: #F8F8F8;
+    font-family: Poppins-Bold;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.containerTextErrorLogin>.textExplication {
+    color: #F8F8F8;
+    font-family: Poppins-Regular;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.containerCloseErrorLogin {
+    width: 15%;
+}
+
+.containerCloseErrorLogin>svg {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    fill: #F8F8F8 !important;
+    position: relative;
+    top: 25%;
+}
+
+.contentInput>mat-form-field {
+    width: 100%;
+    border: 15px;
+}
+
+.contentButton {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
+.contentButton>button {
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 23px;
+}
+
+input {
+    font-family: 'Poppins-Bold' !important;
+    font-weight: 300 !important;
+    color: #159CAB !important;
+    background-color: #D9D9D9 !important;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+}
+
+.p-float-label {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+}
+
+::ng-deep .p-password {
+    width: 100% !important;
+    background-color: #D9D9D9 !important;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+    border-radius: 10px;
+    height: 33px;
+}
+
+::ng-deep input {
+    width: 100% !important;
+    background-color: #D9D9D9 !important;
+    color: #159CAB !important;
+    border-radius: 10px;
+    height: 33px;
+}
+
+::ng-deep .p-float-label input:focus~label, .p-float-label input.p-filled~label, .p-float-label textarea:focus~label, .p-float-label textarea.p-filled~label, .p-float-label .p-inputwrapper-focus~label, .p-float-label .p-inputwrapper-filled~label {
+    width: 96%;
+    text-align: center;
+    color: #159CAB !important;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+}
+
+.aceptar {
+    font-family: 'Poppins-Bold' !important;
+    color: white !important;
+    width: 100%;
+    height: 40px !important;
+    border: 3px solid;
+    font-weight: 700 !important;
+}
+
+a {
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+    line-height: 22.5px;
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+    margin-top: 16px;
+}
+
+/*
+    Sección deep
+*/
+::ng-deep .mat-mdc-text-field-wrapper {
+    border-radius: 10px !important;
+}
+
+::ng-deep .mdc-line-ripple {
+    display: none !important;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+    display: none !important;
+}
+
+::ng-deep .mat-horizontal-content-container {
+    padding: 0 !important;
+}
+
+::ng-deep .mat-mdc-card-header-text {
+    width: 100%;
+}
+
+/* 
+    Segundo contenido
+*/
+
+.verification-container {
+    display: flex;
+    width: 99%;
+    margin: 0 auto;
+
+}
+
+.codeVerification {
+    width: 46px !important;
+    height: 46px;
+    flex-shrink: 0;
+    text-align: center;
+    background-color: #D9D9D9;
+    margin-right: 28px;
+    border: none;
+    border-radius: 6px;
+}
+
+.cancelar {
+    width: 100%;
+    border: 3px solid;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Bold' !important;
+    height: 40px;
+}
+
+.ingrsaCodigo {
+    font-size: 15px;
+    text-align: center;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+    line-height: 22.5px;
+    width: 80%;
+    margin: 0 auto 23px;
+}
+
+/*
+    Tercera parte del login
+*/
+.QR {
+    border: 2px solid #159CAB;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.temp {
+    width: 58%;
+}
+
+.seccionQR {
+    display: flex;
+    width: 100%;
+    margin-bottom: 23px;
+}
+
+.sficon-escudo {
+    width: 50%;
+}
+
+.sficon-escudo>svg {
+    width: 104px;
+    height: 109px;
+    position: relative;
+    top: 11%;
+}
+
+svg {
+    fill: #159CAB;
+}
+
+button>svg {
+    width: 44px;
+    height: 30px;
+}
+
+.text-code {
+    width: 82%;
+    margin: 0 auto;
+    display: inline-flex;
+    text-align: center;
+}
+
+.text-code>p {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.text-code>button {
+    background-color: white;
+    margin-left: 10px;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.text-code>button>svg {
+    position: relative;
+    right: 8px;
+}
+
+.code-card {
+    background-color: white !important;
+    border: 2px solid #159CAB;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 45px;
+}
+
+.buttonCopy {
+    cursor: pointer;
+    height: 45px;
+    width: 44px;
+}
+
+.buttonCopy:hover {
+    background-color: #D9D9D9 !important;
+}
+
+.autencacionQR {
+    text-align: center;
+    font-family: Poppins-Regular;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+::ng-deep .p-dialog .p-dialog-header .p-dialog-title {
+    color: #159CAB;
+    font-weight: 700 !important;
+    font-size: 15px;
+    text-align: center;
+}
+
+/*
+    Responsive
+*/
+@media(max-width: 600px) {
+    mat-card {
+        max-width: 90%;
+        width: 90%;
+    }
+
+    .codeVerification {
+        width: 31px;
+        height: 39px;
+    }
+
+    .verification-container {
+        width: 90%;
+    }
+
+    .contentInput {
+        width: 100%;
+    }
+
+    .title-header {
+        font-size: 31px;
+        text-align: center;
+    }
+}

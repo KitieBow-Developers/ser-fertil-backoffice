@@ -1,0 +1,72 @@
+                           Propietary Licence
+                        Version 1.0, October 2023
+
+   TÉRMINOS Y CONDICIONES DE USO, TRANSFERENCIA Y REDISTRIBUCIÓN
+
+   Este acuerdo de licencia esta ligado al contrato y ficha técnica de este
+   proyecto, firmado y aprobado entre el Sr. BRYAN EDUARDO MOSQUERA DE LA
+   CUEVA, denominado en delante como "el prestador de servicios" y CLAUDIO
+   FERNANDO VALLEJO FLORES, denominado en delante como "el cliente".
+
+   Ambas partes se comprometieron a cumplir con el siguiente acuerdo de
+   licencia de software:
+
+   1. Uso exclusivo para el cliente.
+
+      El Cliente tendrá el uso exclusivo de la aplicación web desarrollada
+      en virtud de este contrato, quedando expresamente prohibida su
+      transferencia o venta.
+
+   2. No redistribución.
+
+      El Cliente se compromete a no redistribuir el código fuente, el diseño
+      o cualquier parte de la aplicación web a terceros, ya sea de manera
+      gratuita o mediante la venta, sin la autorización expresa y por
+      escrito del Prestador de servicios.
+
+   3. Créditos de autoría.
+
+      Los créditos de creación y diseño, incluyendo el nombre del Prestador
+      de servicios o su sitio web, deberán permanecer intactos en la
+      aplicación web y en la documentación relacionada. Asimismo, el Cliente
+      acepta que el Prestador de servicios pueda utilizar esta aplicación
+      como parte de su portafolio para mostrar su trabajo a futuros clientes
+      o empleadores.
+ 
+   4. Restricciones sobre modificaciones.
+
+      El Cliente tiene el permiso para realizar cambios en el código fuente 
+      por parte de terceros. Sin embargo, para realizar modificaciones en
+      el código fuente, no se debe usar ni modificar el repositorio de
+      GitHub original. El prestador de servicios no será responsable de
+      cambios realizados en el código fuente que generen daños o problemas
+      en la aplicación web. En caso de requerir una reparación debido a
+      modificaciones realizadas por terceros, se realizará un cobro
+      adicional por el servicio.
+
+   5. Confidencialidad. 
+      
+      El Cliente se compromete a mantener en estricta confidencialidad
+      respecto de todo el código fuente y cualquier información relacionada
+      con el desarrollo de la aplicación web. Asimismo, en caso de que una
+      persona externa al Contratante esté interesada en una aplicación web
+      o software similar, el Contratante deberá redirigirla el Prestador de
+      servicios para ofrecer una solución personalizada a sus necesidades.
+
+   6. Propiedad Exclusiva. 
+   
+      Una vez que se haya liquidado el valor total del Contrato, los
+      derechos de diseño y código fuente pasarán a ser propiedad exclusiva
+      del Cliente, siempre y cuando se respeten las restricciones del
+      acuerdo de licencia del software mencionadas en las cláusulas
+      anteriores y en la ficha técnica adjunta.
+
+   FIN DE LOS TÉRMINOS Y CONDICIONES
+
+   NOTA: Si algún desarrollador desea información sobre el acuerdo pactado
+   el dia 24 de Octubre del 2023 entre ambas partes puede pedirlas a traves
+   del correo email@kitiebow.com, se le proveerá solo la información que no
+   infrinja el ACUERDO DE CONFIDENCIALIDAD establecido en el contrato del
+   proyecto y con la condición de que sea solo información relacionada con
+   el proyecto o el código en si, a menos que este autorizado por escrito
+   por "el cliente" para otorgarle información mas detallada.

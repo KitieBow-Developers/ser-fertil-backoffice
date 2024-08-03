@@ -1,27 +1,27 @@
-# Frontend
+# SerFertilAPI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
+![Logo](https://kitiebow.com/images/Kitiebow-logo.svg)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# SerFertil WebApp
 
-## Code scaffolding
+APP Backoffice medico del centro de fertilidad "Ser Fértil".
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## 🚨 Requisitos
+1. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## 🚀 Inicio rapido
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Iniciar el servidor
 
-## Running end-to-end tests
+```bash
+  ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## ⚖️ Licencia
+Esta API hace uso de tecnologías de código abierto y se reserva a ser usada para uso exclusivo e interno para el personal del centro médico Ser Fértil, refierase al archivo [LICENSE](./LICENSE) para mas información.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🧑‍💻 Desarrolladores / Contribuidores
+- [Dreep - Santiago30920](https://github.com/Santiago30920)

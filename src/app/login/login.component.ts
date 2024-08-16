@@ -17,6 +17,7 @@ import { UserService } from '../domain/services/user.service';
 import { UtilitiesService } from '../domain/services/utilities.service';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { InputOtpModule } from 'primeng/inputotp';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,8 @@ import { Router } from '@angular/router';
     MatStepperModule,
     InputTextModule,
     DialogModule,
-    QRCodeModule
+    QRCodeModule,
+    InputOtpModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
   hide = true; // Variable booleana para ocultar o mostrar algo
   user: User; // Instancia de la clase User
   color: any; // Variable que almacena algún tipo de color
-  digits: string[] = Array(6).fill(''); // Arreglo que representa los dígitos, inicializado con 6 elementos vacíos
+  digits: any// Arreglo que representa los dígitos, inicializado con 6 elementos vacíos
   isSmallScreen!: boolean; // Indica si la pantalla es pequeña o no
   dataQR!: string; // Variable que almacena datos para un código QR
   clave_2fa!: string; // Texto de ejemplo Lorem Ipsum
@@ -55,14 +57,14 @@ export class LoginComponent implements OnInit {
   AttemptsRegistered!: string;
   validateMessageErrorLogin: boolean = false;
   headerValue!: string;
-  
+
 
   // Constructor de la clase
-  constructor(private renderer: Renderer2, @Inject(PLATFORM_ID) private platformId: Object, private userService: UserService, private utilitiesService: UtilitiesService, 
-  private router: Router) {
+  constructor(private renderer: Renderer2, @Inject(PLATFORM_ID) private platformId: Object, private userService: UserService, private utilitiesService: UtilitiesService,
+    private router: Router) {
     this.user = new User(); // Inicializa la instancia de User
     this.color = EClassCollor; // Asigna un valor a la variable color desde la enumeración EClassCollor
-    if(sessionStorage.getItem("user")){
+    if (sessionStorage.getItem("user")) {
       this.router.navigate(["home"]);
     }
   }
@@ -82,20 +84,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-  // Método que se ejecuta al escribir en un campo de dígito
-  onDigitKeyUp(index: number, event: any): void {
-    const input = event.target as HTMLInputElement;
-
-    if (input.value.length === 1) {
-      // Mover al siguiente campo de entrada de dígitos
-      const nextIndex = index < this.digits.length - 1 ? index + 1 : index;
-      const nextInput = this.digitInputs.toArray()[nextIndex];
-
-      if (nextInput) {
-        nextInput.nativeElement.focus(); // Enfoca el siguiente campo de entrada de dígitos
-      }
-    }
-  }
 
   // Método para copiar texto al portapapeles
   copyToClipboard() {
@@ -133,12 +121,12 @@ export class LoginComponent implements OnInit {
         this.userService.login(this.user).subscribe((response: any) => {
           console.log('Respuesta:', response);
           if (response.headers) {
-            if(response.body.estado == 'error'){
+            if (response.body.estado == 'error') {
               this.controlatorVisibility = true;
               this.headerValue = response.headers.get('authorization');
               stepper.next();
               this.code2FA(this.headerValue);
-            }else{
+            } else {
               this.controlatorVisibility = false;
               this.headerValue = response.headers.get('authorization');
               stepper.next();
@@ -196,17 +184,16 @@ export class LoginComponent implements OnInit {
       this.dataQR = data.detalles.auth_url_2fa;
     });
   }
-  
-  verificationCode(){
-    if(this.controlatorVisibility){
-      this.utilitiesService.validarCodigo2FA(this.digits.join(''), this.headerValue).subscribe((data: any)=> {
+
+  verificationCode() {
+    if (this.controlatorVisibility) {
+      this.utilitiesService.validarCodigo2FA(this.digits, this.headerValue).subscribe((data: any) => {
         sessionStorage.setItem('header', data.headers);
         sessionStorage.setItem('user', data.detalles);
         this.router.navigate(["home"]);
       })
-    }else{
-      console.log("entro")
-      this.utilitiesService.verificarCodigo2FA(this.digits.join(''), this.headerValue).subscribe((data: any)=> {
+    } else {
+      this.utilitiesService.verificarCodigo2FA(this.digits, this.headerValue).subscribe((data: any) => {
         sessionStorage.setItem('header', data.headers);
         sessionStorage.setItem('user', data.detalles);
         this.router.navigate(["home"]);

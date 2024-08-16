@@ -117,10 +117,7 @@
                         </div>
                         <!-- Entrada para ingresar código de autenticación -->
                         <div class="verification-container">
-                            @for(digit of digits; track digit; let i = $index){
-                            <input #digitInput [(ngModel)]="digits[i]" class="codeVerification"
-                                (keyup)="onDigitKeyUp(i, $event)" maxlength="1" />
-                            }
+                            <p-inputOtp [(ngModel)]="digits" [length]="6" class="codeVefication"/>
                         </div>
                     </div>
                     <div class="contentButton">

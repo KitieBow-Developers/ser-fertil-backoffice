@@ -187,16 +187,20 @@ export class LoginComponent implements OnInit {
 
   verificationCode() {
     if (this.controlatorVisibility) {
-      this.utilitiesService.validarCodigo2FA(this.digits, this.headerValue).subscribe((data: any) => {
-        sessionStorage.setItem('header', data.headers);
-        sessionStorage.setItem('user', data.detalles);
-        this.router.navigate(["home"]);
+      this.utilitiesService.validarCodigo2FA(this.digits, this.headerValue).subscribe((response: any) => {
+        if (response.headers) {
+          sessionStorage.setItem('header', response.headers.get('authorization'));
+          sessionStorage.setItem('user', JSON.stringify(response.body.detalles));
+          this.router.navigate(["home/agenda"]);
+        }
       })
     } else {
-      this.utilitiesService.verificarCodigo2FA(this.digits, this.headerValue).subscribe((data: any) => {
-        sessionStorage.setItem('header', data.headers);
-        sessionStorage.setItem('user', data.detalles);
-        this.router.navigate(["home"]);
+      this.utilitiesService.verificarCodigo2FA(this.digits, this.headerValue).subscribe((response: any) => {
+        if (response.headers) {
+          sessionStorage.setItem('header', response.headers.get('authorization'));
+          sessionStorage.setItem('user', JSON.stringify(response.body.detalles));
+          this.router.navigate(["home/agenda"]);
+        }
       })
     }
   }

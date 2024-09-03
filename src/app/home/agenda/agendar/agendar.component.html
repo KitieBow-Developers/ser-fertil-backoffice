@@ -1,0 +1,188 @@
+<div class="agendar">
+    <div class="buttonRlationE">
+        @if(!orientation){
+        <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE" (click)="changeSelectRelation()"
+            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+            class="select">Paciente</button>
+        <button mat-icon-button class="flecha" (click)="changeSelectRelation()">
+            <svg>
+                <use xlink:href="../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-der">
+                </use>
+            </svg>
+        </button>
+        <button mat-raised-button (click)="changeSelectRelation()"
+            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+            class="selectn">Cónyuge</button>
+        }
+        @else {
+        <button mat-raised-button (click)="changeSelectRelation()"
+            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+            class="selectn">Paciente</button>
+        <button mat-icon-button class="flecha" (click)="changeSelectRelation()">
+            <svg>
+                <use xlink:href="../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-izq">
+                </use>
+            </svg>
+        </button>
+        <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE" (click)="changeSelectRelation()"
+            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+            class="select">Cónyuge</button>
+        }
+    </div>
+    <div class="contendoIntputsSup">
+        <div class="contentPrincipalForm">
+            <div class="contenttwoInputs">
+                <span class="p-float-label" style="width: 317px;">
+                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" />
+                    <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label>
+                </span>
+                <span class="p-float-label" style="width: 287px; margin-left: 23px;">
+                    <input pInputText id="apellido" [style.color]="color.TITLE_LOGIN" />
+                    <label for="apellido" [style.color]="color.TITLE_LOGIN">Apellido</label>
+                </span>
+            </div>
+            <div class="contenttwoInputs">
+                <span class="p-float-label" style="width: 317px;">
+                    <input pInputText id="medico" [style.color]="color.TITLE_LOGIN" />
+                    <label for="medico" [style.color]="color.TITLE_LOGIN">Medio</label>
+                </span>
+                <span class="p-float-label" style="width: 287px; margin-left: 23px;">
+                    <p-calendar inputId="assignDate"></p-calendar>
+                    <label for="assignDate">Fecha de la cita</label>
+                </span>
+            </div>
+            <div class="contenttwoInputs">
+                <div>
+                    <span class="p-float-label" style="width: 208px;">
+                        <input pInputText id="id" [style.color]="color.TITLE_LOGIN" />
+                        <label for="id" [style.color]="color.TITLE_LOGIN">Cédula</label>
+                    </span>
+                    <span class="p-float-label" style="width: 86px; margin-left: 23px;">
+                        <input pInputText id="hours" [style.color]="color.TITLE_LOGIN" />
+                        <label for="hours" [style.color]="color.TITLE_LOGIN">Hora de cita</label>
+                    </span>
+                </div>
+                <span class="p-float-label" style="width: 287px; margin-left: 23px;">
+                    <input pInputText id="motivo" [style.color]="color.TITLE_LOGIN" />
+                    <label for="motivo" [style.color]="color.TITLE_LOGIN">Motivo</label>
+                </span>
+            </div>
+            <div class="contenttwoInputs">
+                <span class="p-float-label" style="width: 317px;">
+                    <input pInputText id="state" [style.color]="color.TITLE_LOGIN" />
+                    <label for="state" [style.color]="color.TITLE_LOGIN">Estado</label>
+                </span>
+
+                <span class="p-float-label" style="width: 287px; margin-left: 23px;">
+                    <input pInputText id="phone" [style.color]="color.TITLE_LOGIN" />
+                    <label for="phone" [style.color]="color.TITLE_LOGIN">Telefono</label>
+                </span>
+            </div>
+        </div>
+        <div class="uploadImage">
+            <div class="uploadImage">
+                <svg>
+                    <use xlink:href="../../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-usuario"></use>
+                </svg><span></span>
+            </div>
+            <p-fileUpload mode="basic" name="demo[]" accept="image/*" (onUpload)="onUpload($event)"
+                chooseLabel="Añadir"></p-fileUpload>
+            <mat-radio-group class="gender" labelPosition="before">
+                <mat-radio-button value="M">M</mat-radio-button>
+                <mat-radio-button value="F">F</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="extraData">
+        @if(dataExtra){
+        <div class="contenttwoInputs">
+            <span class="p-float-label" style="width: 317px;">
+                <p-calendar inputId="assignDate"></p-calendar>
+                <label for="assignDate">Fecha de nacimiento</label>
+            </span>
+            <span class="p-float-label" style="width: 200px; margin-left: 23px;">
+                <input pInputText id="referideFor" [style.color]="color.TITLE_LOGIN" />
+                <label for="referideFor" [style.color]="color.TITLE_LOGIN">Referido por</label>
+            </span>
+            <span class="p-float-label" style="width: 58px; margin-left: 23px;">
+                <input pInputText id="age" [style.color]="color.TITLE_LOGIN" />
+                <label for="age" [style.color]="color.TITLE_LOGIN">Edad</label>
+            </span>
+            <span class="p-float-label" style="width: 111px; margin-left: 23px;">
+                <input pInputText id="historyC" [style.color]="color.TITLE_LOGIN" />
+                <label for="historyC" [style.color]="color.TITLE_LOGIN">Historia.C.</label>
+            </span>
+        </div>
+        <div class="contenttwoInputs">
+            <span class="p-float-label" style="width: 317px;">
+                <input pInputText id="ruc" [style.color]="color.TITLE_LOGIN" />
+                <label for="ruc" [style.color]="color.TITLE_LOGIN">RUC</label>
+            </span>
+            <span class="p-float-label" style="width: 415px; margin-left: 23px;">
+                <input pInputText id="profesion" [style.color]="color.TITLE_LOGIN" />
+                <label for="profesion" [style.color]="color.TITLE_LOGIN">Profesión</label>
+            </span>
+        </div>
+        <div class="contenttwoInputs">
+            <span class="p-float-label" style="width: 317px;">
+                <input pInputText id="email" [style.color]="color.TITLE_LOGIN" />
+                <label for="email" [style.color]="color.TITLE_LOGIN">Correo electrónico</label>
+            </span>
+            <span class="p-float-label" style="width: 415px; margin-left: 23px;">
+                <input pInputText id="place" [style.color]="color.TITLE_LOGIN" />
+                <label for="place" [style.color]="color.TITLE_LOGIN">Lugar de nacimiento</label>
+            </span>
+        </div>
+        <span class="p-float-label" style="width: 755px;">
+            <input pInputText id="address" [style.color]="color.TITLE_LOGIN" />
+            <label for="address" [style.color]="color.TITLE_LOGIN">Dirección</label>
+        </span>
+        }
+        <div class="ocultarDataExtra">
+            @if(dataExtra){
+            <button mat-raised-button (click)="hiddenExtraData()"
+                [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                class="hiddenDataExtra">Ocultar Datos Extras</button>
+            <span class="p-float-label" style="width: 249px; margin-left: 23px;">
+                <input pInputText id="phone2" [style.color]="color.TITLE_LOGIN" />
+                <label for="phone2" [style.color]="color.TITLE_LOGIN">Telefono 2</label>
+            </span>
+            <span class="p-float-label" style="width: 249px; margin-left: 23px;">
+                <input pInputText id="phone3" [style.color]="color.TITLE_LOGIN" />
+                <label for="phone3" [style.color]="color.TITLE_LOGIN">Telefono 3</label>
+            </span>
+            }@else {
+            <button mat-raised-button (click)="hiddenExtraData()"
+                [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                class="hiddenDataExtra">Ingresar Datos Extras</button>
+            <button mat-raised-button
+                [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                class="next">Siguiente</button>
+            }
+        </div>
+        @if(dataExtra){
+        <div class="next">
+            <button mat-raised-button
+                [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                class="hiddenDataExtra">Siguiente</button>
+        </div>
+        }
+    </div>
+    <div class="buttonEnd">
+        <button mat-raised-button
+            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON_CLEAN, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON_CLEAN, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON_CLEAN, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON_CLEAN}"
+            class="clean">Limpiar</button>
+            <div class="botonesAgendar">
+                <button mat-raised-button
+                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                    class="registeNew">Registrar nuevo paciente </button>
+                <button mat-raised-button
+                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                    class="edit">Editar</button>
+                <button mat-raised-button
+                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                    class="schedule">Agendar</button>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,215 @@
+<div class="content-agenda">
+    <div class="section-1">
+        <mat-card class="demo-inline-calendar-card">
+            <app-calendar (childEmitter)="emiitChildAgent($event)"></app-calendar>
+            <div class="contentInputResumen">
+                <p>RESUMEN</p>
+                <span class="p-float-label">
+                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                    <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label>
+                </span>
+                <span class="p-float-label">
+                    <input pInputText id="date" value="{{date | date: 'dd/MM/yyyy'}}" [style.color]="color.TITLE_LOGIN"
+                        style="width: 100%;" />
+                    <label for="date" [style.color]="color.TITLE_LOGIN">Fecha de cita</label>
+                </span>
+                <span class="p-float-label">
+                    <input pInputText id="cedula" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                    <label for="cedula" [style.color]="color.TITLE_LOGIN">Cédula</label>
+                </span>
+                <div class="content-doble">
+                    <span class="p-float-label">
+                        <input pInputText id="startDate" value="{{date | date: 'h:mm:ss a'}}"
+                            [style.color]="color.TITLE_LOGIN" style="width: 45%;" />
+                        <label for="startDate" [style.color]="color.TITLE_LOGIN">Hora de llegada</label>
+                    </span>
+                    <span class="p-float-label">
+                        <input pInputText id="laterTime" [style.color]="color.TITLE_LOGIN" style="width: 45%;" />
+                        <label for="laterTime" [style.color]="color.TITLE_LOGIN">Tiempo de espera</label>
+                    </span>
+                </div>
+                <span class="p-float-label">
+                    <input pInputText id="reason" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                    <label for="reason" [style.color]="color.TITLE_LOGIN">Motivo</label>
+                </span>
+                <span class="p-float-label">
+                    <input pInputText id="phone" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                    <label for="phone" [style.color]="color.TITLE_LOGIN">Telefonos</label>
+                </span>
+                <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE"
+                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                    class="aceptar">Ver más datos</button>
+            </div>
+            <div class="contentInputResumenR">
+                <div class="fecha">
+                    <p>{{date}}</p>
+                </div>
+                <div class="content-data">
+                    <p>06:00 AM</p>
+                    <span class="p-float-label">
+                        <input pInputText id="reason" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                        <label for="reason" [style.color]="color.TITLE_LOGIN">Nombre</label>
+                    </span>
+                    <span class="p-float-label">
+                        <input pInputText id="reason" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                        <label for="reason" [style.color]="color.TITLE_LOGIN">Motivo</label>
+                    </span>
+                    <div class="content-doble">
+                        <span class="p-float-label">
+                            <input pInputText id="startDate" [style.color]="color.TITLE_LOGIN" style="width: 35%;" />
+                            <label for="startDate" [style.color]="color.TITLE_LOGIN">Telefono</label>
+                        </span>
+                        <span class="p-float-label">
+                            <input pInputText id="laterTime" [style.color]="color.TITLE_LOGIN" style="width: 35%;" />
+                            <label for="laterTime" [style.color]="color.TITLE_LOGIN">Estado</label>
+                        </span>
+                        <span class="p-float-label">
+                            <input pInputText id="laterTime" [style.color]="color.TITLE_LOGIN" style="width: 35%;" />
+                            <label for="laterTime" [style.color]="color.TITLE_LOGIN">Cedula</label>
+                        </span>
+                    </div>
+                    <div class="hours">
+                        <h3>Hora de la cita</h3>
+                        <p>07:00 AM</p>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <div class="section-2">
+        <mat-card>
+            <div class="consultar">
+                <span class="p-float-label" style="width: 197px; margin-left: 23px;">
+                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" />
+                    <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label>
+                </span>
+                <button mat-icon-button class="filter">
+                    <svg>
+                        <use xlink:href="../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-filtro">
+                        </use>
+                    </svg>
+                </button>
+                <span class="p-float-label" style="width: 99px; margin-right: 23px;">
+                    <input pInputText id="cedula" [style.color]="color.TITLE_LOGIN" />
+                    <label for="cedula" [style.color]="color.TITLE_LOGIN">Cédula</label>
+                </span>
+                <span class="p-float-label" style="width: 100px; margin-right: 23px;">
+                    <input pInputText id="hClinica" [style.color]="color.TITLE_LOGIN" />
+                    <label for="hClinica" [style.color]="color.TITLE_LOGIN">H.Clinica</label>
+                </span>
+                <button mat-raised-button [style.background-color]="color.BACKGROUND"
+                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                    class="aceptar">Buscar</button>
+            </div>
+            <div class="date-container">
+                <p class="date">{{date}}</p>
+            </div>
+            <div class="medico">
+                <button mat-icon-button
+                    (click)="indiceActual = indiceActual - 1 >= 0 ? indiceActual - 1 : medicos.length - 3" class="flecha">
+                    <svg>
+                        <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-izq">
+                        </use>
+                    </svg>
+                </button>
+                @for (medico of medicos; track medico; let i = $index) {
+                    @if (i >= indiceActual && i < indiceActual + 3) { 
+                        <div class="medicoName"> 
+                            <button mat-raised-button 
+                            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO}"
+                            class="noSelect"> 
+                                <svg>
+                                    <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-usuario">
+                                    </use>
+                                </svg>
+                                {{ medico.name }} 
+                                <div class="estadoMedico"> </div>
+                            </button>
+                        </div> 
+                    }
+                }
+            <button mat-icon-button
+                (click)="indiceActual = indiceActual + 1 < medicos.length - 2 ? indiceActual + 1 : 0" class="flecha">
+                <svg>
+                    <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-der">
+                    </use>
+                </svg>
+            </button>
+        </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="blue-header"><input type="checkbox" (change)="selectAll($event)"></th>
+                    <th class="blue-header">Nombre</th>
+                    <th class="blue-header">Motivo</th>
+                    <th class="blue-header">Hora</th>
+                    <th class="blue-header">Estado</th>
+                    <th class="blue-header">Notas</th>
+                </tr>
+            </thead>
+            <tbody class="scrollable-tbody">
+                @for (user of dataTable; track user){
+                <tr>
+                    <!-- <td><input type="checkbox" [(ngModel)]="user.selected"></td>
+                    <td>{{ user.nombre }}</td>
+                    <td>{{ user.motivo }}</td>
+                    <td>{{ user.hora }}</td>
+                    <td>{{ user.estado }}</td>
+                    <td>{{ user.notas }}</td> -->
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    </mat-card>
+</div>
+<div class="section-3">
+    <div class="menu">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            @if(validateMatCard == "agendar"){
+            <mat-button-toggle value="bold" class="activateMenu">Agendar
+            </mat-button-toggle>
+            }@else{
+            <mat-button-toggle value="bold">Agendar
+            </mat-button-toggle>
+            }
+            @if(validateMatCard == "andraologia"){
+            <mat-button-toggle value="italic" style="margin-left: 4px;" class="activateMenu">Andralogia
+            </mat-button-toggle>
+            }@else{
+            <mat-button-toggle value="italic" style="margin-left: 4px;">Andralogia
+            </mat-button-toggle>
+            }
+            @if(validateMatCard == "embrilogia"){
+            <mat-button-toggle value="underline" style="margin-left: 4px;" class="activateMenu">Embriologia
+            </mat-button-toggle>
+            }@else{
+            <mat-button-toggle value="underline" style="margin-left: 4px;">Embriologia
+            </mat-button-toggle>
+            }
+            @if(validateMatCard == "laboratorios"){
+            <mat-button-toggle value="underline" style="margin-left: 4px;" class="activateMenu">Laboratorios
+            </mat-button-toggle>
+            }@else{
+            <mat-button-toggle value="underline" style="margin-left: 4px;">Laboratorios
+            </mat-button-toggle>
+            }
+            @if(validateMatCard == "otrosEstudios"){
+            <mat-button-toggle value="underline" style="margin-left: 4px;" class="activateMenu">Otros estudios
+            </mat-button-toggle>
+            }@else{
+            <mat-button-toggle value="underline" style="margin-left: 4px;">Otros estudios
+            </mat-button-toggle>
+            }
+        </mat-button-toggle-group>
+    </div>
+    <mat-card>
+        @switch (validateMatCard) {
+        @case ("agendar"){
+        <app-agendar></app-agendar>
+        }
+        }
+    </mat-card>
+</div>
+</div>

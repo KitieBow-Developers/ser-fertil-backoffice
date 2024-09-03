@@ -1,18 +1,11 @@
 <header>
-    <a>
-        Agendar
-    </a>
-    <a>
-        Cuentas
-    </a>
-    <a>
-        Ayuda
-    </a>
-    <a>
-        Servidor
-    </a>
-    <a>
-        Sistema
-    </a>
+    <div class="menu">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="alinear">
+            <mat-button-toggle value="agendar" class="agenda">Agendar</mat-button-toggle>
+            <mat-button-toggle value="cuentas" class="cuenta">Cuentas</mat-button-toggle>
+            <mat-button-toggle value="ayuda" class="ayuda">Ayuda</mat-button-toggle>
+            <mat-button-toggle value="sistema" class="sistema">Sistema</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
 </header>
- <router-outlet></router-outlet>
+<router-outlet></router-outlet>

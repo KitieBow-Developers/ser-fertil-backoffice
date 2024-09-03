@@ -1,0 +1,382 @@
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../assets/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../../assets/fonts/Poppins-Medium.ttf');
+}
+
+header {
+    display: inline-flex;
+    width: 100%;
+}
+
+.menu {
+    width: 604px;
+    position: relative;
+    left: 200px;
+    text-align: center;
+}
+
+.menu>mat-button-toggle-group>mat-button-toggle {
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    border-top: 2px solid #00B1C4;
+    border-left: 2px solid #00B1C4;
+    border-right: 2px solid #00B1C4;
+    font-family: Poppins-Bold;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    height: 52px;
+    width: 148px;
+    background-color: #056479;
+    color: white;
+    text-align: start !important;
+    fill: white;
+    /* Añade box-shadow solo para el border-radius */
+    box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.2);
+}
+
+::ng-deep .mat-button-toggle-label-content {
+    margin-right: 15px !important;
+}
+
+.menu, ::ng-deep .mat-button-toggle-appearance-standard.mat-button-toggle-checked {
+    background-color: #D9D9D9 !important;
+    color: #056479 !important;
+    fill: #056479 !important;
+    border-top: 2px solid #F8F8F8 !important;
+    border-left: 2px solid #F8F8F8 !important;
+    border-right: 2px solid #F8F8F8 !important;
+}
+
+.agenda, .cuenta, .ayuda, .sistema {
+    max-height: 25px;
+    text-align: end;
+    margin-left: 30px;
+}
+
+.agenda {
+    width: 18.43px;
+}
+
+.cuenta {
+    width: 18.39px;
+}
+
+.ayuda {
+    width: 31.41px;
+}
+
+.sistema {
+    width: 25px;
+}
+
+.alienear {
+    display: flex;
+    width: 50%;
+}
+
+.name {
+    color: #23929E;
+    font-size: 20px;
+    font-family: Poppins-Bold;
+    text-align: end;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 30px;
+    margin-top: 18px;
+    width: 300px;
+}
+
+.activity {
+    display: flex;
+    text-align: center;
+    margin: 0px 0 0 auto;
+    border: none !important;
+}
+
+.activity>.button-user {
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+
+.activity>mat-button-toggle-group>mat-button-toggle {
+    border-radius: 15px !important;
+    font-family: Poppins-Medium;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    height: 30px;
+    width: 135px;
+    background-color: white;
+    color: #00B1C4;
+    text-align: start !important;
+    fill: #00B1C4;
+    border: 2px solid #D9D9D9;
+    margin-left: 15px !important;
+    margin-top: 15px;
+    /* Añade box-shadow solo para el border-radius */
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.disponible {
+    background-color: #00FF34;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    margin-left: 20px;
+}
+
+.descanso {
+    background-color: #D36E10;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    margin-left: 20px;
+}
+
+.consultando {
+    background-color: #C60000;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    margin-left: 20px;
+}
+
+::ng-deep .mat-button-toggle-standalone.mat-button-toggle-appearance-standard, .mat-button-toggle-group-appearance-standard {
+    border: none;
+}
+
+.activity {
+    width: 854px;
+
+    ::ng-deep .mat-button-toggle-appearance-standard.mat-button-toggle-checked {
+        background-color: #056479 !important;
+        color: #F8F8F8 !important;
+        fill: #F8F8F8 !important;
+        border-top: 2px solid #23929E !important;
+        border-left: 2px solid #23929E !important;
+        border-right: 2px solid #23929E !important;
+    }
+
+    ::ng-deep .mat-button-toggle-button {
+        height: 30px;
+    }
+
+    ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+        padding: 0 4px;
+        height: 30px;
+        line-height: 1 !important;
+        display: flex;
+        position: absolute;
+        margin-top: -7.5px;
+    }
+}
+
+.button-user {
+    background-color: #056479;
+    border: 1px solid #00B1C4;
+}
+
+.button-user {
+    svg {
+        width: 18px;
+        height: 23px;
+    }
+}
+
+.mode-black {
+    margin-bottom: 50px;
+}
+
+.select-menu {
+    color: #00B1C4;
+    font-size: 20px;
+    border-bottom: 1px solid #00B1C4;
+    padding-top: 10px;
+
+    svg {
+        width: 27.67px;
+        height: 27.57px;
+        fill: #159CAB;
+    }
+
+    p {
+        font-family: Poppins-Medium;
+        display: inline-flex;
+        position: relative !important;
+        top: -7px;
+        left: 10px;
+    }
+}
+
+::ng-deep .mat-mdc-menu-content {
+    padding: 0 !important;
+}
+
+.log-out {
+    color: white;
+    font-size: 20px;
+    border-bottom: 1px solid white;
+    padding-top: 10px;
+    background-color: #B13030;
+    position: relative;
+
+    svg {
+        width: 27.67px;
+        height: 27.57px;
+        fill: white;
+    }
+
+    p {
+        font-family: Poppins-Medium;
+        display: inline-flex;
+        position: relative !important;
+        top: -7px;
+        left: 10px;
+    }
+}
+
+.log-out::hover {
+    color: white;
+    font-size: 20px;
+    border-bottom: 1px solid white;
+    padding-top: 10px;
+    background-color: #B13030;
+}
+
+.hamburguer-menu {
+    display: none;
+}
+
+@media(max-width: 1660px) {
+    .name {
+        display: none !important;
+    }
+
+    .activity {
+        width: 576px;
+    }
+}
+
+@media(max-width: 1390px) {
+    .activity {
+        width: 506px;
+    }
+
+    .menu {
+        left: 100px;
+    }
+}
+
+@media(max-width: 1206px) {
+    .menu {
+        left: 0px;
+    }
+}
+
+@media(max-width: 1200px) {
+    .menu {
+        display: none;
+    }
+
+    .activity {
+        display: none;
+    }
+
+    .hamburguer-menu {
+        width: 100%;
+        display: flex;
+    }
+
+    .hamburguer-menu>button {
+        color: #098F9E;
+    }
+
+    .hamburguer-menu {
+        span {
+            width: 24px;
+        }
+    }
+
+    .select-hamburguer-menu {
+        background-color: #056479;
+        color: white;
+        font-size: 20px;
+        border-bottom: 1px solid #00B1C4;
+        padding-top: 10px;
+
+        svg {
+            width: 27.67px;
+            height: 27.57px;
+            fill: white;
+        }
+
+        p {
+            font-family: Poppins-Medium;
+            display: inline-flex;
+            position: relative !important;
+            top: -7px;
+            margin-right: 10px;
+            width: 110px;
+        }
+    }
+    .menuResponsive{
+        ::ng-deep .cdk-overlay-connected-position-bounding-box{
+            top: 0px !important;
+        }
+    }
+
+    .select-hamburguer-menu-w {
+        background-color: #056479;
+
+        div {
+            width: 119%;
+            background-color: #ffffff;
+            color: #056479;
+            font-size: 20px;
+            border-bottom: 1px solid #00B1C4;
+            padding-top: 10px;
+            padding-left: 20px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: relative;
+            right: 16px;
+
+            svg {
+                width: 27.67px;
+                height: 27.57px;
+                fill: #056479;
+            }
+
+            p {
+                font-family: Poppins-Medium;
+                display: inline-flex;
+                position: relative !important;
+                top: -7px;
+                margin-right: 10px;
+                width: 110px;
+            }
+        }
+    }
+}
+
+.menu-open-background {
+    background-color: rgba(3,36,44,0.4);
+    /* Fondo azul semitransparente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.general-background{
+    background-color: #D9D9D9;
+    height: 100%;
+}

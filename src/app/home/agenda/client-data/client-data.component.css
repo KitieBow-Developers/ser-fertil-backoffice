@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../../../assets/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../../../assets/fonts/Poppins-Regular.ttf');
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__title {
+    background-color: #056479;
+    color: white;
+    font-family: 'Poppins-bold' !important;
+    font-size: 16px;
+    height: 33px;
+    display: flex;
+}
+.headerTittle{
+    p{
+        margin: 0 0 0 auto;
+        text-align: end;
+        cursor: pointer;
+    }
+}

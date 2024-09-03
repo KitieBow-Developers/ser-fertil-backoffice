@@ -106,28 +106,30 @@
             </div>
             <div class="medico">
                 <button mat-icon-button
-                    (click)="indiceActual = indiceActual - 1 >= 0 ? indiceActual - 1 : medicos.length - 3" class="flecha">
+                    (click)="indiceActual = indiceActual - 1 >= 0 ? indiceActual - 1 : medicos.length - 3"
+                    class="flecha">
                     <svg>
                         <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-izq">
                         </use>
                     </svg>
                 </button>
                 @for (medico of medicos; track medico; let i = $index) {
-                    @if (i >= indiceActual && i < indiceActual + 3) { 
-                        <div class="medicoName"> 
-                            <button mat-raised-button 
-                            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO}"
-                            class="noSelect"> 
-                                <svg>
-                                    <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-usuario">
-                                    </use>
-                                </svg>
-                                {{ medico.name }} 
-                                <div class="estadoMedico"> </div>
-                            </button>
-                        </div> 
-                    }
-                }
+                @if (i >= indiceActual && i < indiceActual + 3) { <div class="medicoName">
+                    <button mat-raised-button
+                        [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO}"
+                        class="noSelect">
+                        <svg>
+                            <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-usuario">
+                            </use>
+                        </svg>
+                        <p>
+                            {{ medico.name }}
+                        </p>
+                        <div class="estadoMedico"> </div>
+                    </button>
+            </div>
+            }
+            }
             <button mat-icon-button
                 (click)="indiceActual = indiceActual + 1 < medicos.length - 2 ? indiceActual + 1 : 0" class="flecha">
                 <svg>
@@ -135,12 +137,17 @@
                     </use>
                 </svg>
             </button>
-        </div>
+    </div>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th class="blue-header"><input type="checkbox" (change)="selectAll($event)"></th>
+                    <th class="blue-header">
+                        <p-checkbox 
+                        (change)="selectAll($event)"
+                        [binary]="true" 
+                        inputId="binary" />
+                    </th>
                     <th class="blue-header">Nombre</th>
                     <th class="blue-header">Motivo</th>
                     <th class="blue-header">Hora</th>

@@ -6,6 +6,7 @@ import { AppointmentinfoDTO } from '../class/appointmentinfo-dto';
 import { ESystem } from '../enums/e-system';
 import { ECitaMedical } from '../enums/e-cita-medical';
 import { catchError } from 'rxjs';
+import { MedicalDto } from '../class/medical-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,8 @@ export class CitaMedicalService implements Action{
   listarCitaMedica(authorization: string, idUser: string, fecha: string){
     const headers= new HttpHeaders().set('Authorization', authorization);
     return this.http.get<AppointmentinfoDTO>(
-      ESystem.URL_TEMP + ECitaMedical.CONSULTAR_CITA_MEDICA +'id_cuenta_lista='+idUser+'&fecha='+fecha, {'headers': headers, observe: 'response'}).pipe
+      ESystem.URL_TEMP + ECitaMedical.CONSULTAR_CITA_MEDICA +'id_cuenta_lista='+idUser+'&fecha='+this.utilitiesService.formatDate(fecha), {'headers': headers, observe: 'response'}).pipe
       (catchError(this.utilitiesService.handleError));
   }
+
 }

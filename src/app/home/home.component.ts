@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatMenuModule } from '@angular/material/menu';
+import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     RouterOutlet,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatMenuModule,
+    NgClass
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

@@ -21,7 +21,7 @@ import { CalendarModule } from 'primeng/calendar';
   templateUrl: './agendar.component.html',
   styleUrl: './agendar.component.css'
 })
-export class AgendarComponent  implements OnInit {
+export class AgendarComponent implements OnInit {
   color: any; // Variable que almacena algún tipo de color
   orientation: boolean = false;
   dataExtra: boolean = false;
@@ -55,3 +55,4 @@ export class AgendarComponent  implements OnInit {
   }
 
 }
+

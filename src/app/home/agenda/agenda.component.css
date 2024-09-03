@@ -1,17 +1,93 @@
 @font-face {
+  font-family: 'Poppins-Bold';
+  src: url('../../../assets/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url('../../../assets/fonts/Poppins-Regular.ttf');
+}
+
+.content-agenda {
+  display: inline-flex;
+}
+
+::ng-deep .p-float-label input:focus~label, .p-float-label input.p-filled~label, .p-float-label textarea:focus~label, .p-float-label textarea.p-filled~label, .p-float-label .p-inputwrapper-focus~label, .p-float-label .p-inputwrapper-filled~label {
+  width: 96%;
+  text-align: center;
+  color: #159CAB !important;
+  font-weight: 400 !important;
+  font-family: 'Poppins-Regular' !important;
+  font-size: 16px;
+}
+
+.section-1 {
+  margin-left: 23px;
+  margin-top: 15px;
+
+  .demo-inline-calendar-card {
+    width: 354px;
+    height: 835px;
+  }
+
+  .p-float-label {
+    margin-top: 23px;
+    margin-bottom: 23px;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+    font-size: 11px;
+  }
+
+  input {
+    font-weight: 300 !important;
+    color: #159CAB !important;
+    background-color: #D9D9D9 !important;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+  }
+
+  ::ng-deep input {
+    width: 100% !important;
+    background-color: #D9D9D9 !important;
+    color: #159CAB !important;
+    border-radius: 10px;
+    height: 33px;
+  }
+
+  .contentInputResumenR {
+    display: none;
+  }
+
+  .contentInputResumen {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+
+    button {
+      border-radius: 10px;
+      width: 100%;
+    }
+
+    .aceptar {
+      font-family: 'Poppins-Bold' !important;
+      color: #098F9E !important;
+      width: 100%;
+      height: 40px !important;
+      border: 3px solid;
+      font-weight: 700 !important;
+    }
+
+    padding-bottom: 18px;
+
+  }
+
+  .contentInputResumen>p {
+    font-size: 29px;
     font-family: 'Poppins-Bold';
-    src: url('../../../assets/fonts/Poppins-Bold.ttf');
+    color: #098F9E;
   }
-  
-  @font-face {
-    font-family: 'Poppins-Regular';
-    src: url('../../../assets/fonts/Poppins-Regular.ttf');
-  }
-  
-  .content-agenda {
-    display: inline-flex;
-  }
-  
+
   ::ng-deep .p-float-label input:focus~label, .p-float-label input.p-filled~label, .p-float-label textarea:focus~label, .p-float-label textarea.p-filled~label, .p-float-label .p-inputwrapper-focus~label, .p-float-label .p-inputwrapper-filled~label {
     width: 96%;
     text-align: center;
@@ -19,444 +95,386 @@
     font-weight: 400 !important;
     font-family: 'Poppins-Regular' !important;
   }
-  
-  .section-1 {
-    margin-left: 23px;
-    margin-top: 15px;
-  
-    .demo-inline-calendar-card {
-      width: 354px;
-      height: 772px;
-    }
-  
-    .p-float-label {
-      margin-top: 23px;
-      margin-bottom: 23px;
-      font-weight: 400 !important;
-      font-family: 'Poppins-Regular' !important;
-      font-size: 11px;
-    }
-  
+
+  .content-doble {
+    width: 100%;
+    display: flex;
+    padding: 0;
+    margin: 0;
+
     input {
-      font-weight: 300 !important;
-      color: #159CAB !important;
-      background-color: #D9D9D9 !important;
-      font-weight: 400 !important;
-      font-family: 'Poppins-Regular' !important;
+      width: 95% !important;
+      margin: 0;
     }
-  
-    ::ng-deep input {
-      width: 100% !important;
-      background-color: #D9D9D9 !important;
-      color: #159CAB !important;
-      border-radius: 10px;
-      height: 33px;
+
+    .p-float-label {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
     }
-  
-    .contentInputResumenR {
-      display: none;
-    }
-  
-    .contentInputResumen {
-      width: 90%;
-      display: block;
-      margin: 0 auto;
-      text-align: center;
-  
-      button {
-        border-radius: 10px;
-        width: 100%;
+  }
+}
+::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
+  background-color: #056479 !important;
+  border-color: #ffffff !important;
+}
+.section-2 {
+  margin-left: 23px;
+  margin-top: 15px;
+
+  mat-card {
+    width: 673px;
+    height: 835;
+
+    .medico {
+      width: 100%;
+      display: inline-flex;
+      margin: 23px 0;
+
+      ::ng-deep .mat-mdc-icon-button.mat-mdc-button-base {
+        padding: 0 !important;
       }
-  
+
+      .flecha {
+        svg {
+          width: 42px;
+          height: 20px;
+          fill: #098F9E;
+        }
+      }
+
+
+      .medicoName {
+        margin-top: 5px;
+        border-radius: 2px;
+        ::ng-deep .mdc-button__label{
+          display: inline-flex;
+
+        }
+
+        .noSelect {
+          width: 187px;
+          background-color: #EEEEEE;
+          font-size: 13px;
+          color: #098F9E;
+          font-family: 'Poppins-Regular' !important;
+        }
+
+        svg {
+          width: 15.16px;
+          height: 21px;
+          fill: #098F9E;
+          position: relative;
+          width: 10%;
+          top: 5px;
+        }
+        p{
+          position: relative;
+          top: 5px;
+          width: 80%;
+        }
+        .estadoMedico {
+          width: 14.15px;
+          height: 14px;
+          background-color: #B90607;
+          border-radius: 100%;
+          position: relative;
+          top: 7.5px;
+          width: 10%;
+        }
+      }
+    }
+
+    .consultar {
+      display: flex;
+
+      .p-float-label {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-weight: 400 !important;
+        font-family: 'Poppins-Regular' !important;
+        font-size: 11px;
+      }
+
+      input {
+        border: 1px solid #098F9E;
+        font-weight: 300 !important;
+        color: #159CAB !important;
+        background-color: #EEEEEE !important;
+        font-weight: 400 !important;
+        font-family: 'Poppins-Regular' !important;
+      }
+
+      ::ng-deep input {
+        width: 100% !important;
+        background-color: #EEEEEE !important;
+        color: #159CAB !important;
+        border-radius: 10px;
+        height: 33px;
+      }
+
+      .filter {
+        fill: #159CAB;
+        margin-top: 25px;
+      }
+
+
       .aceptar {
+        border-radius: 10px;
         font-family: 'Poppins-Bold' !important;
-        color: #098F9E !important;
-        width: 100%;
+        width: 112px;
+        color: white !important;
         height: 40px !important;
         border: 3px solid;
         font-weight: 700 !important;
-      }
-  
-      padding-bottom: 18px;
-  
-    }
-  
-    .contentInputResumen>p {
-      font-size: 29px;
-      font-family: 'Poppins-Bold';
-      color: #098F9E;
-    }
-  
-    ::ng-deep .p-float-label input:focus~label, .p-float-label input.p-filled~label, .p-float-label textarea:focus~label, .p-float-label textarea.p-filled~label, .p-float-label .p-inputwrapper-focus~label, .p-float-label .p-inputwrapper-filled~label {
-      width: 96%;
-      text-align: center;
-      color: #159CAB !important;
-      font-weight: 400 !important;
-      font-family: 'Poppins-Regular' !important;
-    }
-  
-    .content-doble {
-      width: 100%;
-      display: flex;
-      padding: 0;
-      margin: 0;
-  
-      input {
-        width: 95% !important;
-        margin: 0;
-      }
-  
-      .p-float-label {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
+        margin-top: 30px;
       }
     }
-  }
-  
-  .section-2 {
-    margin-left: 23px;
-    margin-top: 15px;
-  
-    mat-card {
-      width: 673px;
-      height: 772px;
-  
-      .medico {
-        width: 100%;
-        display: inline-flex;
-        margin: 23px 0;
-  
-        ::ng-deep .mat-mdc-icon-button.mat-mdc-button-base {
-          padding: 0 !important;
-        }
-  
-        .flecha {
-          svg {
-            width: 42px;
-            height: 20px;
-            fill: #098F9E;
-          }
-        }
-  
-        .medicoName {
-          margin-top: 5px;
-          border-radius: 2px;
-  
-          .noSelect {
-            width: 187px;
-            background-color: #EEEEEE;
-            font-size: 13px;
-            color: #098F9E;
-            font-family: 'Poppins-Regular' !important;
-          }
-  
-          svg {
-            width: 15.16px;
-            height: 21px;
-            fill: #098F9E;
-            position: relative;
-            top: 5px;
-            right: 47px;
-          }
-  
-          .estadoMedico {
-            width: 14.15px;
-            height: 14px;
-            background-color: #B90607;
-            border-radius: 100%;
-            position: relative;
-            left: 91px;
-            bottom: 16px;
-          }
-        }
-      }
-  
-      .consultar {
-        display: flex;
-  
-        .p-float-label {
-          margin-top: 30px;
-          margin-bottom: 30px;
-          font-weight: 400 !important;
-          font-family: 'Poppins-Regular' !important;
-          font-size: 11px;
-        }
-  
-        input {
-          border: 1px solid #098F9E;
-          font-weight: 300 !important;
-          color: #159CAB !important;
-          background-color: #EEEEEE !important;
-          font-weight: 400 !important;
-          font-family: 'Poppins-Regular' !important;
-        }
-  
-        ::ng-deep input {
-          width: 100% !important;
-          background-color: #EEEEEE !important;
-          color: #159CAB !important;
-          border-radius: 10px;
-          height: 33px;
-        }
-  
-        .filter {
-          fill: #159CAB;
-          margin-top: 25px;
-        }
-  
-        .aceptar {
-          border-radius: 10px;
-          font-family: 'Poppins-Bold' !important;
-          width: 112px;
-          color: white !important;
-          height: 40px !important;
-          border: 3px solid;
-          font-weight: 700 !important;
-          margin-top: 30px;
-        }
-      }
-  
-      .date-container {
-        margin: 0 auto;
-        width: 90%;
-        /* Ocupa todo el ancho */
-        height: 2px;
-        /* Tamaño de la línea */
-        background-color: #098F9E;
-        /* Color de la línea */
-        position: relative;
-        /* Para posicionar el texto en el centro */
-      }
-  
-      .date {
-        position: absolute;
-        font-family: 'Poppins-Bold' !important;
-        color: #098F9E;
-        font-family: 15px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        /* Para centrar el texto */
-        background-color: white;
-        /* Puedes cambiar el fondo del texto si lo deseas */
-        padding: 0 10px;
-        /* Añade un poco de espacio alrededor del texto */
-      }
-  
-      .table-container {
-        width: 100%;
-        overflow-x: auto;
-        max-height: 490px;
-      }
-  
-      /* Sección de tabla */
-      table {
-        width: 100%;
-        border-collapse: collapse;
-  
-      }
-  
-  
-      th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
-  
-      .scrollable-tbody {
-        display: contents;
-      }
-  
-      tbody tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-    }
-  }
-  
-  .section-3 {
-    width: 801px;
-    height: 772px;
-    margin-left: 23px;
-    margin-top: 15px;
-  
-    .menu {
+
+    .date-container {
+      margin: 0 auto;
+      width: 90%;
+      /* Ocupa todo el ancho */
+      height: 2px;
+      /* Tamaño de la línea */
+      background-color: #098F9E;
+      /* Color de la línea */
       position: relative;
-      text-align: center;
+      /* Para posicionar el texto en el centro */
     }
-  
-    ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-      line-height: 2.5 !important;
+
+    .date {
+      position: absolute;
+      font-family: 'Poppins-Bold' !important;
+      color: #098F9E;
+      font-family: 15px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* Para centrar el texto */
+      background-color: white;
+      /* Puedes cambiar el fondo del texto si lo deseas */
+      padding: 0 10px;
+      /* Añade un poco de espacio alrededor del texto */
     }
-  
-    .menu>mat-button-toggle-group>mat-button-toggle {
-      border-top-left-radius: 15px !important;
-      border-top-right-radius: 15px !important;
-      border-top: 2px solid #00B1C4;
-      border-left: 2px solid #00B1C4;
-      border-right: 2px solid #00B1C4;
-      font-family: Poppins-Bold;
-      font-size: 13px;
-      font-style: normal;
-      font-weight: 600;
-      height: 33px;
-      width: 153px;
+
+    .table-container {
+      width: 97%;
+      overflow-x: auto;
+      max-height: 490px;
+      margin: 0 auto;
       background-color: #056479;
       color: white;
-      text-align: start !important;
-      fill: white;
-      /* Añade box-shadow solo para el border-radius */
-      box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.2);
+      font-family: Poppins-Regular;
+      border-radius: 10px;
     }
-  
-    .activateMenu {
-      background-color: #EEEEEE !important;
-      background-color: #EEEEEE !important;
-      color: #098F9E !important;
+
+    /* Sección de tabla */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
     }
-  
-    ::ng-deep .mat-button-toggle-label-content {
-      margin-right: 15px !important;
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
     }
-  
-    .menu, ::ng-deep .mat-button-toggle-appearance-standard.mat-button-toggle-checked {
-      background-color: #D9D9D9 !important;
-      color: #056479 !important;
-      fill: #056479 !important;
-      border-top: 2px solid #F8F8F8 !important;
-      border-left: 2px solid #F8F8F8 !important;
-      border-right: 2px solid #F8F8F8 !important;
+
+    .scrollable-tbody {
+      display: contents;
     }
-  
-    mat-card {
-      height: 739px;
-  
+
+    tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
     }
   }
-  
-  @media(max-width: 1300px) {
-    .content-agenda {
-      display: block;
+}
+
+.section-3 {
+  width: 801px;
+  height: 835px;
+  margin-left: 23px;
+  margin-top: 15px;
+
+  .menu {
+    position: relative;
+    text-align: center;
+  }
+
+  ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 2.5 !important;
+  }
+
+  .menu>mat-button-toggle-group>mat-button-toggle {
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    border-top: 2px solid #00B1C4;
+    border-left: 2px solid #00B1C4;
+    border-right: 2px solid #00B1C4;
+    font-family: Poppins-Bold;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    height: 33px;
+    width: 153px;
+    background-color: #056479;
+    color: white;
+    text-align: start !important;
+    fill: white;
+    /* Añade box-shadow solo para el border-radius */
+    box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  .activateMenu {
+    background-color: #EEEEEE !important;
+    background-color: #EEEEEE !important;
+    color: #098F9E !important;
+  }
+
+  ::ng-deep .mat-button-toggle-label-content {
+    margin-right: 15px !important;
+  }
+
+  .menu, ::ng-deep .mat-button-toggle-appearance-standard.mat-button-toggle-checked {
+    background-color: #D9D9D9 !important;
+    color: #056479 !important;
+    fill: #056479 !important;
+    border-top: 2px solid #F8F8F8 !important;
+    border-left: 2px solid #F8F8F8 !important;
+    border-right: 2px solid #F8F8F8 !important;
+  }
+
+  mat-card {
+    height: 739px;
+
+  }
+}
+
+@media(max-width: 1300px) {
+  .content-agenda {
+    display: block;
+  }
+
+  .section-1 {
+    width: 100%;
+
+    app-calendar {
+      width: 300px;
     }
-  
-    .section-1 {
-      width: 100%;
-  
-      app-calendar {
-        width: 300px;
-      }
-  
-      .demo-inline-calendar-card {
-        display: -webkit-inline-box;
-        width: 96%;
-        height: 336px;
-        position: fixed;
-        z-index: 5;
-  
-        .contentInputResumen {
-          display: none;
-        }
-  
-        .contentInputResumenR {
-          display: block;
-          width: 425px;
-          height: 258px;
-          margin: 0 0 0 auto;
-          position: relative;
-          top: 15px;
-          right: 23px;
-  
-          .fecha {
-            display: inline-flex;
-            width: 100%;
-            height: 35px;
-            background-color: #056479;
-            color: white;
-            text-align: center;
-            font-family: Poppins-Bold;
-            font-size: 16px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-  
-            p {
-              width: 114px;
-              height: 24px;
-              margin: 7px auto;
-              text-align: center;
-            }
-          }
-          .content-data{
-            width: 100%;
-            p{
-              position: relative;
-              top: 9px;
-              font-family: Poppins-Bold;
-              font-size: 16px;
-              color: #056479;
-              left: 8px;
-            }
-            input {
-              font-weight: 300 !important;
-              color: #056479 !important;
-              background-color: white !important;
-              font-weight: 400 !important;
-              font-family: 'Poppins-Bold' !important;
-              border: none;
-            }
-          
-            ::ng-deep input {
-              width: 100% !important;
-              background-color: white !important;
-              color: #056479 !important;
-              border: none;
-              height: 24px;
-            }
-            ::ng-deep .p-float-label input:focus~label, .p-float-label input.p-filled~label, .p-float-label textarea:focus~label, .p-float-label textarea.p-filled~label, .p-float-label .p-inputwrapper-focus~label, .p-float-label .p-inputwrapper-filled~label {
-              width: 96%;
-              text-align: left;
-              color: #159CAB !important;
-              font-weight: 400 !important;
-              font-family: 'Poppins-Regular' !important;
-            }
-            
-            .p-float-label {
-              text-align: left;
-              position: relative;
-              top: 15px;
-            }
-          }
-          .hours{
-            width: 100%;
-            border-top: 2px solid #056479;
-            margin-top: 23px;
-            display: flex;
-            h3{
-              font-family: 'Poppins-Regular' !important;
-              font-size: 15px;
-              color: #098F9E;
-              position: relative;
-              top: 5px;
-            }
-            p{
-              font-family: 'Poppins-Bold' !important;
-              font-size: 16px;
-              color: #056479;
-              margin: 0 0 0 auto;
-              position: relative;
-              left: 0px;
-            }
-          }
-        }
-      }
-    }
-    .section-2{
-      display: none;
-    }
-    .section-3{
+
+    .demo-inline-calendar-card {
+      display: -webkit-inline-box;
       width: 96%;
-      position: absolute;
-      top: 404px;
-      .menu{
+      height: 336px;
+      position: fixed;
+      z-index: 5;
+
+      .contentInputResumen {
         display: none;
       }
+
+      .contentInputResumenR {
+        display: block;
+        width: 425px;
+        height: 258px;
+        margin: 0 0 0 auto;
+        position: relative;
+        top: 15px;
+        right: 23px;
+
+        .fecha {
+          display: inline-flex;
+          width: 100%;
+          height: 35px;
+          background-color: #056479;
+          color: white;
+          text-align: center;
+          font-family: Poppins-Bold;
+          font-size: 16px;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+
+          p {
+            width: 114px;
+            height: 24px;
+            margin: 7px auto;
+            text-align: center;
+          }
+        }
+        .content-data{
+          width: 100%;
+          p{
+            position: relative;
+            top: 9px;
+            font-family: Poppins-Bold;
+            font-size: 16px;
+            color: #056479;
+            left: 8px;
+          }
+          input {
+            font-weight: 300 !important;
+            color: #056479 !important;
+            background-color: white !important;
+            font-weight: 400 !important;
+            font-family: 'Poppins-Bold' !important;
+            border: none;
+          }
+        
+          ::ng-deep input {
+            width: 100% !important;
+            background-color: white !important;
+            color: #056479 !important;
+            border: none;
+            height: 24px;
+          }
+          ::ng-deep .p-float-label input:focus~label, .p-float-label input.p-filled~label, .p-float-label textarea:focus~label, .p-float-label textarea.p-filled~label, .p-float-label .p-inputwrapper-focus~label, .p-float-label .p-inputwrapper-filled~label {
+            width: 96%;
+            text-align: left;
+            color: #159CAB !important;
+            font-weight: 400 !important;
+            font-family: 'Poppins-Regular' !important;
+          }
+          
+          .p-float-label {
+            text-align: left;
+            position: relative;
+            top: 15px;
+          }
+        }
+        .hours{
+          width: 100%;
+          border-top: 2px solid #056479;
+          margin-top: 23px;
+          display: flex;
+          h3{
+            font-family: 'Poppins-Regular' !important;
+            font-size: 15px;
+            color: #098F9E;
+            position: relative;
+            top: 5px;
+          }
+          p{
+            font-family: 'Poppins-Bold' !important;
+            font-size: 16px;
+            color: #056479;
+            margin: 0 0 0 auto;
+            position: relative;
+            left: 0px;
+          }
+        }
+      }
     }
   }
+  .section-2{
+    display: none;
+  }
+  .section-3{
+    width: 96%;
+    position: absolute;
+    top: 404px;
+    .menu{
+      display: none;
+    }
+  }
+}

@@ -57,4 +57,12 @@ export class UtilitiesService {
     }
     return throwError(errorMessage);
   }
+  public formatDate(date: string){
+    const dateParts = date.split('-');
+    const year = dateParts[0];
+    const month = dateParts[1].padStart(2, '0'); // Añade un cero al mes si es necesario
+    const day = dateParts[2].padStart(2, '0'); // Añade un cero al día si es necesario
+
+    return `${year}-${month}-${day}`;
+  }
 }

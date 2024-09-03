@@ -18,6 +18,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { AgendarComponent } from './agendar/agendar.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-agenda',
@@ -35,7 +36,8 @@ import { MatDialog } from '@angular/material/dialog';
     MatButtonModule,
     CalendarComponent,
     MatButtonToggleModule,
-    AgendarComponent
+    AgendarComponent,
+    CheckboxModule
   ],
   templateUrl: './agenda.component.html',
   providers: [
@@ -72,14 +74,21 @@ export class AgendaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.agendarService.consultarDoc().subscribe((data: any) => {
-      this.medicos = data.data;
-    });
     if (this.date) {
       console.log(this.user.id);
       this.citaMedicaService.listarCitaMedica(sessionStorage.getItem('header')!, this.user.id.$oid, this.date).subscribe((data: any) => {
       })
     }
+    this.agendarService.listMedical(sessionStorage.getItem('header')!).subscribe((data: any) => {
+      for (let i = 0; i < data.body.detalles.length; i++) {
+        let medico = new MedicalDto();
+        console.log(medico, data.body)
+        medico.name = data.body.detalles[i].nombre;
+        medico.id = data.body.detalles[i].id;
+        this.medicos.push(medico);
+      }
+      console.log(this.medicos)
+    });
   }
 
   emiitChildAgent(date: string) {

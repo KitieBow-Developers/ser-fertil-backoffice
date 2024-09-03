@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgClass } from '@angular/common';
@@ -28,16 +28,18 @@ export class HomeComponent implements OnInit {
 
   isMenuOpen: boolean = false;
 
-  constructor(public route: ActivatedRoute) {
+  constructor(public route: ActivatedRoute, public router: Router) {
     // Obtener el nombre del componente actual
     if (this.route) {
       const componentName = this.route.firstChild?.component ? this.route.firstChild?.component.name : '';
-      console.log(componentName);
       switch (componentName) {
         case '_AgendaComponent':
           this.agendar = true;
           break;
       }
+    }
+    if(!sessionStorage.getItem('user')){
+      this.router.navigate(['']);
     }
 
   }
@@ -54,5 +56,10 @@ export class HomeComponent implements OnInit {
   closeMenu() {
     console.log("f")
     this.isMenuOpen = false;
+  }
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(['']);
+    window.location.reload();
   }
 }

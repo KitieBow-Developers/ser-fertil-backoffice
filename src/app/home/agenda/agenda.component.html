@@ -115,7 +115,7 @@
                 </button>
                 @for (medico of medicos; track medico; let i = $index) {
                 @if (i >= indiceActual && i < indiceActual + 3) { <div class="medicoName">
-                    <button mat-raised-button
+                    <button mat-raised-button (click)="searchListPatientDoctor(medico)"
                         [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO}"
                         class="noSelect">
                         <svg>
@@ -143,10 +143,7 @@
             <thead>
                 <tr>
                     <th class="blue-header">
-                        <p-checkbox 
-                        (change)="selectAll($event)"
-                        [binary]="true" 
-                        inputId="binary" />
+                        <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary" />
                     </th>
                     <th class="blue-header">Nombre</th>
                     <th class="blue-header">Motivo</th>
@@ -156,15 +153,35 @@
                 </tr>
             </thead>
             <tbody class="scrollable-tbody">
-                @for (user of dataTable; track user){
-                <tr>
-                    <!-- <td><input type="checkbox" [(ngModel)]="user.selected"></td>
-                    <td>{{ user.nombre }}</td>
-                    <td>{{ user.motivo }}</td>
-                    <td>{{ user.hora }}</td>
-                    <td>{{ user.estado }}</td>
-                    <td>{{ user.notas }}</td> -->
-                </tr>
+                @if(patients.length != 0){
+                    @for (patient of patients; track patient){
+                    @if(patient.state === 'NoDisponible'){
+                    <tr class="alertTable">
+                        <td>
+                            <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
+                                [(ngModel)]="patient.select" />
+                        </td>
+                        <td class="alertTable">{{ patient.patientName }}</td>
+                        <td class="alertTable">{{ patient.motive }}</td>
+                        <td class="alertTable">{{ patient.dt_start | date:'h:mm'}}</td>
+                        <td class="alertTable">{{ patient.state }}</td>
+                        <td class="alertTable">+</td>
+                    </tr>
+                    }@else {
+                    <tr class="listNormal">
+                        <td> <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
+                                [(ngModel)]="patient.select" />
+                        </td>
+                        <td>{{ patient.patientName }}</td>
+                        <td>{{ patient.motive }}</td>
+                        <td>{{ patient.dt_cita_med | date:'h:mm'}}</td>
+                        <td>{{ patient.state }}</td>
+                        <td>+</td>
+                    </tr>
+                    }
+                    }
+                }@else {
+                    <p style="font-size: 20px;">No hay registros</p>
                 }
             </tbody>
         </table>
@@ -173,7 +190,7 @@
 </div>
 <div class="section-3">
     <div class="menu">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [hideSingleSelectionIndicator]="true">
             @if(validateMatCard == "agendar"){
             <mat-button-toggle value="bold" class="activateMenu">Agendar
             </mat-button-toggle>
@@ -213,10 +230,10 @@
     </div>
     <mat-card>
         @switch (validateMatCard) {
-        @case ("agendar"){
-        <app-agendar></app-agendar>
+            @case ("agendar"){
+            <app-agendar></app-agendar>
         }
-        }
+    }
     </mat-card>
 </div>
 </div>

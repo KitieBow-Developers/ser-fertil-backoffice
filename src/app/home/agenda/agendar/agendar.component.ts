@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
-import { EClassCollor } from '../../../domain/enums/eclass-collor';
-import { TranslateService } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
-import { InputTextModule } from 'primeng/inputtext';
+import { EClassCollor } from '../../../domain/enums/eclass-collor';
+import { CalendarModule } from 'primeng/calendar';
+import { PrimeNGConfig } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MatRadioModule } from '@angular/material/radio';
-import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-agendar',
@@ -18,6 +18,8 @@ import { CalendarModule } from 'primeng/calendar';
     MatRadioModule,
     InputTextModule,
   ],
+  providers: [
+  ],
   templateUrl: './agendar.component.html',
   styleUrl: './agendar.component.css'
 })
@@ -26,12 +28,10 @@ export class AgendarComponent implements OnInit {
   orientation: boolean = false;
   dataExtra: boolean = false;
 
-  constructor(private config: PrimeNGConfig, private translateService: TranslateService) {
+  constructor(private config: PrimeNGConfig) {
     this.color = EClassCollor;
   }
   ngOnInit(): void {
-    this.translateService.setDefaultLang('es');
-    this.translate('es');
   }
 
   changeSelectRelation() {
@@ -40,10 +40,6 @@ export class AgendarComponent implements OnInit {
     } else {
       this.orientation = true;
     }
-  }
-  translate(lang: string) {
-    this.translateService.use(lang);
-    this.translateService.get('primeng').subscribe(res => this.config.setTranslation(res));
   }
 
   onUpload(event: any) {

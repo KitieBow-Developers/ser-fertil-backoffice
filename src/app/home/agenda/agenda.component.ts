@@ -19,6 +19,7 @@ import { AgendarComponent } from './agendar/agendar.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
+import { PatientDTO } from '../../domain/class/patient-dto';
 
 @Component({
   selector: 'app-agenda',
@@ -58,6 +59,9 @@ export class AgendaComponent implements OnInit {
   user: any;
   selectDate: Date;
   dataTable: AppointmentinfoDTO[] = [];
+  id!: string;
+
+  patients: PatientDTO[] = [];
 
   private lastDate!: string;
   constructor(private agendarService: SheduleService, public dialog: MatDialog, private citaMedicaService: CitaMedicalService) {
@@ -75,14 +79,11 @@ export class AgendaComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.date) {
-      console.log(this.user.id);
-      this.citaMedicaService.listarCitaMedica(sessionStorage.getItem('header')!, this.user.id.$oid, this.date).subscribe((data: any) => {
-      })
+      this.id = this.user.id.$oid;
     }
     this.agendarService.listMedical(sessionStorage.getItem('header')!).subscribe((data: any) => {
       for (let i = 0; i < data.body.detalles.length; i++) {
         let medico = new MedicalDto();
-        console.log(medico, data.body)
         medico.name = data.body.detalles[i].nombre;
         medico.id = data.body.detalles[i].id;
         this.medicos.push(medico);
@@ -102,10 +103,19 @@ export class AgendaComponent implements OnInit {
     }
     if (tempDate !== this.lastDate) {
       this.lastDate = tempDate;
-      this.citaMedicaService.listarCitaMedica(sessionStorage.getItem('header')!, this.user.id.$oid, tempDate).subscribe((data: any) => {
-        // Aquí va tu lógica
-      });
+      this.searchListMedical(this.id, tempDate);
     }
+  }
+
+  searchListPatientDoctor(medical: MedicalDto){
+    let date: string;
+    if ((this.selectDate.getMonth() + 1) <= 9) {
+      date = this.selectDate.getFullYear() + "-0" + (this.selectDate.getMonth() + 1) + "-" + this.selectDate.getDate();
+    } else {
+      date = this.selectDate.getFullYear() + "-" + (this.selectDate.getMonth() + 1) + "-" + this.selectDate.getDate();
+    }
+    this.id = medical.id;
+    this.searchListMedical(this.id, date);
   }
 
   selectAll(event: any) {
@@ -115,5 +125,24 @@ export class AgendaComponent implements OnInit {
     // });
   }
 
-
+  searchListMedical(id: string, date: string){
+    this.patients = [];
+    this.citaMedicaService.listarCitaMedica(sessionStorage.getItem('header')!, id, date).subscribe((data: any) => {
+      if(data.body != null){
+        for(let i = 0; i < data.body.detalles.length; i++){
+          let patient = new PatientDTO();
+          patient.dt_final = new Date(data.body.detalles[i].dt_final);
+          patient.dt_start = new Date(data.body.detalles[i].dt_inicio);
+          patient.state = data.body.detalles[i].estado;
+          patient.id = data.body.detalles[i].id;
+          patient.motive = data.body.detalles[i].motivo;
+          patient.patientName = data.body.detalles[i].nombre_paciente;
+          patient.dt_cita_med = data.body.detalles[i].dt_cita_med;
+          this.patients.push(patient);
+        }
+      }else{
+        this.patients = [];
+      }
+    });
+  }
 }

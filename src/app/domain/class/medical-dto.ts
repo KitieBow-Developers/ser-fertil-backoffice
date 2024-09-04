@@ -1,6 +1,6 @@
 import { Generic } from "./generic";
 
 export class MedicalDto extends Generic{
-    id!: number;
+    id!: string;
     name!: string;
 }

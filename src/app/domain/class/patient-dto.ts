@@ -2,17 +2,21 @@ import { Generic } from "./generic";
 import { SummaryInfoDto } from "./summary-info-dto";
 
 export class PatientDTO extends Generic{
-    select!: boolean;
-    dt_final!: Date;
-    dt_start!: Date;
-    dt_cita_med!: Date;
-    state!: string;
+    names!: string;
+    lastNames!: string;
     id!: string;
-    motive!: string;
-    patientName!: string;
-    summary: SummaryInfoDto;
-    constructor(){
-        super();
-        this.summary = new SummaryInfoDto();
-    }
+    principalPhone!: string;
+    gender!: string;
+    urlImage!: string;
+    profession!: string;
+    referredBy!: string;
+    dateOfBirth!: string;
+    numMedicalHistory!: string;
+    numRuc!: string;
+    email!: string;
+    placeOfBirth!: string;
+    address!: string;
+    firstPhoneAdd!: string;
+    secondPhoneAdd!: string;
+    idConjugalPatien!: string;
 }

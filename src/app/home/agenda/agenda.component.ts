@@ -19,7 +19,7 @@ import { AgendarComponent } from './agendar/agendar.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
-import { PatientDTO } from '../../domain/class/patient-dto';
+import { MedicalAppointmentDTO } from '../../domain/class/medical-appointment-dto';
 
 @Component({
   selector: 'app-agenda',
@@ -31,7 +31,6 @@ import { PatientDTO } from '../../domain/class/patient-dto';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    NgClass,
     InputTextModule,
     CommonModule,
     MatButtonModule,
@@ -61,7 +60,7 @@ export class AgendaComponent implements OnInit {
   dataTable: AppointmentinfoDTO[] = [];
   id!: string;
 
-  patients: PatientDTO[] = [];
+  medicalAppointments: MedicalAppointmentDTO[] = [];
 
   private lastDate!: string;
   constructor(private agendarService: SheduleService, public dialog: MatDialog, private citaMedicaService: CitaMedicalService) {
@@ -93,9 +92,11 @@ export class AgendaComponent implements OnInit {
   }
 
   emiitChildAgent(date: string) {
-    this.date = date;
     let tempDate: string;
-    this.selectDate = new Date(this.date);
+    this.selectDate = this.convertirFecha(date)!;
+    if (this.selectDate.constructor === Date) {
+      this.date = this.selectDate.toISOString();
+    }
     if ((this.selectDate.getMonth() + 1) < 9) {
       tempDate = this.selectDate.getFullYear() + "-0" + (this.selectDate.getMonth() + 1) + "-" + this.selectDate.getDate();
     } else {
@@ -126,23 +127,47 @@ export class AgendaComponent implements OnInit {
   }
 
   searchListMedical(id: string, date: string){
-    this.patients = [];
+    this.medicalAppointments = [];
     this.citaMedicaService.listarCitaMedica(sessionStorage.getItem('header')!, id, date).subscribe((data: any) => {
       if(data.body != null){
         for(let i = 0; i < data.body.detalles.length; i++){
-          let patient = new PatientDTO();
-          patient.dt_final = new Date(data.body.detalles[i].dt_final);
-          patient.dt_start = new Date(data.body.detalles[i].dt_inicio);
-          patient.state = data.body.detalles[i].estado;
-          patient.id = data.body.detalles[i].id;
-          patient.motive = data.body.detalles[i].motivo;
-          patient.patientName = data.body.detalles[i].nombre_paciente;
-          patient.dt_cita_med = data.body.detalles[i].dt_cita_med;
-          this.patients.push(patient);
+          let medicalAppointment = new MedicalAppointmentDTO();
+          medicalAppointment.dt_final = new Date(data.body.detalles[i].dt_final);
+          medicalAppointment.dt_start = new Date(data.body.detalles[i].dt_inicio);
+          medicalAppointment.state = data.body.detalles[i].estado;
+          medicalAppointment.id = data.body.detalles[i].id;
+          medicalAppointment.motive = data.body.detalles[i].motivo;
+          medicalAppointment.patientName = data.body.detalles[i].nombre_paciente;
+          medicalAppointment.dt_cita_med = data.body.detalles[i].dt_cita_med;
+          this.medicalAppointments.push(medicalAppointment);
         }
       }else{
-        this.patients = [];
+        this.medicalAppointments = [];
       }
     });
+  }
+
+  convertirFecha(fechaStr: string): Date | null {
+    // Mapeo de los meses en español a su índice correspondiente
+    const meses: { [key: string]: number } = {
+      "enero": 0, "febrero": 1, "marzo": 2, "abril": 3, "mayo": 4, "junio": 5,
+      "julio": 6, "agosto": 7, "septiembre": 8, "octubre": 9, "noviembre": 10, "diciembre": 11
+    };
+  
+    // Dividir la fecha en partes
+    const partes = fechaStr.toLowerCase().split(" ");
+    if (partes.length !== 3) return null; // Si no tiene el formato esperado, retorna null
+  
+    const dia = parseInt(partes[0], 10); // Día como número
+    const mes = meses[partes[1]];        // Mes como índice
+    const anio = parseInt(partes[2], 10); // Año como número
+  
+    if (isNaN(dia) || isNaN(mes) || isNaN(anio)) return null; // Validación adicional
+  
+    // Crear el objeto Date
+    return new Date(anio, mes, dia);
+  }
+  search(){
+    
   }
 }

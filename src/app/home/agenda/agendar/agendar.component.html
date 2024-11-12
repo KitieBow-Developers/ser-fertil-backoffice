@@ -33,14 +33,15 @@
         <div class="contentPrincipalForm">
             <div class="contenttwoInputs">
                 <span class="p-float-label" style="width: 317px;">
-                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" />
+                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.names"/>
                     <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label>
                 </span>
                 <span class="p-float-label" style="width: 287px; margin-left: 23px;">
-                    <input pInputText id="apellido" [style.color]="color.TITLE_LOGIN" />
+                    <input pInputText id="apellido" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.lastNames" />
                     <label for="apellido" [style.color]="color.TITLE_LOGIN">Apellido</label>
                 </span>
             </div>
+            <!--Incio para registrar una cita medica-->
             <div class="contenttwoInputs">
                 <span class="p-float-label" style="width: 317px;">
                     <input pInputText id="medico" [style.color]="color.TITLE_LOGIN" />
@@ -51,12 +52,14 @@
                     <label for="assignDate">Fecha de la cita</label>
                 </span>
             </div>
+            <!--Fin para registrar una cita medica-->
             <div class="contenttwoInputs">
                 <div>
                     <span class="p-float-label" style="width: 208px;">
-                        <input pInputText id="id" [style.color]="color.TITLE_LOGIN" />
+                        <input pInputText id="id" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.id"/>
                         <label for="id" [style.color]="color.TITLE_LOGIN">Cédula</label>
                     </span>
+                    <!--Inicio para registrar una cita medica-->
                     <span class="p-float-label" style="width: 86px; margin-left: 23px;">
                         <input pInputText id="hours" [style.color]="color.TITLE_LOGIN" />
                         <label for="hours" [style.color]="color.TITLE_LOGIN">Hora de cita</label>
@@ -72,9 +75,10 @@
                     <input pInputText id="state" [style.color]="color.TITLE_LOGIN" />
                     <label for="state" [style.color]="color.TITLE_LOGIN">Estado</label>
                 </span>
-
+                <!--Fin para registrar una cita medica-->
+                
                 <span class="p-float-label" style="width: 287px; margin-left: 23px;">
-                    <input pInputText id="phone" [style.color]="color.TITLE_LOGIN" />
+                    <input pInputText id="phone" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.principalPhone"/>
                     <label for="phone" [style.color]="color.TITLE_LOGIN">Telefono</label>
                 </span>
             </div>
@@ -87,7 +91,7 @@
             </div>
             <p-fileUpload mode="basic" name="demo[]" accept="image/*" (onUpload)="onUpload($event)"
                 chooseLabel="Añadir"></p-fileUpload>
-            <mat-radio-group class="gender" labelPosition="before">
+            <mat-radio-group class="gender" labelPosition="before" [(ngModel)]="patient.gender">
                 <mat-radio-button value="M">M</mat-radio-button>
                 <mat-radio-button value="F">F</mat-radio-button>
             </mat-radio-group>
@@ -98,44 +102,44 @@
         @if(dataExtra){
         <div class="contenttwoInputs">
             <span class="p-float-label" style="width: 317px;">
-                <p-calendar inputId="assignDate"></p-calendar>
+                <p-calendar inputId="assignDate" [(ngModel)]="patient.dateOfBirth"></p-calendar>
                 <label for="assignDate">Fecha de nacimiento</label>
             </span>
             <span class="p-float-label" style="width: 200px; margin-left: 23px;">
-                <input pInputText id="referideFor" [style.color]="color.TITLE_LOGIN" />
+                <input pInputText id="referideFor" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.referredBy"/>
                 <label for="referideFor" [style.color]="color.TITLE_LOGIN">Referido por</label>
             </span>
             <span class="p-float-label" style="width: 58px; margin-left: 23px;">
-                <input pInputText id="age" [style.color]="color.TITLE_LOGIN" />
+                <input pInputText id="age" [style.color]="color.TITLE_LOGIN" [(ngModel)]="age" disabled/>
                 <label for="age" [style.color]="color.TITLE_LOGIN">Edad</label>
             </span>
             <span class="p-float-label" style="width: 111px; margin-left: 23px;">
-                <input pInputText id="historyC" [style.color]="color.TITLE_LOGIN" />
+                <input pInputText id="historyC" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.numMedicalHistory"/>
                 <label for="historyC" [style.color]="color.TITLE_LOGIN">Historia.C.</label>
             </span>
         </div>
         <div class="contenttwoInputs">
             <span class="p-float-label" style="width: 317px;">
-                <input pInputText id="ruc" [style.color]="color.TITLE_LOGIN" />
+                <input pInputText id="ruc" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.numRuc"/>
                 <label for="ruc" [style.color]="color.TITLE_LOGIN">RUC</label>
             </span>
             <span class="p-float-label" style="width: 415px; margin-left: 23px;">
-                <input pInputText id="profesion" [style.color]="color.TITLE_LOGIN" />
+                <input pInputText id="profesion" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.profession"/>
                 <label for="profesion" [style.color]="color.TITLE_LOGIN">Profesión</label>
             </span>
         </div>
         <div class="contenttwoInputs">
             <span class="p-float-label" style="width: 317px;">
-                <input pInputText id="email" [style.color]="color.TITLE_LOGIN" />
+                <input pInputText id="email" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.email"/>
                 <label for="email" [style.color]="color.TITLE_LOGIN">Correo electrónico</label>
             </span>
             <span class="p-float-label" style="width: 415px; margin-left: 23px;">
-                <input pInputText id="place" [style.color]="color.TITLE_LOGIN" />
+                <input pInputText id="place" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.placeOfBirth"/>
                 <label for="place" [style.color]="color.TITLE_LOGIN">Lugar de nacimiento</label>
             </span>
         </div>
         <span class="p-float-label" style="width: 755px;">
-            <input pInputText id="address" [style.color]="color.TITLE_LOGIN" />
+            <input pInputText id="address" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.address"/>
             <label for="address" [style.color]="color.TITLE_LOGIN">Dirección</label>
         </span>
         }
@@ -145,11 +149,11 @@
                 [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
                 class="hiddenDataExtra">Ocultar Datos Extras</button>
             <span class="p-float-label" style="width: 249px; margin-left: 23px;">
-                <input pInputText id="phone2" [style.color]="color.TITLE_LOGIN" />
+                <input pInputText id="phone2" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.firstPhoneAdd"/>
                 <label for="phone2" [style.color]="color.TITLE_LOGIN">Telefono 2</label>
             </span>
             <span class="p-float-label" style="width: 249px; margin-left: 23px;">
-                <input pInputText id="phone3" [style.color]="color.TITLE_LOGIN" />
+                <input pInputText id="phone3" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.secondPhoneAdd" />
                 <label for="phone3" [style.color]="color.TITLE_LOGIN">Telefono 3</label>
             </span>
             }@else {

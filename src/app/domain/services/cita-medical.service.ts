@@ -30,5 +30,8 @@ export class CitaMedicalService implements Action{
       ESystem.URL_TEMP + ECitaMedical.CONSULTAR_CITA_MEDICA +'id_cuenta_lista='+idUser+'&fecha='+this.utilitiesService.formatDate(fecha), {'headers': headers, observe: 'response'}).pipe
       (catchError(this.utilitiesService.handleError));
   }
+  listarCitaFiltro(){
+    
+  }
 
 }

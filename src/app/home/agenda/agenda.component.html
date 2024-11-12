@@ -153,29 +153,29 @@
                 </tr>
             </thead>
             <tbody class="scrollable-tbody">
-                @if(patients.length != 0){
-                    @for (patient of patients; track patient){
-                    @if(patient.state === 'NoDisponible'){
+                @if(medicalAppointments.length != 0){
+                    @for (medicalAppointment of medicalAppointments; track medicalAppointment){
+                    @if(medicalAppointment.state === 'NoDisponible'){
                     <tr class="alertTable">
                         <td>
                             <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
-                                [(ngModel)]="patient.select" />
+                                [(ngModel)]="medicalAppointment.select" />
                         </td>
-                        <td class="alertTable">{{ patient.patientName }}</td>
-                        <td class="alertTable">{{ patient.motive }}</td>
-                        <td class="alertTable">{{ patient.dt_start | date:'h:mm'}}</td>
-                        <td class="alertTable">{{ patient.state }}</td>
+                        <td class="alertTable">{{ medicalAppointment.patientName }}</td>
+                        <td class="alertTable">{{ medicalAppointment.motive }}</td>
+                        <td class="alertTable">{{ medicalAppointment.dt_start | date:'h:mm'}}</td>
+                        <td class="alertTable">{{ medicalAppointment.state }}</td>
                         <td class="alertTable">+</td>
                     </tr>
                     }@else {
                     <tr class="listNormal">
                         <td> <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
-                                [(ngModel)]="patient.select" />
+                                [(ngModel)]="medicalAppointment.select" />
                         </td>
-                        <td>{{ patient.patientName }}</td>
-                        <td>{{ patient.motive }}</td>
-                        <td>{{ patient.dt_cita_med | date:'h:mm'}}</td>
-                        <td>{{ patient.state }}</td>
+                        <td>{{ medicalAppointment.patientName }}</td>
+                        <td>{{ medicalAppointment.motive }}</td>
+                        <td>{{ medicalAppointment.dt_cita_med | date:'h:mm'}}</td>
+                        <td>{{ medicalAppointment.state }}</td>
                         <td>+</td>
                     </tr>
                     }

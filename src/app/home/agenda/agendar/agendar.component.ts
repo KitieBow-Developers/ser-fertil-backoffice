@@ -7,6 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MatRadioModule } from '@angular/material/radio';
 import { InputTextModule } from 'primeng/inputtext';
+import { PatientDTO } from '../../../domain/class/patient-dto';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-agendar',
@@ -17,6 +19,7 @@ import { InputTextModule } from 'primeng/inputtext';
     FileUploadModule,
     MatRadioModule,
     InputTextModule,
+    FormsModule
   ],
   providers: [
   ],
@@ -27,9 +30,11 @@ export class AgendarComponent implements OnInit {
   color: any; // Variable que almacena algún tipo de color
   orientation: boolean = false;
   dataExtra: boolean = false;
-
+  patient: PatientDTO;
+  age!: number;
   constructor(private config: PrimeNGConfig) {
     this.color = EClassCollor;
+    this.patient = new PatientDTO();
   }
   ngOnInit(): void {
   }

@@ -7,6 +7,7 @@ import { ESystem } from '../enums/e-system';
 import { ECitaMedical } from '../enums/e-cita-medical';
 import { catchError } from 'rxjs';
 import { MedicalDto } from '../class/medical-dto';
+import { MedicalAppointmentDTO } from '../class/medical-appointment-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,13 @@ export class CitaMedicalService implements Action{
       (catchError(this.utilitiesService.handleError));
   }
   listarCitaFiltro(){
-    
-  }
 
+  }
+  searchInfoPatients(authorization: string, medicalAppointments: MedicalAppointmentDTO){
+    const headers= new HttpHeaders().set('Authorization', authorization);
+    return this.http.post<AppointmentinfoDTO>(
+      ESystem.URL_TEMP + ECitaMedical.BUSCAR_INFO_PACIENTE+medicalAppointments.id+"/info", medicalAppointments, {'headers': headers, observe: 'response'}).pipe
+      (catchError(this.utilitiesService.handleError));
+
+  }
 }

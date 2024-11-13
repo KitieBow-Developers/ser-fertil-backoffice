@@ -10,6 +10,7 @@ export class MedicalAppointmentDTO extends Generic{
     id!: string;
     motive!: string;
     patientName!: string;
+    id_paciente!: string;
     summary: SummaryInfoDto;
     constructor(){
         super();

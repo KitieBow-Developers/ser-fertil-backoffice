@@ -5,35 +5,59 @@
             <div class="contentInputResumen">
                 <p>RESUMEN</p>
                 <span class="p-float-label">
-                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" style="width: 100%;"
+                        [(ngModel)]="resumeDataPatient.patientName" disabled />
                     <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label>
                 </span>
                 <span class="p-float-label">
+                    @if(!resumeDataPatient.dt_start){
                     <input pInputText id="date" value="{{date | date: 'dd/MM/yyyy'}}" [style.color]="color.TITLE_LOGIN"
-                        style="width: 100%;" />
+                        style="width: 100%;" disabled />
+                    }@else {
+                    <input pInputText id="date" value="{{resumeDataPatient.dt_start | date: 'dd/MM/yyyy'}}"
+                        [style.color]="color.TITLE_LOGIN" style="width: 100%;" disabled />
+                    }
                     <label for="date" [style.color]="color.TITLE_LOGIN">Fecha de cita</label>
                 </span>
                 <span class="p-float-label">
-                    <input pInputText id="cedula" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                    <input pInputText id="cedula" [style.color]="color.TITLE_LOGIN"
+                        [(ngModel)]="resumeDataPatient.summary.identification" style="width: 100%;" disabled />
                     <label for="cedula" [style.color]="color.TITLE_LOGIN">Cédula</label>
                 </span>
                 <div class="content-doble">
                     <span class="p-float-label">
+                        @if(!resumeDataPatient.summary.arrivalTime){
                         <input pInputText id="startDate" value="{{date | date: 'h:mm:ss a'}}"
-                            [style.color]="color.TITLE_LOGIN" style="width: 45%;" />
+                            [style.color]="color.TITLE_LOGIN" style="width: 45%;" disabled />
+                        }@else {
+                        <input pInputText id="startDate"
+                            value="{{resumeDataPatient.summary.arrivalTime | date: 'h:mm:ss a'}}"
+                            [style.color]="color.TITLE_LOGIN" style="width: 45%;" disabled />
+                        }
                         <label for="startDate" [style.color]="color.TITLE_LOGIN">Hora de llegada</label>
                     </span>
+                    @if(resumeDataPatient.state !== 'Llego'){
                     <span class="p-float-label">
-                        <input pInputText id="laterTime" [style.color]="color.TITLE_LOGIN" style="width: 45%;" />
+                        <input pInputText id="laterTime" [style.color]="color.TITLE_LOGIN" style="width: 45%;"
+                            value="0 Minutos" disabled />
                         <label for="laterTime" [style.color]="color.TITLE_LOGIN">Tiempo de espera</label>
                     </span>
+                    }@else {
+                    <span class="p-float-label">
+                        <input pInputText id="laterTime" [style.color]="color.TITLE_LOGIN" style="width: 45%;"
+                            value="{{waitingTimeText}}" disabled />
+                        <label for="laterTime" [style.color]="color.TITLE_LOGIN">Tiempo de espera</label>
+                    </span>
+                    }
                 </div>
                 <span class="p-float-label">
-                    <input pInputText id="reason" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                    <input pInputText id="reason" [style.color]="color.TITLE_LOGIN" style="width: 100%;"
+                        [(ngModel)]="resumeDataPatient.motive" disabled />
                     <label for="reason" [style.color]="color.TITLE_LOGIN">Motivo</label>
                 </span>
                 <span class="p-float-label">
-                    <input pInputText id="phone" [style.color]="color.TITLE_LOGIN" style="width: 100%;" />
+                    <input pInputText id="phone" [style.color]="color.TITLE_LOGIN" style="width: 100%;"
+                        [(ngModel)]="resumeDataPatient.summary.phone" disabled />
                     <label for="phone" [style.color]="color.TITLE_LOGIN">Telefonos</label>
                 </span>
                 <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE"
@@ -154,34 +178,36 @@
             </thead>
             <tbody class="scrollable-tbody">
                 @if(medicalAppointments.length != 0){
-                    @for (medicalAppointment of medicalAppointments; track medicalAppointment){
-                    @if(medicalAppointment.state === 'NoDisponible'){
-                    <tr class="alertTable">
-                        <td>
-                            <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
-                                [(ngModel)]="medicalAppointment.select" />
-                        </td>
-                        <td class="alertTable">{{ medicalAppointment.patientName }}</td>
-                        <td class="alertTable">{{ medicalAppointment.motive }}</td>
-                        <td class="alertTable">{{ medicalAppointment.dt_start | date:'h:mm'}}</td>
-                        <td class="alertTable">{{ medicalAppointment.state }}</td>
-                        <td class="alertTable">+</td>
-                    </tr>
-                    }@else {
-                    <tr class="listNormal">
-                        <td> <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
-                                [(ngModel)]="medicalAppointment.select" />
-                        </td>
-                        <td>{{ medicalAppointment.patientName }}</td>
-                        <td>{{ medicalAppointment.motive }}</td>
-                        <td>{{ medicalAppointment.dt_cita_med | date:'h:mm'}}</td>
-                        <td>{{ medicalAppointment.state }}</td>
-                        <td>+</td>
-                    </tr>
-                    }
-                    }
+                @for (medicalAppointment of medicalAppointments; track medicalAppointment){
+                @if(medicalAppointment.state === 'NoDisponible'){
+                <tr class="alertTable">
+                    <td>
+                        <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
+                            [(ngModel)]="medicalAppointment.select" />
+                    </td>
+                    <td class="alertTable">{{ medicalAppointment.patientName }}</td>
+                    <td class="alertTable">{{ medicalAppointment.motive }}</td>
+                    <td class="alertTable">{{ medicalAppointment.dt_start | date:'h:mm'}}</td>
+                    <td class="alertTable">{{ medicalAppointment.state }}</td>
+                    <td class="alertTable">+</td>
+                </tr>
                 }@else {
-                    <p style="font-size: 20px;">No hay registros</p>
+                <tr class="{{validateStateTable(medicalAppointment)}}" (click)="resumePatient(medicalAppointment)">
+                    <td>
+                        <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
+                            [(ngModel)]="medicalAppointment.select" />
+                    </td>
+                    <td>{{ medicalAppointment.patientName }}</td>
+                    <td>{{ medicalAppointment.motive }}</td>
+                    <td>{{ medicalAppointment.dt_start |
+                        date:'h:mm'}}</td>
+                    <td>{{ medicalAppointment.state }}</td>
+                    <td>+</td>
+                </tr>
+                }
+                }
+                }@else {
+                <p style="font-size: 20px;">No hay registros</p>
                 }
             </tbody>
         </table>
@@ -230,10 +256,10 @@
     </div>
     <mat-card>
         @switch (validateMatCard) {
-            @case ("agendar"){
-            <app-agendar></app-agendar>
+        @case ("agendar"){
+        <app-agendar [dataPatient]="resumeDataPatient"></app-agendar>
         }
-    }
+        }
     </mat-card>
 </div>
 </div>

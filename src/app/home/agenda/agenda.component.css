@@ -271,22 +271,78 @@
       background-color: #056479;
       color: white;
     }
+
     .listNormal{
       background-color: #f2f2f2;
       color: #056479;
+      cursor: pointer;
+    }
+    .listNormal:hover{
+      background-color: rgba(9, 143, 158, 0.5);
+      color: white;
+      cursor: pointer;
     }
     .alertTable{
       background-color: #f2f2f2;
       color: #B90607;
+      cursor: pointer;
     }
-
+    .confirmTable{
+      background-color: #f2f2f2;
+      color: #137005;
+      cursor: pointer;
+    }
+    .confirmTable:hover{
+      background-color: rgba(19, 112, 5, 0.25);
+      color: #137005;
+      cursor: pointer;
+    }
+    .consultTable{
+      background-color: #f2f2f2;
+      color: #39107B;
+      cursor: pointer;
+    }
+    .consultTable:hover{
+      background-color: rgba(57, 16, 123, 0.25);
+      color: #39107B;
+      cursor: pointer;
+    }
+    .cancelTable{
+      background-color: #f2f2f2;
+      color: #000000;
+      cursor: pointer;
+    }
+    .cancelTable:hover{
+      background-color: rgba(0, 0, 0, 0.25);
+      color: #000000;
+      cursor: pointer;
+    }
+    .attentTable{
+      background-color: #f2f2f2;
+      color: #098F9E;
+      cursor: pointer;
+    }
+    .attentTable:hover{
+      background-color: rgba(9, 143, 158, 0.25);
+      color: white;
+      cursor: pointer;
+    }
+    .comeTable{
+      background-color: #f2f2f2;
+      color: #D44D01;
+      cursor: pointer;
+    }
+    .comeTable:hover{
+      background-color: rgba(239, 124, 59, 0.25);
+      color: #D44D01;
+      cursor: pointer;
+    }
     /* Sección de tabla */
     table {
       width: 100%;
       border-collapse: collapse;
 
     }
-
     th, td {
       font-family: Poppins-Regular;
       font-size: 15px;

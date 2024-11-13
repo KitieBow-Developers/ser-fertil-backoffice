@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe, NgClass } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core'
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core'
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -46,7 +46,7 @@ import { MedicalAppointmentDTO } from '../../domain/class/medical-appointment-dt
   ],
   styleUrl: './agenda.component.css'
 })
-export class AgendaComponent implements OnInit {
+export class AgendaComponent implements OnInit, OnDestroy {
 
   color: any; // Variable que almacena algún tipo de color
   selected: Date;
@@ -59,8 +59,10 @@ export class AgendaComponent implements OnInit {
   selectDate: Date;
   dataTable: AppointmentinfoDTO[] = [];
   id!: string;
-
+  resumeDataPatient: MedicalAppointmentDTO = new MedicalAppointmentDTO();
   medicalAppointments: MedicalAppointmentDTO[] = [];
+  waitingTimeText: string = '0 Minutos';
+  timer: any;
 
   private lastDate!: string;
   constructor(private agendarService: SheduleService, public dialog: MatDialog, private citaMedicaService: CitaMedicalService) {
@@ -74,6 +76,11 @@ export class AgendaComponent implements OnInit {
       this.date = this.selectDate.getFullYear() + "-" + (this.selectDate.getMonth() + 1) + "-" + this.selectDate.getDate();
     }
     this.user = JSON.parse(sessionStorage.getItem('user')!);
+  }
+  ngOnDestroy(): void {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   }
 
   ngOnInit(): void {
@@ -89,6 +96,7 @@ export class AgendaComponent implements OnInit {
       }
       console.log(this.medicos)
     });
+    this.startWaitingTimeUpdater();
   }
 
   emiitChildAgent(date: string) {
@@ -108,7 +116,7 @@ export class AgendaComponent implements OnInit {
     }
   }
 
-  searchListPatientDoctor(medical: MedicalDto){
+  searchListPatientDoctor(medical: MedicalDto) {
     let date: string;
     if ((this.selectDate.getMonth() + 1) <= 9) {
       date = this.selectDate.getFullYear() + "-0" + (this.selectDate.getMonth() + 1) + "-" + this.selectDate.getDate();
@@ -126,22 +134,31 @@ export class AgendaComponent implements OnInit {
     // });
   }
 
-  searchListMedical(id: string, date: string){
+  searchListMedical(id: string, date: string) {
     this.medicalAppointments = [];
     this.citaMedicaService.listarCitaMedica(sessionStorage.getItem('header')!, id, date).subscribe((data: any) => {
-      if(data.body != null){
-        for(let i = 0; i < data.body.detalles.length; i++){
+      if (data.body != null) {
+        console.log(data.body.detalles);
+        for (let i = 0; i < data.body.detalles.length; i++) {
           let medicalAppointment = new MedicalAppointmentDTO();
           medicalAppointment.dt_final = new Date(data.body.detalles[i].dt_final);
           medicalAppointment.dt_start = new Date(data.body.detalles[i].dt_inicio);
           medicalAppointment.state = data.body.detalles[i].estado;
           medicalAppointment.id = data.body.detalles[i].id;
           medicalAppointment.motive = data.body.detalles[i].motivo;
+          if (data.body.detalles[i].id_paciente) {
+            medicalAppointment.id_paciente = data.body.detalles[i].id_paciente;
+          }
           medicalAppointment.patientName = data.body.detalles[i].nombre_paciente;
           medicalAppointment.dt_cita_med = data.body.detalles[i].dt_cita_med;
+          if (data.body.detalles[i].resumen) {
+            medicalAppointment.summary.arrivalTime = data.body.detalles[i].resumen.hora_llegada;
+            medicalAppointment.summary.phone = data.body.detalles[i].resumen.telefono;
+            medicalAppointment.summary.identification = data.body.detalles[i].resumen.cedula;
+          }
           this.medicalAppointments.push(medicalAppointment);
         }
-      }else{
+      } else {
         this.medicalAppointments = [];
       }
     });
@@ -153,21 +170,73 @@ export class AgendaComponent implements OnInit {
       "enero": 0, "febrero": 1, "marzo": 2, "abril": 3, "mayo": 4, "junio": 5,
       "julio": 6, "agosto": 7, "septiembre": 8, "octubre": 9, "noviembre": 10, "diciembre": 11
     };
-  
+
     // Dividir la fecha en partes
     const partes = fechaStr.toLowerCase().split(" ");
     if (partes.length !== 3) return null; // Si no tiene el formato esperado, retorna null
-  
+
     const dia = parseInt(partes[0], 10); // Día como número
     const mes = meses[partes[1]];        // Mes como índice
     const anio = parseInt(partes[2], 10); // Año como número
-  
+
     if (isNaN(dia) || isNaN(mes) || isNaN(anio)) return null; // Validación adicional
-  
+
     // Crear el objeto Date
     return new Date(anio, mes, dia);
   }
-  search(){
-    
+  resumePatient(medicalAppointments: MedicalAppointmentDTO) {
+    if (medicalAppointments.state !== "NoDisponible") {
+      this.resumeDataPatient = medicalAppointments;
+      this.resumeDataPatient.dt_start = this.convertirFecha(this.resumeDataPatient.dt_start.toString())!;
+
+      let arrivalTime: Date = new Date();
+      arrivalTime = this.convertirFecha(this.resumeDataPatient.summary.arrivalTime.toString())!;
+      if (arrivalTime && arrivalTime.constructor === Date) {
+        this.resumeDataPatient.summary.arrivalTime = arrivalTime.toISOString();
+      }
+      this.updateWaitingTime();
+    }
+  }
+
+  validateStateTable(medicalAppointment: MedicalAppointmentDTO) {
+    switch (medicalAppointment.state) {
+      case "SinConfirmar":
+        return 'listNormal';
+      case "NoDisponible":
+        return 'alertTable';
+      case "Confirmado":
+        return 'confirmTable';
+      case "EnConsulta":
+        return 'consultTable';
+      case "Cancelado":
+        return 'cancelTable';
+      case "Llego":
+        return 'comeTable';
+      default:
+        return 'attentTable'
+    }
+  }
+
+  startWaitingTimeUpdater() {
+    this.timer = setInterval(() => {
+      this.updateWaitingTime();
+    }, 20000); // Actualiza cada minuto
+    this.updateWaitingTime(); // Calcula inmediatamente al cargar
+  }
+
+  updateWaitingTime() {
+    // Reemplaza `resumeDataPatient.summary` con el objeto correcto en tu contexto
+    if (this.resumeDataPatient.summary.arrivalTime) {
+      this.waitingTimeText = this.calculateWaitingTime(this.resumeDataPatient);
+    }
+  }
+
+  calculateWaitingTime(medicalAppointment: MedicalAppointmentDTO): string {
+    let currentDate = new Date();
+    let appointmentDate = new Date(medicalAppointment.dt_cita_med);
+    let diff = currentDate.getTime() - appointmentDate.getTime();
+    let diffMinutes = Math.floor(diff / (1000 * 60));
+
+    return `${diffMinutes} Minutos`;
   }
 }

@@ -173,19 +173,19 @@ export class AgendaComponent implements OnInit, OnDestroy {
     });
   }
   searchListRegisterPatient() {
-    if(this.filterDataUser.name || this.filterDataUser.cedula || this.filterDataUser.HClinica){
-      if(this.filterDataUser.name){
-        this.citaMedicaService.listarPacientesRegistrados(this.filterDataUser.name, this.filterDataUser.page+1).subscribe((data: any) => {
+    if (this.filterDataUser.name || this.filterDataUser.cedula || this.filterDataUser.HClinica) {
+      if (this.filterDataUser.name) {
+        this.citaMedicaService.listarPacientesRegistrados(this.filterDataUser.name, this.filterDataUser.page + 1).subscribe((data: any) => {
           this.addFilterDataUser(data);
           console.log(this.filterDataUser);
         });
-      }else if(this.filterDataUser.cedula){
-        this.citaMedicaService.listarPacientesRegistrados(this.filterDataUser.cedula, this.filterDataUser.page+1).subscribe((data: any) => {
+      } else if (this.filterDataUser.cedula) {
+        this.citaMedicaService.listarPacientesRegistrados(this.filterDataUser.cedula, this.filterDataUser.page + 1).subscribe((data: any) => {
           this.addFilterDataUser(data);
           console.log(this.filterDataUser);
         });
-      }else if(this.filterDataUser.HClinica){
-        this.citaMedicaService.listarPacientesRegistrados(this.filterDataUser.HClinica, this.filterDataUser.page+1).subscribe((data: any) => {
+      } else if (this.filterDataUser.HClinica) {
+        this.citaMedicaService.listarPacientesRegistrados(this.filterDataUser.HClinica, this.filterDataUser.page + 1).subscribe((data: any) => {
           this.addFilterDataUser(data);
           console.log(this.filterDataUser);
         });
@@ -268,18 +268,18 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
     return `${diffMinutes} Minutos`;
   }
-  
+
   searchListRegisterPatientDoctor(medical?: MedicalDto) {
-    if(this.selectDataPatient === "citas"){
-      if(medical){
+    if (this.selectDataPatient === "citas") {
+      if (medical) {
         this.searchListMedical(medical.id, this.date);
-      }else{
+      } else {
         this.searchListMedical(this.id, this.date);
       }
     }
   }
-  addFilterDataUser(data: any){     
-    for(let i = 0; i < data.detalles.length; i++){
+  addFilterDataUser(data: any) {
+    for (let i = 0; i < data.detalles.length; i++) {
       let filterDataUse = new filterDataUser();
       filterDataUse.name = data.detalles[i].nombre ? data.detalles[i].nombre : "";
       filterDataUse.cedula = data.detalles[i].cedula ? data.detalles[i].cedula : "";
@@ -290,8 +290,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
   onPageChange(event: any) {
     this.first = event.first;
-    console.log(event);
     this.filterDataUser.page = event.page;
-    console.log(this.filterDataUser);
-}
+    this.searchListRegisterPatient();
+  }
 }

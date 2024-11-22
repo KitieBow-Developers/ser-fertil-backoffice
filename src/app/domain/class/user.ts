@@ -8,3 +8,9 @@ export class User extends Generic{
     rol!: string;
     permisos!: string;
 }
+export class filterDataUser extends Generic{
+    name!: string;
+    cedula!: string;
+    HClinica!: string;
+    page!: number;
+}

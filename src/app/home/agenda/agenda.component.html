@@ -104,26 +104,46 @@
         <mat-card>
             <div class="consultar">
                 <span class="p-float-label" style="width: 197px; margin-left: 23px;">
-                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" />
+                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" [(ngModel)]="filterDataUser.name"
+                        [disabled]="filterDataUser.HClinica || filterDataUser.cedula" />
                     <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label>
                 </span>
-                <button mat-icon-button class="filter">
+                <button mat-icon-button class="filter" (click)="filter.toggle($event)">
                     <svg>
                         <use xlink:href="../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-filtro">
                         </use>
                     </svg>
                 </button>
+                <p-overlayPanel #filter class="dataSelector">
+                    <div class="dataSelector">
+                        <p style="width: 30%;">Busca por:</p>
+                        <mat-radio-group aria-label="Select an option" style=" display: flex;"
+                            [(ngModel)]="selectDataPatient">
+                            <mat-radio-button value="registrado"
+                                [color]="color.TITLE_LOGIN">Registrados</mat-radio-button>
+                            <mat-radio-button value="citas" [color]="color.TITLE_LOGIN" style="margin-left: none;"
+                                (click)="searchListRegisterPatientDoctor()">Citas</mat-radio-button>
+                        </mat-radio-group>
+                        <!-- <div class="buttons">
+                            <button mat-flat-button>Filtrar</button>searchListPatientDoctor
+                        </div> -->
+                    </div>
+                </p-overlayPanel>
                 <span class="p-float-label" style="width: 99px; margin-right: 23px;">
-                    <input pInputText id="cedula" [style.color]="color.TITLE_LOGIN" />
+                    <input pInputText id="cedula" [style.color]="color.TITLE_LOGIN" [(ngModel)]="filterDataUser.cedula"
+                        [disabled]="filterDataUser.name || filterDataUser.HClinica" />
                     <label for="cedula" [style.color]="color.TITLE_LOGIN">Cédula</label>
                 </span>
                 <span class="p-float-label" style="width: 100px; margin-right: 23px;">
-                    <input pInputText id="hClinica" [style.color]="color.TITLE_LOGIN" />
+                    <input pInputText id="hClinica" [style.color]="color.TITLE_LOGIN"
+                        [(ngModel)]="filterDataUser.HClinica"
+                        [disabled]="filterDataUser.name || filterDataUser.cedula" />
                     <label for="hClinica" [style.color]="color.TITLE_LOGIN">H.Clinica</label>
                 </span>
                 <button mat-raised-button [style.background-color]="color.BACKGROUND"
                     [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-                    class="aceptar">Buscar</button>
+                    class="aceptar" (click)="searchListRegisterPatient()"
+                    [disabled]="this.selectDataPatient != 'registrado'">Buscar</button>
             </div>
             <div class="date-container">
                 <p class="date">{{date}}</p>
@@ -163,6 +183,7 @@
             </button>
     </div>
     <div class="table-container">
+        @if(this.selectDataPatient == 'citas' && (!filterDataUser.HClinica || !filterDataUser.cedula || !filterDataUser.name)){
         <table>
             <thead>
                 <tr>
@@ -211,6 +232,45 @@
                 }
             </tbody>
         </table>
+        }@else {
+        <table>
+            <thead>
+                <tr>
+                    <th class="blue-header">
+                        @if (!filterDataUser.HClinica || !filterDataUser.cedula) {
+                        Nombre
+                        }@else if (!filterDataUser.name || !filterDataUser.cedula) {
+                        Historia Clinica
+                        }
+                        @else {
+                        Cedula
+                        }
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="scrollable-tbody">
+                @if(filtersDataUser.length != 0){
+                @for (filterDataUser of filtersDataUser; track filterDataUser){
+                <tr>
+                    <td>
+                        @if (!filterDataUser.HClinica || !filterDataUser.cedula) {
+                        {{ filterDataUser.name }}
+                        }@else if (!filterDataUser.name || !filterDataUser.cedula) {
+                        {{ filterDataUser.HClinica }}
+                        }
+                        @else {
+                        {{ filterDataUser.cedula }}
+                        }
+                    </td>
+                </tr>
+                }
+                }@else {
+                <p style="font-size: 20px;">No hay registros</p>
+                }
+            </tbody>
+        </table>
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="15" [totalRecords]="filtersDataUser.length"/>
+        }
     </div>
     </mat-card>
 </div>

@@ -7,6 +7,10 @@
   font-family: 'Poppins-Regular';
   src: url('../../../assets/fonts/Poppins-Regular.ttf');
 }
+@font-face {
+  font-family: 'Poppins-Medium';
+  src: url('../../../assets/fonts/Poppins-Medium.ttf');
+}
 
 .content-agenda {
   display: inline-flex;
@@ -117,6 +121,61 @@
   background-color: #056479 !important;
   border-color: #ffffff !important;
 }
+::ng-deep .mat-internal-form-field>label{
+  color: #098F9E !important;
+  font-family: 'Poppins-Medium';
+  font-size: 16px;
+}
+.dataSelector {
+  display: flex !important;
+  padding: 10px;
+
+  p {
+
+    font-family: 'Poppins-Bold' !important;
+    font-size: 16px;
+    color: #098F9E;
+    position: relative;
+    left: 0px;
+    width: 33%;
+    text-align: center;
+    top: 10px;
+    font-family: Poppins-Bold;
+    font-size: 16px;
+  }
+  .mat-radio-butto{
+    background-color: #098F9E;
+  }
+  .mat-mdc-radio-button {
+    padding: 0 7.5px;
+    border-left: 3px solid #056479;
+    color: #098F9E;
+    
+  }
+  .buttons{
+    width: 33%;
+    border-left: 3px solid #056479;
+    display: flex;
+    button{
+      position: relative;
+      top: 2px;
+      width: 78px;
+      height: 33px;
+      background-color: #056479;
+      color: white;
+      font-family: Poppins-Bold;
+      font-size: 15.08px;
+      margin: 0 auto;
+      border-left: 3px solid #056479;
+      border-right: 3px solid #056479;
+      margin: 0 auto;
+    }
+  }
+}
+::ng-deep .p-overlaypanel .p-overlaypanel-content{
+  width: 628px !important;
+  padding: 0 !important;
+}
 .section-2 {
   margin-left: 23px;
   margin-top: 15px;
@@ -183,6 +242,7 @@
         }
       }
     }
+
 
     .consultar {
       display: flex;

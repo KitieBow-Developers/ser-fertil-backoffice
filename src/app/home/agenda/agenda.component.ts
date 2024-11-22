@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { InputTextModule } from 'primeng/inputtext';
 import { AppointmentinfoDTO } from '../../domain/class/appointmentinfo-dto';
-import { User } from '../../domain/class/user';
+import { filterDataUser, User } from '../../domain/class/user';
 import { EClassCollor } from '../../domain/enums/eclass-collor';
 import { MedicalDto } from '../../domain/class/medical-dto';
 import { SheduleService } from '../../domain/services/shedule.service';
@@ -20,6 +20,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MedicalAppointmentDTO } from '../../domain/class/medical-appointment-dto';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { MatRadioModule } from '@angular/material/radio';
+import { PaginatorModule } from 'primeng/paginator';
 
 @Component({
   selector: 'app-agenda',
@@ -37,7 +40,10 @@ import { MedicalAppointmentDTO } from '../../domain/class/medical-appointment-dt
     CalendarComponent,
     MatButtonToggleModule,
     AgendarComponent,
-    CheckboxModule
+    CheckboxModule,
+    OverlayPanelModule,
+    MatRadioModule,
+    PaginatorModule,
   ],
   templateUrl: './agenda.component.html',
   providers: [
@@ -63,6 +69,10 @@ export class AgendaComponent implements OnInit, OnDestroy {
   medicalAppointments: MedicalAppointmentDTO[] = [];
   waitingTimeText: string = '0 Minutos';
   timer: any;
+  selectDataPatient: string = "citas";
+  filterDataUser: filterDataUser = new filterDataUser();
+  filtersDataUser: filterDataUser[] = [];
+  first: number = 0;
 
   private lastDate!: string;
   constructor(private agendarService: SheduleService, public dialog: MatDialog, private citaMedicaService: CitaMedicalService) {
@@ -94,7 +104,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
         medico.id = data.body.detalles[i].id;
         this.medicos.push(medico);
       }
-      console.log(this.medicos)
     });
     this.startWaitingTimeUpdater();
   }
@@ -162,6 +171,26 @@ export class AgendaComponent implements OnInit, OnDestroy {
         this.medicalAppointments = [];
       }
     });
+  }
+  searchListRegisterPatient() {
+    if(this.filterDataUser.name || this.filterDataUser.cedula || this.filterDataUser.HClinica){
+      if(this.filterDataUser.name){
+        this.citaMedicaService.listarPacientesRegistrados(this.filterDataUser.name, this.filterDataUser.page+1).subscribe((data: any) => {
+          this.addFilterDataUser(data);
+          console.log(this.filterDataUser);
+        });
+      }else if(this.filterDataUser.cedula){
+        this.citaMedicaService.listarPacientesRegistrados(this.filterDataUser.cedula, this.filterDataUser.page+1).subscribe((data: any) => {
+          this.addFilterDataUser(data);
+          console.log(this.filterDataUser);
+        });
+      }else if(this.filterDataUser.HClinica){
+        this.citaMedicaService.listarPacientesRegistrados(this.filterDataUser.HClinica, this.filterDataUser.page+1).subscribe((data: any) => {
+          this.addFilterDataUser(data);
+          console.log(this.filterDataUser);
+        });
+      }
+    }
   }
 
   convertirFecha(fechaStr: string): Date | null {
@@ -239,4 +268,30 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
     return `${diffMinutes} Minutos`;
   }
+  
+  searchListRegisterPatientDoctor(medical?: MedicalDto) {
+    if(this.selectDataPatient === "citas"){
+      if(medical){
+        this.searchListMedical(medical.id, this.date);
+      }else{
+        this.searchListMedical(this.id, this.date);
+      }
+    }
+  }
+  addFilterDataUser(data: any){     
+    for(let i = 0; i < data.detalles.length; i++){
+      let filterDataUse = new filterDataUser();
+      filterDataUse.name = data.detalles[i].nombre ? data.detalles[i].nombre : "";
+      filterDataUse.cedula = data.detalles[i].cedula ? data.detalles[i].cedula : "";
+      filterDataUse.HClinica = data.detalles[i].historia_clinica ? data.detalles[i].historia_clinica : "";
+      filterDataUse.page = 1;
+      this.filtersDataUser.push(filterDataUse);
+    }
+  }
+  onPageChange(event: any) {
+    this.first = event.first;
+    console.log(event);
+    this.filterDataUser.page = event.page;
+    console.log(this.filterDataUser);
+}
 }

@@ -5,4 +5,5 @@ export enum ECitaMedical {
     ELIMINAR_CITA_MEDICA = "/app/agenda/cita-medica/eliminar",
     LISTAR_MEDICO = "/app/agenda/cita-medica/lista-medicos",
     BUSCAR_INFO_PACIENTE = "/app/agenda/paciente/",
+    AGREGAR_INFO_PACIENTE = "/app/agenda/paciente/agregar",
 }

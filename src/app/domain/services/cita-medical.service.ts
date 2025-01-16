@@ -5,9 +5,11 @@ import { UtilitiesService } from './utilities.service';
 import { AppointmentinfoDTO } from '../class/appointmentinfo-dto';
 import { ESystem } from '../enums/e-system';
 import { ECitaMedical } from '../enums/e-cita-medical';
-import { catchError } from 'rxjs';
+import { catchError, map } from 'rxjs';
 import { MedicalDto } from '../class/medical-dto';
 import { MedicalAppointmentDTO } from '../class/medical-appointment-dto';
+import { PatientDTO } from '../class/patient-dto';
+
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +43,21 @@ export class CitaMedicalService implements Action{
       (catchError(this.utilitiesService.handleError));
 
   }
+
+
+  addInfoPatients(authorization: string, patientInfo: PatientDTO){
+    const headers= new HttpHeaders().set('Authorization', authorization);
+    return this.http.post<PatientDTO>(
+      ESystem.URL_TEMP + ECitaMedical.AGREGAR_INFO_PACIENTE, patientInfo, {'headers': headers, observe: 'response'}).pipe
+      (catchError(this.utilitiesService.handleError));
+  }
+
+  addCitaMedica(authorization: string, citaInfo: object){
+    const headers= new HttpHeaders().set('Authorization', authorization);
+    return this.http.post<PatientDTO>(
+      ESystem.URL_TEMP + ECitaMedical.AGREGAR_CITA_MEDICA, citaInfo, {'headers': headers, observe: 'response'}).pipe
+      (catchError(this.utilitiesService.handleError));
+
+  }
+
 }

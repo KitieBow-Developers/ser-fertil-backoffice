@@ -12,6 +12,22 @@
   display: inline-flex;
 }
 
+.content-image{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 400px;
+  justify-content: center;
+}
+.img_search{
+  width: 65px;
+  height: 65px;
+}
+.pos_fixed {
+  padding: 1em 0;
+  text-align:center !important;
+}
+
 ::ng-deep .p-float-label input:focus~label, .p-float-label input.p-filled~label, .p-float-label textarea:focus~label, .p-float-label textarea.p-filled~label, .p-float-label .p-inputwrapper-focus~label, .p-float-label .p-inputwrapper-filled~label {
   width: 96%;
   text-align: center;
@@ -371,7 +387,6 @@
 
   .menu {
     position: relative;
-    text-align: center;
   }
 
   ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
@@ -412,9 +427,6 @@
     background-color: #D9D9D9 !important;
     color: #056479 !important;
     fill: #056479 !important;
-    border-top: 2px solid #F8F8F8 !important;
-    border-left: 2px solid #F8F8F8 !important;
-    border-right: 2px solid #F8F8F8 !important;
   }
 
   mat-card {

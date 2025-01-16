@@ -35,20 +35,17 @@
                             [style.color]="color.TITLE_LOGIN" style="width: 45%;" disabled />
                         }
                         <label for="startDate" [style.color]="color.TITLE_LOGIN">Hora de llegada</label>
-                    </span>
-                    @if(resumeDataPatient.state !== 'Llego'){
+                    </span> @if(resumeDataPatient.state !== 'Llego'){
                     <span class="p-float-label">
                         <input pInputText id="laterTime" [style.color]="color.TITLE_LOGIN" style="width: 45%;"
                             value="0 Minutos" disabled />
                         <label for="laterTime" [style.color]="color.TITLE_LOGIN">Tiempo de espera</label>
-                    </span>
-                    }@else {
+                    </span> }@else {
                     <span class="p-float-label">
                         <input pInputText id="laterTime" [style.color]="color.TITLE_LOGIN" style="width: 45%;"
                             value="{{waitingTimeText}}" disabled />
                         <label for="laterTime" [style.color]="color.TITLE_LOGIN">Tiempo de espera</label>
-                    </span>
-                    }
+                    </span> }
                 </div>
                 <span class="p-float-label">
                     <input pInputText id="reason" [style.color]="color.TITLE_LOGIN" style="width: 100%;"
@@ -60,8 +57,7 @@
                         [(ngModel)]="resumeDataPatient.summary.phone" disabled />
                     <label for="phone" [style.color]="color.TITLE_LOGIN">Telefonos</label>
                 </span>
-                <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE"
-                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
                     class="aceptar">Ver más datos</button>
             </div>
             <div class="contentInputResumenR">
@@ -121,26 +117,21 @@
                     <input pInputText id="hClinica" [style.color]="color.TITLE_LOGIN" />
                     <label for="hClinica" [style.color]="color.TITLE_LOGIN">H.Clinica</label>
                 </span>
-                <button mat-raised-button [style.background-color]="color.BACKGROUND"
-                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                <button mat-raised-button [style.background-color]="color.BACKGROUND" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
                     class="aceptar">Buscar</button>
             </div>
             <div class="date-container">
                 <p class="date">{{date}}</p>
             </div>
             <div class="medico">
-                <button mat-icon-button
-                    (click)="indiceActual = indiceActual - 1 >= 0 ? indiceActual - 1 : medicos.length - 3"
-                    class="flecha">
+                <button mat-icon-button (click)="indiceActual = indiceActual - 1 >= 0 ? indiceActual - 1 : medicos.length - 3" class="flecha">
                     <svg>
                         <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-izq">
                         </use>
                     </svg>
-                </button>
-                @for (medico of medicos; track medico; let i = $index) {
-                @if (i >= indiceActual && i < indiceActual + 3) { <div class="medicoName">
-                    <button mat-raised-button (click)="searchListPatientDoctor(medico)"
-                        [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO}"
+                </button> @for (medico of medicos; track medico; let i = $index) { @if (i >= indiceActual && i
+                < indiceActual + 3) { <div class="medicoName">
+                    <button mat-raised-button (click)="searchListPatientDoctor(medico)" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON_MEDICO, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON_MEDICO}"
                         class="noSelect">
                         <svg>
                             <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-usuario">
@@ -152,10 +143,8 @@
                         <div class="estadoMedico"> </div>
                     </button>
             </div>
-            }
-            }
-            <button mat-icon-button
-                (click)="indiceActual = indiceActual + 1 < medicos.length - 2 ? indiceActual + 1 : 0" class="flecha">
+            } }
+            <button mat-icon-button (click)="indiceActual = indiceActual + 1 < medicos.length - 2 ? indiceActual + 1 : 0" class="flecha">
                 <svg>
                     <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-der">
                     </use>
@@ -177,13 +166,10 @@
                 </tr>
             </thead>
             <tbody class="scrollable-tbody">
-                @if(medicalAppointments.length != 0){
-                @for (medicalAppointment of medicalAppointments; track medicalAppointment){
-                @if(medicalAppointment.state === 'NoDisponible'){
+                @if(medicalAppointments.length != 0){ @for (medicalAppointment of medicalAppointments; track medicalAppointment){ @if(medicalAppointment.state === 'NoDisponible'){
                 <tr class="alertTable">
                     <td>
-                        <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
-                            [(ngModel)]="medicalAppointment.select" />
+                        <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary" [(ngModel)]="medicalAppointment.select" />
                     </td>
                     <td class="alertTable">{{ medicalAppointment.patientName }}</td>
                     <td class="alertTable">{{ medicalAppointment.motive }}</td>
@@ -194,23 +180,25 @@
                 }@else {
                 <tr class="{{validateStateTable(medicalAppointment)}}" (click)="resumePatient(medicalAppointment)">
                     <td>
-                        <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary"
-                            [(ngModel)]="medicalAppointment.select" />
+                        <p-checkbox (change)="selectAll($event)" [binary]="true" inputId="binary" [(ngModel)]="medicalAppointment.select" />
                     </td>
                     <td>{{ medicalAppointment.patientName }}</td>
                     <td>{{ medicalAppointment.motive }}</td>
-                    <td>{{ medicalAppointment.dt_start |
-                        date:'h:mm'}}</td>
+                    <td>{{ medicalAppointment.dt_start | date:'h:mm'}}
+                    </td>
                     <td>{{ medicalAppointment.state }}</td>
                     <td>+</td>
                 </tr>
-                }
-                }
-                }@else {
-                <p style="font-size: 20px;">No hay registros</p>
-                }
+                } } }
             </tbody>
+          
         </table>
+        @if(medicalAppointments.length <= 0){
+            <div class="content-image">
+                <img class="img_search" src='../../../assets/serfertil-app-icons/no_registers.png' alt='image'> 
+                <p class="pos_fixed">No se encontraron registros</p>
+            </div>
+        } 
     </div>
     </mat-card>
 </div>
@@ -223,43 +211,37 @@
             }@else{
             <mat-button-toggle value="bold">Agendar
             </mat-button-toggle>
-            }
-            @if(validateMatCard == "andraologia"){
-            <mat-button-toggle value="italic" style="margin-left: 4px;" class="activateMenu">Andralogia
+            } @if(validateMatCard == "andraologia"){
+            <mat-button-toggle disabled="true"  value="italic" style="margin-left: 4px;" class="activateMenu">Andralogia
             </mat-button-toggle>
             }@else{
-            <mat-button-toggle value="italic" style="margin-left: 4px;">Andralogia
+            <mat-button-toggle disabled="true"   value="italic" style="margin-left: 4px;" class="disabled">Andralogia
             </mat-button-toggle>
-            }
-            @if(validateMatCard == "embrilogia"){
-            <mat-button-toggle value="underline" style="margin-left: 4px;" class="activateMenu">Embriologia
-            </mat-button-toggle>
-            }@else{
-            <mat-button-toggle value="underline" style="margin-left: 4px;">Embriologia
-            </mat-button-toggle>
-            }
-            @if(validateMatCard == "laboratorios"){
-            <mat-button-toggle value="underline" style="margin-left: 4px;" class="activateMenu">Laboratorios
+            } @if(validateMatCard == "embrilogia"){
+            <mat-button-toggle  disabled="true" value="underline" style="margin-left: 4px;" class="activateMenu">Embriologia
             </mat-button-toggle>
             }@else{
-            <mat-button-toggle value="underline" style="margin-left: 4px;">Laboratorios
+            <mat-button-toggle disabled="true"  value="underline" style="margin-left: 4px;" class="disabled">Embriologia
             </mat-button-toggle>
-            }
-            @if(validateMatCard == "otrosEstudios"){
-            <mat-button-toggle value="underline" style="margin-left: 4px;" class="activateMenu">Otros estudios
+            } @if(validateMatCard == "laboratorios"){
+            <mat-button-toggle disabled="true" value="underline" style="margin-left: 4px;" class="activateMenu" >Laboratorios
             </mat-button-toggle>
             }@else{
-            <mat-button-toggle value="underline" style="margin-left: 4px;">Otros estudios
+            <mat-button-toggle disabled="true"  value="underline" style="margin-left: 4px;"class="disabled">Laboratorios
+            </mat-button-toggle>
+            } @if(validateMatCard == "otrosEstudios"){
+            <mat-button-toggle disabled="true"  value="underline" style="margin-left: 4px;" class="activateMenu">Otros estudios
+            </mat-button-toggle>
+            }@else{
+            <mat-button-toggle disabled="true" value="underline" style="margin-left: 4px;" class="disabled">Otros estudios
             </mat-button-toggle>
             }
         </mat-button-toggle-group>
     </div>
     <mat-card>
-        @switch (validateMatCard) {
-        @case ("agendar"){
+        @switch (validateMatCard) { @case ("agendar"){
         <app-agendar [dataPatient]="resumeDataPatient"></app-agendar>
-        }
-        }
+        } }
     </mat-card>
 </div>
 </div>

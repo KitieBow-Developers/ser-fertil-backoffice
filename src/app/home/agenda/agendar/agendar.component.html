@@ -1,8 +1,7 @@
-<div class="agendar">
+<div class="agendar" [ngClass]="{'disabled':onRequest}">
     <div class="buttonRlationE">
         @if(!orientation){
-        <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE" (click)="changeSelectRelation()"
-            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+        <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE" (click)="changeSelectRelation()" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
             class="select">Paciente</button>
         <button mat-icon-button class="flecha" (click)="changeSelectRelation()">
             <svg>
@@ -10,13 +9,9 @@
                 </use>
             </svg>
         </button>
-        <button mat-raised-button (click)="changeSelectRelation()"
-            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-            class="selectn">Cónyuge</button>
-        }
-        @else {
-        <button mat-raised-button (click)="changeSelectRelation()"
-            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+        <button mat-raised-button (click)="changeSelectRelation()" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+            class="selectn">Cónyuge</button> } @else {
+        <button mat-raised-button (click)="changeSelectRelation()" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
             class="selectn">Paciente</button>
         <button mat-icon-button class="flecha" (click)="changeSelectRelation()">
             <svg>
@@ -24,169 +19,161 @@
                 </use>
             </svg>
         </button>
-        <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE" (click)="changeSelectRelation()"
-            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-            class="select">Cónyuge</button>
-        }
+        <button mat-raised-button [style.background-color]="color.BACKGROUNDVIEWDATE" (click)="changeSelectRelation()" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+            class="select">Cónyuge</button> }
     </div>
-    <div class="contendoIntputsSup">
-        <div class="contentPrincipalForm">
-            <div class="contenttwoInputs">
-                <span class="p-float-label" style="width: 317px;">
-                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.names"/>
-                    <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label>
-                </span>
-                <span class="p-float-label" style="width: 287px; margin-left: 23px;">
-                    <input pInputText id="apellido" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.lastNames" />
-                    <label for="apellido" [style.color]="color.TITLE_LOGIN">Apellido</label>
-                </span>
-            </div>
-            <!--Incio para registrar una cita medica-->
-            <div class="contenttwoInputs">
-                <span class="p-float-label" style="width: 317px;">
-                    <input pInputText id="medico" [style.color]="color.TITLE_LOGIN" />
-                    <label for="medico" [style.color]="color.TITLE_LOGIN">Medio</label>
-                </span>
-                <span class="p-float-label" style="width: 287px; margin-left: 23px;">
-                    <p-calendar inputId="assignDate"></p-calendar>
-                    <label for="assignDate">Fecha de la cita</label>
-                </span>
-            </div>
-            <!--Fin para registrar una cita medica-->
-            <div class="contenttwoInputs">
-                <div>
-                    <span class="p-float-label" style="width: 208px;">
-                        <input pInputText id="id" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.id"/>
-                        <label for="id" [style.color]="color.TITLE_LOGIN">Cédula</label>
+    <form>
+        <div class="contendoIntputsSup">
+            <div class="contentPrincipalForm">
+                <div class="contenttwoInputs">
+                    <span class="p-float-label" style="width: 317px;">
+                        <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.nombres" required name="nombre"/>
+                        <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label >
                     </span>
-                    <!--Inicio para registrar una cita medica-->
-                    <span class="p-float-label" style="width: 86px; margin-left: 23px;">
-                        <input pInputText id="hours" [style.color]="color.TITLE_LOGIN" />
-                        <label for="hours" [style.color]="color.TITLE_LOGIN">Hora de cita</label>
+                    <span class="p-float-label" style="width: 287px; margin-left: 23px;">
+                        <input pInputText id="apellido" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.apellidos" name="apellido"/>
+                        <label for="apellido" [style.color]="color.TITLE_LOGIN">Apellido</label>
                     </span>
                 </div>
-                <span class="p-float-label" style="width: 287px; margin-left: 23px;">
-                    <input pInputText id="motivo" [style.color]="color.TITLE_LOGIN" />
-                    <label for="motivo" [style.color]="color.TITLE_LOGIN">Motivo</label>
+                <!--Incio para registrar una cita medica-->
+                <div class="contenttwoInputs">
+                   
+
+                    <span class="p-float-label" style="width: 317px;">
+                        <input pInputText id="phone" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.tel_principal" name="phone"/>
+                        <label for="phone" [style.color]="color.TITLE_LOGIN">Telefono</label>
+                    </span>
+                    <span class="p-float-label" style="width: 287px; margin-left: 23px;">
+                        <input pInputText id="id" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.cedula"  name="id"/>
+                        <label for="id" [style.color]="color.TITLE_LOGIN">Cédula</label>
+                    </span>
+                </div>
+                <!--Fin para registrar una cita medica-->
+                <div class="contenttwoInputs">
+                   
+                    <span class="p-float-label" style="width: 317px;">
+                        <input pInputText id="medico" [style.color]="color.TITLE_LOGIN" [(ngModel)]="appointment.nombre_med" name="medico"/>
+                        <label for="medico" [style.color]="color.TITLE_LOGIN">Medico</label>
+                    </span>
+                    <div style=" width: 287px; margin-left: 23px;">
+                        <span class="p-float-label">
+                            <p-calendar inputId="assignDate" [(ngModel)]="appointment.fecha"  name="assignDate"></p-calendar>
+                            <label for="assignDate">Fecha de la cita</label>
+                        </span>
+                        <span class="hour_input" >
+                            <mat-label for="hours" [style.color]="color.TITLE_LOGIN">Hora de cita</mat-label>
+                            <input matInput id="hours"  type=time [style.color]="color.TITLE_LOGIN" [(ngModel)]="appointment.hora"  name="hours" > 
+                          </span>
+                    </div>
+                   
+                </div>
+                <div class="contenttwoInputs">
+                    <span class="select_input">
+                        <mat-label for="state" [style.color]="color.TITLE_LOGIN">Estado</mat-label>
+                        <mat-select hideSingleSelectionIndicator="true" id="state" class="mat-select-content"  [(ngModel)]="appointment.estado" name="state"  placeholder="Selecciona un Estado" floatlLabel="never">
+                            <ng-container *ngFor="let state of status">
+                                <mat-option [ngStyle]="{'color': color.TITLE_LOGIN}" value="{{getObjectKey(state)}}">{{ getObjectValueFromKey( state, getObjectKey(state) )  }} </mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </span>
+                    <!--Fin para registrar una cita medica-->
+                    <span class="p-float-label" style="width: 287px; margin-left: 23px;">
+                        <input pInputText id="motivo" [style.color]="color.TITLE_LOGIN" [(ngModel)]="appointment.motivo" name="motivo"/>
+                        <label for="motivo" [style.color]="color.TITLE_LOGIN">Motivo</label>
+                    </span>
+                   
+                </div>
+            </div>
+            <div class="uploadImage">
+                <div class="uploadImage">
+                    <svg>
+                        <use xlink:href="../../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-usuario"></use>
+                    </svg><span></span>
+                </div>
+                <p-fileUpload mode="basic" name="demo[]" accept="image/*" (onUpload)="onUpload($event)" chooseLabel="Añadir"></p-fileUpload>
+                <mat-radio-group class="gender" labelPosition="before" [(ngModel)]="patient.sexo" name="gender">
+                    <mat-radio-button value={{true}}>M</mat-radio-button>
+                    <mat-radio-button value={{false}}>F</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+        <div class="extraData">
+            @if(dataExtra){
+            <div class="contenttwoInputs">
+                <span class="p-float-label" style="width: 317px;">
+                    <p-calendar inputId="assignDate" [(ngModel)]="patient.fecha_nacimiento" name="assignDate"></p-calendar>
+                    <label for="assignDate">Fecha de nacimiento</label>
+                </span>
+                <span class="p-float-label" style="width: 200px; margin-left: 23px;">
+                    <input pInputText id="referideFor" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.referido_por" name="referideFor"/>
+                    <label for="referideFor" [style.color]="color.TITLE_LOGIN">Referido por</label>
+                </span>
+                <span class="p-float-label" style="width: 58px; margin-left: 23px;">
+                    <input pInputText id="age" [style.color]="color.TITLE_LOGIN" [(ngModel)]="age"  name="age"/>
+                    <label for="age" [style.color]="color.TITLE_LOGIN">Edad</label>
+                </span>
+                <span class="p-float-label" style="width: 111px; margin-left: 23px;">
+                    <input pInputText id="historyC" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.num_historia_clinica"  name="historyC"/>
+                    <label for="historyC" [style.color]="color.TITLE_LOGIN">Historia.C.</label>
                 </span>
             </div>
             <div class="contenttwoInputs">
                 <span class="p-float-label" style="width: 317px;">
-                    <input pInputText id="state" [style.color]="color.TITLE_LOGIN" />
-                    <label for="state" [style.color]="color.TITLE_LOGIN">Estado</label>
+                    <input pInputText id="ruc" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.num_ruc"  name="ruc"/>
+                    <label for="ruc" [style.color]="color.TITLE_LOGIN">RUC</label>
                 </span>
-                <!--Fin para registrar una cita medica-->
-                
-                <span class="p-float-label" style="width: 287px; margin-left: 23px;">
-                    <input pInputText id="phone" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.principalPhone"/>
-                    <label for="phone" [style.color]="color.TITLE_LOGIN">Telefono</label>
+                <span class="p-float-label" style="width: 415px; margin-left: 23px;">
+                    <input pInputText id="profesion" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.profesion" name="profesion"/>
+                    <label for="profesion" [style.color]="color.TITLE_LOGIN">Profesión</label>
                 </span>
             </div>
-        </div>
-        <div class="uploadImage">
-            <div class="uploadImage">
-                <svg>
-                    <use xlink:href="../../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-usuario"></use>
-                </svg><span></span>
+            <div class="contenttwoInputs">
+                <span class="p-float-label" style="width: 317px;">
+                    <input type="email" pInputText id="email" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.correo_electronico" name="email"/>
+                    <label for="email" [style.color]="color.TITLE_LOGIN">Correo electrónico</label>
+                </span>
+                <span class="p-float-label" style="width: 415px; margin-left: 23px;">
+                    <input pInputText id="place" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.lugar_nacimiento" name="place"/>
+                    <label for="place" [style.color]="color.TITLE_LOGIN">Lugar de nacimiento</label>
+                </span>
             </div>
-            <p-fileUpload mode="basic" name="demo[]" accept="image/*" (onUpload)="onUpload($event)"
-                chooseLabel="Añadir"></p-fileUpload>
-            <mat-radio-group class="gender" labelPosition="before" [(ngModel)]="patient.gender">
-                <mat-radio-button value="M">M</mat-radio-button>
-                <mat-radio-button value="F">F</mat-radio-button>
-            </mat-radio-group>
+            <span class="p-float-label" style="width: 755px;">
+                <input pInputText id="address" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.direccion" name="address"/>
+                <label for="address" [style.color]="color.TITLE_LOGIN">Dirección</label>
+            </span> }
+            <div class="ocultarDataExtra">
+                @if(dataExtra){
+                <button mat-raised-button (click)="hiddenExtraData()" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                    class="hiddenDataExtra">Ocultar Datos Extras</button>
+                <span class="p-float-label" style="width: 249px; margin-left: 23px;">
+                    <input pInputText id="phone2" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.primer_tel_add" name="phone2"/>
+                    <label for="phone2" [style.color]="color.TITLE_LOGIN">Telefono 2</label>
+                </span>
+                <span class="p-float-label" style="width: 249px; margin-left: 23px;">
+                    <input pInputText id="phone3" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.segundo_tel_add"  name="phone3"/>
+                    <label for="phone3" [style.color]="color.TITLE_LOGIN">Telefono 3</label>
+                </span> }@else {
+                <button mat-raised-button (click)="hiddenExtraData()" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                    class="hiddenDataExtra">Ingresar Datos Extras</button> }
+            </div>
         </div>
-    </div>
-
-    <div class="extraData">
-        @if(dataExtra){
-        <div class="contenttwoInputs">
-            <span class="p-float-label" style="width: 317px;">
-                <p-calendar inputId="assignDate" [(ngModel)]="patient.dateOfBirth"></p-calendar>
-                <label for="assignDate">Fecha de nacimiento</label>
-            </span>
-            <span class="p-float-label" style="width: 200px; margin-left: 23px;">
-                <input pInputText id="referideFor" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.referredBy"/>
-                <label for="referideFor" [style.color]="color.TITLE_LOGIN">Referido por</label>
-            </span>
-            <span class="p-float-label" style="width: 58px; margin-left: 23px;">
-                <input pInputText id="age" [style.color]="color.TITLE_LOGIN" [(ngModel)]="age" disabled/>
-                <label for="age" [style.color]="color.TITLE_LOGIN">Edad</label>
-            </span>
-            <span class="p-float-label" style="width: 111px; margin-left: 23px;">
-                <input pInputText id="historyC" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.numMedicalHistory"/>
-                <label for="historyC" [style.color]="color.TITLE_LOGIN">Historia.C.</label>
-            </span>
-        </div>
-        <div class="contenttwoInputs">
-            <span class="p-float-label" style="width: 317px;">
-                <input pInputText id="ruc" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.numRuc"/>
-                <label for="ruc" [style.color]="color.TITLE_LOGIN">RUC</label>
-            </span>
-            <span class="p-float-label" style="width: 415px; margin-left: 23px;">
-                <input pInputText id="profesion" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.profession"/>
-                <label for="profesion" [style.color]="color.TITLE_LOGIN">Profesión</label>
-            </span>
-        </div>
-        <div class="contenttwoInputs">
-            <span class="p-float-label" style="width: 317px;">
-                <input pInputText id="email" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.email"/>
-                <label for="email" [style.color]="color.TITLE_LOGIN">Correo electrónico</label>
-            </span>
-            <span class="p-float-label" style="width: 415px; margin-left: 23px;">
-                <input pInputText id="place" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.placeOfBirth"/>
-                <label for="place" [style.color]="color.TITLE_LOGIN">Lugar de nacimiento</label>
-            </span>
-        </div>
-        <span class="p-float-label" style="width: 755px;">
-            <input pInputText id="address" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.address"/>
-            <label for="address" [style.color]="color.TITLE_LOGIN">Dirección</label>
-        </span>
-        }
-        <div class="ocultarDataExtra">
-            @if(dataExtra){
-            <button mat-raised-button (click)="hiddenExtraData()"
-                [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-                class="hiddenDataExtra">Ocultar Datos Extras</button>
-            <span class="p-float-label" style="width: 249px; margin-left: 23px;">
-                <input pInputText id="phone2" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.firstPhoneAdd"/>
-                <label for="phone2" [style.color]="color.TITLE_LOGIN">Telefono 2</label>
-            </span>
-            <span class="p-float-label" style="width: 249px; margin-left: 23px;">
-                <input pInputText id="phone3" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.secondPhoneAdd" />
-                <label for="phone3" [style.color]="color.TITLE_LOGIN">Telefono 3</label>
-            </span>
-            }@else {
-            <button mat-raised-button (click)="hiddenExtraData()"
-                [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-                class="hiddenDataExtra">Ingresar Datos Extras</button>
-            <button mat-raised-button
-                [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-                class="next">Siguiente</button>
-            }
-        </div>
-        @if(dataExtra){
-        <div class="next">
-            <button mat-raised-button
-                [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-                class="hiddenDataExtra">Siguiente</button>
-        </div>
-        }
-    </div>
-    <div class="buttonEnd">
-        <button mat-raised-button
-            [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON_CLEAN, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON_CLEAN, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON_CLEAN, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON_CLEAN}"
-            class="clean">Limpiar</button>
+        <div class="buttonEnd">
+            <button mat-raised-button [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON_CLEAN, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON_CLEAN, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON_CLEAN, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON_CLEAN}"
+                class="clean" (click)="cleanData($event)">Limpiar</button>
             <div class="botonesAgendar">
-                <button mat-raised-button
-                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-                    class="registeNew">Registrar nuevo paciente </button>
-                <button mat-raised-button
-                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-                    class="edit">Editar</button>
-                <button mat-raised-button
-                    [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-                    class="schedule">Agendar</button>
+                @if(!patientSelected) {
+                    <button mat-raised-button [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                        class="registeNew" (click)="registerPatient()">Registrar y Agendar</button> 
+                }
+                @else{
+                    <button mat-raised-button [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                        class="edit" (click)="editPatient()">Editar</button>
+                    <button mat-raised-button [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
+                        class="schedule" (click)="submitAgendar()">Agendar</button> 
+                }
             </div>
-    </div>
+        </div>
+    </form>
+
 </div>

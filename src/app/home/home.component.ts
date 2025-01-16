@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
           break;
       }
     }
-    if(!sessionStorage.getItem('user')){
+   if(!sessionStorage.getItem('user')){
       this.router.navigate(['']);
     }
 

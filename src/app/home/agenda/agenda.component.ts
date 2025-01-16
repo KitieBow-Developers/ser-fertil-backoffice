@@ -138,23 +138,23 @@ export class AgendaComponent implements OnInit, OnDestroy {
     this.medicalAppointments = [];
     this.citaMedicaService.listarCitaMedica(sessionStorage.getItem('header')!, id, date).subscribe((data: any) => {
       if (data.body != null) {
-        console.log(data.body.detalles);
-        for (let i = 0; i < data.body.detalles.length; i++) {
+        const lista= data.body.detalles.lista;
+        for (let i = 0; i < lista.length; i++) {
           let medicalAppointment = new MedicalAppointmentDTO();
-          medicalAppointment.dt_final = new Date(data.body.detalles[i].dt_final);
-          medicalAppointment.dt_start = new Date(data.body.detalles[i].dt_inicio);
-          medicalAppointment.state = data.body.detalles[i].estado;
-          medicalAppointment.id = data.body.detalles[i].id;
-          medicalAppointment.motive = data.body.detalles[i].motivo;
-          if (data.body.detalles[i].id_paciente) {
-            medicalAppointment.id_paciente = data.body.detalles[i].id_paciente;
+          medicalAppointment.dt_final = new Date(lista[i].dt_cita_med);
+          medicalAppointment.dt_start = new Date(lista[i].dt_cita_med);
+          medicalAppointment.state = lista[i].estado;
+          medicalAppointment.id = lista[i].id;
+          medicalAppointment.motive = lista[i].motivo;
+          if (lista[i].id_paciente) {
+            medicalAppointment.id_paciente = lista[i].id_paciente;
           }
-          medicalAppointment.patientName = data.body.detalles[i].nombre_paciente;
-          medicalAppointment.dt_cita_med = data.body.detalles[i].dt_cita_med;
-          if (data.body.detalles[i].resumen) {
-            medicalAppointment.summary.arrivalTime = data.body.detalles[i].resumen.hora_llegada;
-            medicalAppointment.summary.phone = data.body.detalles[i].resumen.telefono;
-            medicalAppointment.summary.identification = data.body.detalles[i].resumen.cedula;
+          medicalAppointment.patientName = lista[i].nombre_paciente;
+          medicalAppointment.dt_cita_med = lista[i].dt_cita_med;
+          if (lista[i].resumen) {
+            medicalAppointment.summary.arrivalTime = lista[i].resumen.hora_llegada;
+            medicalAppointment.summary.phone = lista[i].resumen.telefono;
+            medicalAppointment.summary.identification = lista[i].resumen.cedula;
           }
           this.medicalAppointments.push(medicalAppointment);
         }
@@ -187,7 +187,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
   resumePatient(medicalAppointments: MedicalAppointmentDTO) {
     if (medicalAppointments.state !== "NoDisponible") {
       this.resumeDataPatient = medicalAppointments;
-      this.resumeDataPatient.dt_start = this.convertirFecha(this.resumeDataPatient.dt_start.toString())!;
+
+      //this.resumeDataPatient.dt_start = this.convertirFecha(this.resumeDataPatient.dt_start.toString())!;
 
       let arrivalTime: Date = new Date();
       arrivalTime = this.convertirFecha(this.resumeDataPatient.summary.arrivalTime.toString())!;

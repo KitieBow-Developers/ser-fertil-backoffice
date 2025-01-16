@@ -2,21 +2,38 @@ import { Generic } from "./generic";
 import { SummaryInfoDto } from "./summary-info-dto";
 
 export class PatientDTO extends Generic{
-    names!: string;
-    lastNames!: string;
     id!: string;
-    principalPhone!: string;
-    gender!: string;
-    urlImage!: string;
-    profession!: string;
-    referredBy!: string;
-    dateOfBirth!: string;
-    numMedicalHistory!: string;
-    numRuc!: string;
-    email!: string;
-    placeOfBirth!: string;
-    address!: string;
-    firstPhoneAdd!: string;
-    secondPhoneAdd!: string;
-    idConjugalPatien!: string;
+    /*names*/ 
+    nombres!: string;
+    /*lastNames*/
+    apellidos!: string;
+    cedula!: string;
+    /*principalPhone*/
+    tel_principal!: string;
+    /*gender*/
+    sexo!: boolean;
+    /*urlImage*/
+    url_imagen!: string;
+    /*profession*/
+    profesion!: string;
+    /*referedBy*/
+    referido_por!: string;
+    /*dateOfBirth*/
+    fecha_nacimiento!: string;
+    /*numMedicalHistory*/
+    num_historia_clinica!: string;
+    /*numRuc*/
+    num_ruc!: string;
+    /*email*/
+    correo_electronico!: string;
+    /*placeOfBirth*/
+    lugar_nacimiento!: string;
+    /*address*/
+    direccion!: string;
+    /*firstPhoneAdd*/
+    primer_tel_add!: string;
+    /*secondPhoneAdd*/
+    segundo_tel_add!: string;
+    /*idConjugalPatien*/
+    id_paciente_conyugue!: string;
 }

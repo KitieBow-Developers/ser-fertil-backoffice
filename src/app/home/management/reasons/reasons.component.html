@@ -1,0 +1,65 @@
+<div class="container">
+    <h2 mat-dialog-title class="headerTitle">Motivos de atención</h2>
+    <div class="p-float-label input_container">
+        <input pInputText id="search" [(ngModel)]="inputSearch" (input)="searchChange()" name="search"/>
+        <label for="search" >Buscar Motivo</label >
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: space-between; height:87% ;">
+        <mat-list class="listContainer">
+            @for (reason of reasons; track reason.id) {
+                @if(activeEditId === reason.id){
+                    <div class="reasonContainer">
+                        <input matInput placeholder="Nuevo Motivo" [(ngModel)]="inputUpdateReason" value="{{reason.reason}}"/>
+                        <span style="display: flex; justify-content: flex-end;">
+                            <button mat-icon-button matTooltip="Guardar" disabled="{{inputUpdateReason === reason.reason }}" [ngClass]="inputUpdateReason === reason.reason ? 'disabled' : 'saveIcon'"  (click)="saveEdit()">
+                                <svg>
+                                    <use xlink:href="../../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-guardar"></use>
+                                </svg>
+                            </button>
+                            <button mat-icon-button matTooltip="Cancelar" class="deleteIcon" (click)="cancelEdit()">
+                                <svg>
+                                    <use xlink:href="../../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-cancelar"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </div>
+                }
+                @else {
+                    <div class="reasonContainer">
+                        <p>{{reason.reason}} </p>
+                        <span style="display: flex; justify-content: flex-end;">
+                            <button mat-icon-button matTooltip="Editar" (click)="editReason(reason.id, reason.reason)" class="editIcon">
+                                <svg>
+                                    <use xlink:href="../../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-editar"></use>
+                                </svg>
+                            </button>
+                            <button mat-icon-button matTooltip="Eliminar" class="deleteIcon" (click)="deleteReason($event,reason.id, reason.reason)">
+                                <svg>
+                                    <use xlink:href="../../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-cerrar"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </div>
+                }
+                
+            
+                
+            }
+            
+        </mat-list>
+        <div style="display: flex;">
+            <div class="p-float-label input_container" style="flex-grow: 1;">
+                <input pInputText id="nombre" [(ngModel)]="inputAddReason" name="nombre"/>
+                <label for="nombre" >Nombre del Motivo</label >
+            </div>
+
+            <button mat-flat-button (click)="addReason()" class="add" >Guardar</button>
+        </div>
+    </div>
+       <!-- <div class="buttonContainer">
+            <button mat-flat-button class="delete" >Eliminar</button>
+            <button mat-flat-button class="edit" >Editar</button>
+            <button mat-flat-button class="add" >Guardar</button>
+       </div> -->
+</div>
+

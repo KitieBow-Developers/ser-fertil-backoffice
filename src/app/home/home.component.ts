@@ -21,28 +21,29 @@ export class HomeComponent implements OnInit {
 
   name: string = "Dr. Óscar Manual Hernandez Cicadios";
   cerrarMenu!: boolean;
-  agendar!: boolean;
-  cuentas!: boolean;
-  sistema!: boolean;
-  ayuda!: boolean;
-
   isMenuOpen: boolean = false;
 
-  constructor(public route: ActivatedRoute, public router: Router) {
-    // Obtener el nombre del componente actual
-    if (this.route) {
-      const componentName = this.route.firstChild?.component ? this.route.firstChild?.component.name : '';
-      switch (componentName) {
-        case '_AgendaComponent':
-          this.agendar = true;
-          break;
-      }
-    }
+  constructor(public route: ActivatedRoute, private router: Router) {
+
    if(!sessionStorage.getItem('user')){
       this.router.navigate(['']);
     }
 
   }
+
+  changeSelection(selection: string) {
+    switch (selection) {
+        case 'agenda': {
+          this.router.navigate(['home/agenda']);
+          break;
+      }
+      case 'management': {
+        this.router.navigate(['home/management']);
+        break;
+    }
+    }
+  }
+
 
   ngOnInit(): void {
 

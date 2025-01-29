@@ -1,0 +1,10 @@
+.mainContainer {
+    display: flex;
+    padding: 20px ;
+}
+.accounts {
+    width: 66%;
+}
+.reasons {
+    width: 33%;
+}

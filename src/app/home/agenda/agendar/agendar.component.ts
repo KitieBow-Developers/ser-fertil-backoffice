@@ -12,12 +12,15 @@ import { MedicalAppointmentDTO } from '../../../domain/class/medical-appointment
 import { CleanClientData } from '../clean_client_data/clean_client_data.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CitaMedicalService } from '../../../domain/services/cita-medical.service';
+import { SheduleService } from '../../../domain/services/shedule.service';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { AppointmentBasicInfoDto } from '../../../domain/class/appointmentBasicInfo-dto';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-agendar',
@@ -33,6 +36,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    NgxMatSelectSearchModule,
+    MatDividerModule,
     CommonModule
   ],
 
@@ -53,7 +58,14 @@ export class AgendarComponent implements OnInit, OnChanges {
   onRequest: boolean = false;
   submited:boolean = false;
 
+  onPatientRequest: boolean = false;
+  patientsArray: Array<PatientDTO> = []
+
+  onDoctorRequest: boolean = false;
+  doctorsArray: Array<{id: string, name: string}> = []
+
   eventDialog: any;
+  timeoutId : any;
 
   status: Array<object> = [
     {SinConfirmar:"Sin Confirmar"},
@@ -68,7 +80,14 @@ export class AgendarComponent implements OnInit, OnChanges {
   @Input() dataPatient!: MedicalAppointmentDTO;
 pickerTwo: any;
 
-  constructor(private config: PrimeNGConfig, public dialog: MatDialog, private citaMedicaService: CitaMedicalService, private toast: ToastrService) {
+  constructor(
+    private config: PrimeNGConfig,
+    public dialog: MatDialog,
+    private citaMedicaService: CitaMedicalService,
+    private toast: ToastrService,
+    private doctorsService: SheduleService,
+
+  ) {
     this.color = EClassCollor;
     this.patient = new PatientDTO();
     this.appointment = new AppointmentBasicInfoDto();
@@ -87,6 +106,64 @@ pickerTwo: any;
   ngOnInit(): void {
   }
 
+  openPatientSearch(){
+    this.patientsArray = []
+  }
+
+  patientSearchChange(search: string) {
+    if(search === "")
+      return;
+    if(this.timeoutId)
+      clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(()=>{
+      this.onPatientRequest=true;
+      this.citaMedicaService.searchPagePatients(sessionStorage.getItem('header')!,search).subscribe((data: any) => {
+        this.onPatientRequest=false;
+
+        if (data?.body != null) {
+          console.log(data.body);
+          // let tempArr = [];
+          // for (let i = 0; i < data.body.detalles.length; i++) {
+          //       tempArr.push({
+          //         id :data.body.detalles[i].id,
+          //         name :data.body.detalles[i].nombre
+          //       })
+          // }
+          // this.patientsArray = tempArr;
+          }
+            
+      });
+    }, 1000);
+  }
+
+  openDoctorSearch(){
+    this.doctorsArray = []
+  }
+
+  doctorSearchChange() {
+    if(this.timeoutId)
+      clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(()=>{
+      this.onDoctorRequest=true;
+      this.doctorsService.listMedical(sessionStorage.getItem('header')!).subscribe((data: any) => {
+        this.onDoctorRequest=false;
+
+        if (data?.body != null) {
+          let tempArr = [];
+          for (let i = 0; i < data.body.detalles.length; i++) {
+                tempArr.push({
+                  id :data.body.detalles[i].id,
+                  name :data.body.detalles[i].nombre
+                })
+          }
+          this.doctorsArray = tempArr;
+          }
+            
+      });
+    }, 1000);
+  }
+
+  
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dataPatient'] && changes['dataPatient'].currentValue) {
       

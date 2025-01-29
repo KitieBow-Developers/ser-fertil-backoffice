@@ -356,6 +356,22 @@
             margin-left: 23px;
         }
     }
+
+    .contentSelect{
+        display: flex;
+        flex-direction: column;
+
+        margin-right:40px;
+
+
+    }
+
+    .mat-divider {
+        border-top-color: #098F9E;
+        height: 5px;
+        margin-top: 20px;
+        border-top-width: 2px;
+    }
     
 
 }

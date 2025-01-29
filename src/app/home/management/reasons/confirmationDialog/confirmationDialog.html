@@ -1,0 +1,21 @@
+<mat-dialog-content>
+    <h1>Eliminar a un motivo.</h1>
+    <p>
+        “<b>{{reason}}</b>” se eliminara permanentemente.
+    </p>
+    <p>
+        Escribe "borrar" para confirmar esta acción.
+    </p>
+
+    <span class="p-float-label">
+        <input pInputText id="nombre" (change)="changeDelete($event)"/>
+        <label for="nombre" >Texto de confirmación</label>
+    </span>
+
+    <div class="buttonEnd">
+        <button [disabled]="isDisabled" mat-raised-button [ngClass]="isDisabled ? 'disabled' : 'clean'" (click)="cleanData()">Confirmar</button>
+        <div class="botonesAgendar">
+            <button enable mat-raised-button class="cancel" mat-dialog-close>Cancelar</button>
+        </div>
+    </div>
+</mat-dialog-content>

@@ -1,0 +1,136 @@
+p {
+    position: realtive;
+    padding: 1em 0;
+    margin: 0;
+    text-align:center;
+    font-size: 15px;
+}
+
+.disabled {
+    fill: #D9D9D9;
+}
+
+.container{
+    width: 100%;
+    border-radius: 10px;
+    height: 100%;
+    background-color: white;
+    min-height: 800px;
+    min-width: 400px;
+}
+
+.listContainer{
+    background-color: #ECF0F1;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-height: 650px;
+    overflow-y: auto;
+}
+
+.headerTitle{
+    background-color: #056479;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    font-family: 'Poppins-bold' !important;
+    font-size: 16px;
+    height: 33px;
+    text-align: center;
+    width: 100%;
+}
+
+
+.buttonContainer{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+.input_container{
+    margin:10px;
+}
+
+input {
+    border: 2px solid #098F9E;
+    font-weight: 300 !important;
+    color: #159CAB !important;
+    background-color: #EEEEEE !important;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+}
+::ng-deep input {
+    width: 100% !important;
+    background-color: #EEEEEE !important;
+    color: #159CAB !important;
+    border-radius: 10px;
+    height: 33px;
+}
+
+.p-float-label {
+    margin-top: 23px;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+    font-size: 11px;
+    text-align: center;
+}
+ ::ng-deep .p-float-label input:focus~label,
+.p-float-label input.p-filled~label,
+.p-float-label textarea:focus~label,
+.p-float-label textarea.p-filled~label,
+.p-float-label .p-inputwrapper-focus~label,
+.p-float-label .p-inputwrapper-filled~label {
+    text-align: center;
+    color: #159CAB !important;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+}
+
+.p-float-label>label {
+    color: #159CAB !important;
+}
+.delete,
+.add,
+.edit{
+    margin-top: 23px;
+    font-family: 'Poppins-Bold' !important;
+    font-size: 12px;
+    height: 33px !important;
+    border: 3px solid;
+    font-weight: 700 !important;
+    border-radius: 10px;
+}
+
+.delete {
+    background-color: #B13030 !important;
+    color: #EEEEEE !important;
+    width: 103px;
+}
+
+.editIcon{
+    fill: #F1C40F;
+}
+.deleteIcon{
+    fill: #E74C3C;
+}
+.saveIcon{
+    fill: #098F9E;
+}
+.edit {
+    border-color: #098F9E;
+    color: #098F9E !important;
+    width: 103px;
+}
+
+.add {
+    width: 103px;
+    background-color: #056479 !important;
+    color: #EEEEEE !important;
+    margin-right: 10px;
+}
+
+.reasonContainer{
+    display: flex;
+    justify-content: space-between; 
+    padding-left: 10px;
+    padding-right: 10px;
+}

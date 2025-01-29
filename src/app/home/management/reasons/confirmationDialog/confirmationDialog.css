@@ -1,0 +1,40 @@
+
+.buttonEnd {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    bottom: 23px;
+    .clean,
+    .disabled,
+    .cancel {
+        font-family: 'Poppins-Bold' !important;
+        font-size: 12px;
+        height: 33px !important;
+        border: 3px solid;
+        font-weight: 700 !important;
+        border-radius: 10px;
+    }
+    .clean {
+        background-color: #B13030;
+        color: #EEEEEE !important;
+        width: 103px;
+    }
+    .disabled {
+        background: #D9D9D9;
+    }
+    .cancel {
+        background-color: #056479;
+        color: #EEEEEE !important;
+        width: 110px;
+    }
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__title {
+    background-color: #056479;
+    color: white;
+    font-family: 'Poppins-bold' !important;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+}

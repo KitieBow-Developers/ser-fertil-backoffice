@@ -2,14 +2,14 @@
 <div class="general-background">
     <header>
         <div class="menu">
-            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [hideSingleSelectionIndicator]="true">
-                <mat-button-toggle value="bold">Agenda
+            <mat-button-toggle-group  [value]="'agenda'" (change)="changeSelection($event.value)" name="fontStyle" aria-label="Font Style" [hideSingleSelectionIndicator]="true">
+                <mat-button-toggle toggle="true" value="agenda">Agenda
                     <svg class="agenda">
                         <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-agenda">
                         </use>
                     </svg>
                 </mat-button-toggle>
-                <mat-button-toggle value="italic" style="margin-left: 4px;" class="disabled">Cuentas
+                <mat-button-toggle on value="management" style="margin-left: 4px;" >Gestion
                     <svg class="cuenta">
                         <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-usuario">
                         </use>
@@ -68,63 +68,6 @@
                 <p>Cerrar Sessión</p>
             </button>
         </mat-menu>
-        <div class="hamburguer-menu">
-            <button [matMenuTriggerFor]="hamburguerMenu" (click)="openMenu()" mat-icon-button>
-                <span class="pi pi-bars"></span>
-            </button>
-        </div>
-        <div  class="menuResponsive">
-            <mat-menu #hamburguerMenu="matMenu" (closed)="closeMenu()">
-                <button mat-menu-item class="select-hamburguer-menu">
-                    <svg>
-                        <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-cerrar">
-                        </use>
-                    </svg>
-                    <p style="left: 10px;">Cerrar menú</p>
-                </button>
-                @if(agendar){
-                <button mat-menu-item class="select-hamburguer-menu-w">
-                    <div>
-                        <p>Agendar</p>
-                        <svg>
-                            <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-agenda">
-                            </use>
-                        </svg>
-                    </div>
-                </button>
-                }
-                @else{
-                <button mat-menu-item class="select-hamburguer-menu">
-                    <p>Agendar</p>
-                    <svg>
-                        <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-agenda">
-                        </use>
-                    </svg>
-                </button>
-                }
-                <button mat-menu-item class="select-hamburguer-menu">
-                    <p>Cuentas</p>
-                    <svg>
-                        <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-usuario">
-                        </use>
-                    </svg>
-                </button>
-                <button mat-menu-item class="select-hamburguer-menu">
-                    <p>Sistema</p>
-                    <svg>
-                        <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-ajustes">
-                        </use>
-                    </svg>
-                </button>
-                <button mat-menu-item class="select-hamburguer-menu">
-                    <p>Ayuda</p>
-                    <svg>
-                        <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-ayuda">
-                        </use>
-                    </svg>
-                </button>
-            </mat-menu>
-        </div>
     </header>
     
     <div [class.menu-open-background]="isMenuOpen">

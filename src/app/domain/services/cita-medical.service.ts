@@ -33,6 +33,14 @@ export class CitaMedicalService implements Action{
       ESystem.URL_TEMP + ECitaMedical.CONSULTAR_CITA_MEDICA +'id_cuenta_lista='+idUser+'&fecha='+this.utilitiesService.formatDate(fecha), {'headers': headers, observe: 'response'}).pipe
       (catchError(this.utilitiesService.handleError));
   }
+
+
+  searchPagePatients(authorization: string, name: string){
+    const headers= new HttpHeaders().set('Authorization', authorization);
+    return this.http.get<AppointmentinfoDTO>(
+      ESystem.URL_TEMP + ECitaMedical.LISTAR_PACIENTES +'?nombre='+name, {'headers': headers, observe: 'response'}).pipe
+      (catchError(this.utilitiesService.handleError));
+  }
   listarCitaFiltro(){
 
   }

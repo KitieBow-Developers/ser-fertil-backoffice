@@ -25,11 +25,27 @@
     <form>
         <div class="contendoIntputsSup">
             <div class="contentPrincipalForm">
+                <div class="contentSelect">
+                    <span class="select_input" style="width: 100%;">
+                        <mat-label for="state" [style.color]="color.TITLE_LOGIN">Busqueda paciente</mat-label>
+                        <mat-select  (openedChange)="openPatientSearch()" placeholder="Buscar datos del paciente"  class="mat-select-content">
+                            <mat-option>
+                            <ngx-mat-select-search ngModel (ngModelChange)="patientSearchChange($event)" placeholderLabel="Ingresa el nombre o cedula" noEntriesFoundLabel="No se encontraron registros"   [searching]="onPatientRequest" name="patient"></ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let patient of patientsArray" [value]="patient">
+                            {{patient.nombres}}
+                            </mat-option>
+                        </mat-select>
+                    </span>
+                    <mat-divider></mat-divider>
+                </div>
+            
                 <div class="contenttwoInputs">
                     <span class="p-float-label" style="width: 317px;">
                         <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.nombres" required name="nombre"/>
                         <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label >
                     </span>
+                    
                     <span class="p-float-label" style="width: 287px; margin-left: 23px;">
                         <input pInputText id="apellido" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.apellidos" name="apellido"/>
                         <label for="apellido" [style.color]="color.TITLE_LOGIN">Apellido</label>
@@ -49,11 +65,19 @@
                     </span>
                 </div>
                 <!--Fin para registrar una cita medica-->
+                
                 <div class="contenttwoInputs">
-                   
-                    <span class="p-float-label" style="width: 317px;">
-                        <input pInputText id="medico" [style.color]="color.TITLE_LOGIN" [(ngModel)]="appointment.nombre_med" name="medico"/>
-                        <label for="medico" [style.color]="color.TITLE_LOGIN">Medico</label>
+                
+                    <span class="select_input">
+                        <mat-label for="state" [style.color]="color.TITLE_LOGIN">Medico</mat-label>
+                        <mat-select (openedChange)="openDoctorSearch()" placeholder="Selecciona un Medico"  class="mat-select-content" >
+                            <mat-option>
+                                <ngx-mat-select-search ngModel (ngModelChange)="doctorSearchChange()" placeholderLabel="Ingresa el nombre del medico" noEntriesFoundLabel="No se encontraron registros"   [searching]="onDoctorRequest" name="medico"></ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option [ngStyle]="{'color': color.TITLE_LOGIN}" *ngFor="let doctor of doctorsArray" [value]="doctor.id">
+                            {{doctor.name}}
+                            </mat-option>
+                    </mat-select>
                     </span>
                     <div style=" width: 287px; margin-left: 23px;">
                         <span class="p-float-label">

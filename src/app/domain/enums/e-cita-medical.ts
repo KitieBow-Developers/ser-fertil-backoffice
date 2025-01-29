@@ -6,4 +6,6 @@ export enum ECitaMedical {
     LISTAR_MEDICO = "/app/agenda/cita-medica/lista-medicos",
     BUSCAR_INFO_PACIENTE = "/app/agenda/paciente/",
     AGREGAR_INFO_PACIENTE = "/app/agenda/paciente/agregar",
+    LISTAR_MOTIVOS ="/app/agenda/cita-medica/lista-motivos",
+    LISTAR_PACIENTES ="/app/agenda/paciente/buscar",
 }

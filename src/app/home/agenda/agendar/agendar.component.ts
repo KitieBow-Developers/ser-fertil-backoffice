@@ -12,6 +12,8 @@ import { MedicalAppointmentDTO } from '../../../domain/class/medical-appointment
 import { CleanClientData } from '../clean_client_data/clean_client_data.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CitaMedicalService } from '../../../domain/services/cita-medical.service';
+import { ReasonsService } from '../../../domain/services/reasons.service';
+
 import { SheduleService } from '../../../domain/services/shedule.service';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
@@ -64,6 +66,9 @@ export class AgendarComponent implements OnInit, OnChanges {
   onDoctorRequest: boolean = false;
   doctorsArray: Array<{id: string, name: string}> = []
 
+  onReasonsRequest: boolean = false;
+  reasonsArray: Array<{id: string, name: string}> = []
+
   eventDialog: any;
   timeoutId : any;
 
@@ -86,7 +91,7 @@ pickerTwo: any;
     private citaMedicaService: CitaMedicalService,
     private toast: ToastrService,
     private doctorsService: SheduleService,
-
+    private reasonsService: ReasonsService,
   ) {
     this.color = EClassCollor;
     this.patient = new PatientDTO();
@@ -117,6 +122,7 @@ pickerTwo: any;
       clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(()=>{
       this.onPatientRequest=true;
+      this.openPatientSearch();
       this.citaMedicaService.searchPagePatients(sessionStorage.getItem('header')!,search).subscribe((data: any) => {
         this.onPatientRequest=false;
 
@@ -145,6 +151,7 @@ pickerTwo: any;
       clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(()=>{
       this.onDoctorRequest=true;
+      this.openDoctorSearch();
       this.doctorsService.listMedical(sessionStorage.getItem('header')!).subscribe((data: any) => {
         this.onDoctorRequest=false;
 
@@ -157,6 +164,38 @@ pickerTwo: any;
                 })
           }
           this.doctorsArray = tempArr;
+          }
+            
+      });
+    }, 1000);
+  }
+
+  
+  openReasonChange(){
+    this.reasonsArray = []
+  }
+
+  reasonSearchChange(search: string) {
+    if(search === "")
+      return;
+    if(this.timeoutId)
+      clearTimeout(this.timeoutId);
+      this.timeoutId = setTimeout(()=>{
+      this.onReasonsRequest=true;
+      this.openReasonChange();
+      this.reasonsService.getReasonsPage(sessionStorage.getItem('header')!,search).subscribe((data: any) => {
+        this.onReasonsRequest=false;
+
+        if (data?.body != null) {
+          let tempArr = [];
+          const arrayData= data.body?.detalles?.motivos;
+          for(let i = 0; i < arrayData.length; i++){
+                tempArr.push({
+                  id :arrayData[i].id,
+                  name :arrayData[i].motivo
+                })
+          }
+          this.reasonsArray = tempArr;
           }
             
       });

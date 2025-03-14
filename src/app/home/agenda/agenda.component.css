@@ -9,16 +9,21 @@
 }
 
 .content-agenda {
-  display: inline-flex;
+  display: flex;
+  justify-content: space-around;
+  gap: 1em;
+
+
 }
 
 .content-image{
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  height: 400px;
   justify-content: center;
+  height: 400px;
 }
+
 .img_search{
   width: 65px;
   height: 65px;
@@ -38,13 +43,18 @@
 }
 
 .section-1 {
-  margin-left: 23px;
-  margin-top: 15px;
+  
+  mat-card {
+    height: 100%;
+    width: 100%;
+    min-width: 360px;
 
-  .demo-inline-calendar-card {
-    width: 354px;
-    height: 835px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+
   }
+
+  
 
   .p-float-label {
     margin-top: 23px;
@@ -134,12 +144,12 @@
   border-color: #ffffff !important;
 }
 .section-2 {
-  margin-left: 23px;
-  margin-top: 15px;
+  width: 100%;
 
   mat-card {
-    width: 673px;
-    height: 835px;
+ 
+    min-width: 673px;
+    height: 100%;
 
     .medico {
       width: 100%;
@@ -380,11 +390,14 @@
 }
 
 .section-3 {
-  width: 801px;
-  height: 835px;
-  margin-left: 23px;
-  margin-top: 15px;
 
+  mat-card {
+    min-height: 823px;
+    width: 100%;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+
+  }
   .menu {
     position: relative;
   }
@@ -396,9 +409,6 @@
   .menu>mat-button-toggle-group>mat-button-toggle {
     border-top-left-radius: 15px !important;
     border-top-right-radius: 15px !important;
-    border-top: 2px solid #00B1C4;
-    border-left: 2px solid #00B1C4;
-    border-right: 2px solid #00B1C4;
     font-family: Poppins-Bold;
     font-size: 13px;
     font-style: normal;
@@ -410,155 +420,59 @@
     text-align: start !important;
     fill: white;
     /* Añade box-shadow solo para el border-radius */
-    box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 6px 0 hsla(0, 0%, 0%, 0.2);
   }
 
   .activateMenu {
-    background-color: #EEEEEE !important;
-    background-color: #EEEEEE !important;
+    background-color: white !important;
     color: #098F9E !important;
+    box-shadow:  0px 5px 5px  !important; 
+                  
   }
 
-  ::ng-deep .mat-button-toggle-label-content {
-    margin-right: 15px !important;
+
+  
+  .mat-button-toggle-standalone.mat-button-toggle-appearance-standard, .mat-button-toggle-group-appearance-standard{
+    border: none;
   }
 
   .menu, ::ng-deep .mat-button-toggle-appearance-standard.mat-button-toggle-checked {
-    background-color: #D9D9D9 !important;
+    background-color: transparent !important;
     color: #056479 !important;
     fill: #056479 !important;
   }
-
-  mat-card {
-    height: 796px;
-
+  .mat-button-toggle-appearance-standard.mat-button-toggle-checked{
+    background-color: white !important;
   }
+  
+
+
+ 
 }
 
-@media(max-width: 1300px) {
+@media(max-width: 1900px) {
   .content-agenda {
-    display: block;
+    flex-wrap: wrap;
+  
   }
 
-  .section-1 {
-    width: 100%;
-
-    app-calendar {
-      width: 300px;
-    }
-
-    .demo-inline-calendar-card {
-      display: -webkit-inline-box;
-      width: 96%;
-      height: 336px;
-      position: fixed;
-      z-index: 5;
-
-      .contentInputResumen {
-        display: none;
-      }
-
-      .contentInputResumenR {
-        display: block;
-        width: 425px;
-        height: 258px;
-        margin: 0 0 0 auto;
-        position: relative;
-        top: 15px;
-        right: 23px;
-
-        .fecha {
-          display: inline-flex;
-          width: 100%;
-          height: 35px;
-          background-color: #056479;
-          color: white;
-          text-align: center;
-          font-family: Poppins-Bold;
-          font-size: 16px;
-          border-top-left-radius: 5px;
-          border-top-right-radius: 5px;
-
-          p {
-            width: 114px;
-            height: 24px;
-            margin: 7px auto;
-            text-align: center;
-          }
-        }
-        .content-data{
-          width: 100%;
-          p{
-            position: relative;
-            top: 9px;
-            font-family: Poppins-Bold;
-            font-size: 16px;
-            color: #056479;
-            left: 8px;
-          }
-          input {
-            font-weight: 300 !important;
-            color: #056479 !important;
-            background-color: white !important;
-            font-weight: 400 !important;
-            font-family: 'Poppins-Bold' !important;
-            border: none;
-          }
-        
-          ::ng-deep input {
-            width: 100% !important;
-            background-color: white !important;
-            color: #056479 !important;
-            border: none;
-            height: 24px;
-          }
-          ::ng-deep .p-float-label input:focus~label, .p-float-label input.p-filled~label, .p-float-label textarea:focus~label, .p-float-label textarea.p-filled~label, .p-float-label .p-inputwrapper-focus~label, .p-float-label .p-inputwrapper-filled~label {
-            width: 96%;
-            text-align: left;
-            color: #159CAB !important;
-            font-weight: 400 !important;
-            font-family: 'Poppins-Regular' !important;
-          }
-          
-          .p-float-label {
-            text-align: left;
-            position: relative;
-            top: 15px;
-          }
-        }
-        .hours{
-          width: 100%;
-          border-top: 2px solid #056479;
-          margin-top: 23px;
-          display: flex;
-          h3{
-            font-family: 'Poppins-Regular' !important;
-            font-size: 15px;
-            color: #098F9E;
-            position: relative;
-            top: 5px;
-          }
-          p{
-            font-family: 'Poppins-Bold' !important;
-            font-size: 16px;
-            color: #056479;
-            margin: 0 0 0 auto;
-            position: relative;
-            left: 0px;
-          }
-        }
-      }
-    }
+  .section-1{
+    flex: 1;
   }
-  .section-2{
-    display: none;
+  .section-2 {
+
+    flex: 4;
   }
-  .section-3{
-    width: 96%;
-    position: absolute;
-    top: 404px;
-    .menu{
-      display: none;
-    }
+  
+}
+
+@media(max-width: 1100px) {
+  .content-agenda {
+    flex-direction: column;
   }
+
+  .section-1{
+    width: 100% !important;
+  }
+  
 }

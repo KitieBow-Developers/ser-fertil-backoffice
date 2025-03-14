@@ -204,12 +204,12 @@
 </div>
 <div class="section-3">
     <div class="menu">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [hideSingleSelectionIndicator]="true">
+        <mat-button-toggle-group [value]="'agenda'" name="fontStyle" aria-label="Font Style" [hideSingleSelectionIndicator]="true">
             @if(validateMatCard == "agendar"){
-            <mat-button-toggle value="bold" class="activateMenu">Agendar
+            <mat-button-toggle toggle="true" value="bold" class="activateMenu">Agendar
             </mat-button-toggle>
             }@else{
-            <mat-button-toggle value="bold">Agendar
+            <mat-button-toggle toggle="true" value="bold">Agendar
             </mat-button-toggle>
             } @if(validateMatCard == "andraologia"){
             <mat-button-toggle disabled="true"  value="italic" style="margin-left: 4px;" class="activateMenu">Andralogia

@@ -1,15 +1,15 @@
 <mat-dialog-content>
     <h1>Limpiar todos los campos de citas</h1>
     <p>
-        Al hacer esto, borraremos todos los datos sin guardarlos.
+         <b>Al hacer esto, borraremos todos los datos sin guardarlos.</b>
     </p>
     <p>
-        Escribe "borrar" para confirmar esta acción.
+        Escribe "<b>borrar</b>" para confirmar esta acción.
     </p>
 
-    <span class="p-float-label">
-        <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" (change)="changeDelete($event)"/>
-        <label for="nombre" [style.color]="color.TITLE_LOGIN">Texto de confirmación</label>
+    <span class="p-float-label" style="margin-top: 2em; margin-bottom: 1em;">
+        <input pInputText id="nombre" (change)="changeDelete($event)"/>
+        <label for="nombre" >Texto de confirmación</label>
     </span>
 
     <div class="buttonEnd">

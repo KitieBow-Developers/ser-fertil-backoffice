@@ -27,7 +27,7 @@
             <div class="contentPrincipalForm">
                 <div class="contentSelect">
                     <span class="select_input" style="width: 100%;">
-                        <mat-label for="state" [style.color]="color.TITLE_LOGIN">Busqueda paciente</mat-label>
+                        <mat-label for="patient" [style.color]="color.TITLE_LOGIN">Busqueda paciente</mat-label>
                         <mat-select  (openedChange)="openPatientSearch()" placeholder="Buscar datos del paciente"  class="mat-select-content">
                             <mat-option>
                             <ngx-mat-select-search ngModel (ngModelChange)="patientSearchChange($event)" placeholderLabel="Ingresa el nombre o cedula" noEntriesFoundLabel="No se encontraron registros"   [searching]="onPatientRequest" name="patient"></ngx-mat-select-search>
@@ -41,12 +41,12 @@
                 </div>
             
                 <div class="contenttwoInputs">
-                    <span class="p-float-label" style="width: 317px;">
+                    <span class="p-float-label" style="width: 100%;">
                         <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.nombres" required name="nombre"/>
                         <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label >
                     </span>
                     
-                    <span class="p-float-label" style="width: 287px; margin-left: 23px;">
+                    <span class="p-float-label" style="width: 100%; margin-left: 1em;  margin-right: 1em;">
                         <input pInputText id="apellido" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.apellidos" name="apellido"/>
                         <label for="apellido" [style.color]="color.TITLE_LOGIN">Apellido</label>
                     </span>
@@ -55,11 +55,11 @@
                 <div class="contenttwoInputs">
                    
 
-                    <span class="p-float-label" style="width: 317px;">
+                    <span class="p-float-label" style="width: 100%;">
                         <input pInputText id="phone" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.tel_principal" name="phone"/>
                         <label for="phone" [style.color]="color.TITLE_LOGIN">Telefono</label>
                     </span>
-                    <span class="p-float-label" style="width: 287px; margin-left: 23px;">
+                    <span class="p-float-label" style="width: 100%; margin-left: 1em;  margin-right: 1em;">
                         <input pInputText id="id" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.cedula"  name="id"/>
                         <label for="id" [style.color]="color.TITLE_LOGIN">Cédula</label>
                     </span>
@@ -69,24 +69,24 @@
                 <div class="contenttwoInputs">
                 
                     <span class="select_input">
-                        <mat-label for="state" [style.color]="color.TITLE_LOGIN">Medico</mat-label>
+                        <mat-label for="medico" [style.color]="color.TITLE_LOGIN">Medico</mat-label>
                         <mat-select (openedChange)="openDoctorSearch()" placeholder="Selecciona un Medico"  class="mat-select-content" >
                             <mat-option>
                                 <ngx-mat-select-search ngModel (ngModelChange)="doctorSearchChange()" placeholderLabel="Ingresa el nombre del medico" noEntriesFoundLabel="No se encontraron registros"   [searching]="onDoctorRequest" name="medico"></ngx-mat-select-search>
                             </mat-option>
                             <mat-option [ngStyle]="{'color': color.TITLE_LOGIN}" *ngFor="let doctor of doctorsArray" [value]="doctor.id">
-                            {{doctor.name}}
+                                {{doctor.name}}
                             </mat-option>
-                    </mat-select>
+                        </mat-select>
                     </span>
-                    <div style=" width: 287px; margin-left: 23px;">
+                    <div style=" width: 100%; margin-left: 1em; margin-right: 1em;">
                         <span class="p-float-label">
                             <p-calendar inputId="assignDate" [(ngModel)]="appointment.fecha"  name="assignDate"></p-calendar>
                             <label for="assignDate">Fecha de la cita</label>
                         </span>
                         <span class="hour_input" >
                             <mat-label for="hours" [style.color]="color.TITLE_LOGIN">Hora de cita</mat-label>
-                            <input matInput id="hours"  type=time [style.color]="color.TITLE_LOGIN" [(ngModel)]="appointment.hora"  name="hours" > 
+                            <input style="text-align: center;" matInput id="hours"  type=time [style.color]="color.TITLE_LOGIN" [(ngModel)]="appointment.hora"  name="hours" > 
                           </span>
                     </div>
                    
@@ -101,9 +101,18 @@
                         </mat-select>
                     </span>
                     <!--Fin para registrar una cita medica-->
-                    <span class="p-float-label" style="width: 287px; margin-left: 23px;">
-                        <input pInputText id="motivo" [style.color]="color.TITLE_LOGIN" [(ngModel)]="appointment.motivo" name="motivo"/>
-                        <label for="motivo" [style.color]="color.TITLE_LOGIN">Motivo</label>
+                 
+
+                    <span class="select_input" style="width: 100%; margin-left: 1em; margin-right: 1em;">
+                        <mat-label for="motivo" [style.color]="color.TITLE_LOGIN">Motivo</mat-label>
+                        <mat-select (openedChange)="openReasonChange()" placeholder="Selecciona un Motivo"  class="mat-select-content" >
+                            <mat-option>
+                                <ngx-mat-select-search ngModel (ngModelChange)="reasonSearchChange($event)" placeholderLabel="Ingresa el nombre del motivo" noEntriesFoundLabel="No se encontraron registros"   [searching]="onReasonsRequest" name="motivo"></ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option [ngStyle]="{'color': color.TITLE_LOGIN}" *ngFor="let reason of reasonsArray" [value]="reason.id">
+                                {{reason.name}}
+                            </mat-option>
+                        </mat-select>
                     </span>
                    
                 </div>
@@ -125,44 +134,44 @@
         <div class="extraData">
             @if(dataExtra){
             <div class="contenttwoInputs">
-                <span class="p-float-label" style="width: 317px;">
-                    <p-calendar inputId="assignDate" [(ngModel)]="patient.fecha_nacimiento" name="assignDate"></p-calendar>
-                    <label for="assignDate">Fecha de nacimiento</label>
+                <span class="p-float-label" style="width: 100%;">
+                    <p-calendar inputId="birthDate" [(ngModel)]="patient.fecha_nacimiento" name="birthDate"></p-calendar>
+                    <label for="birthDate">Fecha de nacimiento</label>
                 </span>
-                <span class="p-float-label" style="width: 200px; margin-left: 23px;">
+                <span class="p-float-label" style="width: 100%; margin-left: 1em;">
                     <input pInputText id="referideFor" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.referido_por" name="referideFor"/>
                     <label for="referideFor" [style.color]="color.TITLE_LOGIN">Referido por</label>
                 </span>
-                <span class="p-float-label" style="width: 58px; margin-left: 23px;">
+                <span class="p-float-label" style="width: 100%; margin-left: 1em;">
                     <input pInputText id="age" [style.color]="color.TITLE_LOGIN" [(ngModel)]="age"  name="age"/>
                     <label for="age" [style.color]="color.TITLE_LOGIN">Edad</label>
                 </span>
-                <span class="p-float-label" style="width: 111px; margin-left: 23px;">
+                <span class="p-float-label" style="width: 100%; margin-left: 1em;">
                     <input pInputText id="historyC" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.num_historia_clinica"  name="historyC"/>
                     <label for="historyC" [style.color]="color.TITLE_LOGIN">Historia.C.</label>
                 </span>
             </div>
             <div class="contenttwoInputs">
-                <span class="p-float-label" style="width: 317px;">
+                <span class="p-float-label" style="width: 100%;">
                     <input pInputText id="ruc" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.num_ruc"  name="ruc"/>
                     <label for="ruc" [style.color]="color.TITLE_LOGIN">RUC</label>
                 </span>
-                <span class="p-float-label" style="width: 415px; margin-left: 23px;">
+                <span class="p-float-label" style="width: 100%; margin-left: 1em;">
                     <input pInputText id="profesion" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.profesion" name="profesion"/>
                     <label for="profesion" [style.color]="color.TITLE_LOGIN">Profesión</label>
                 </span>
             </div>
             <div class="contenttwoInputs">
-                <span class="p-float-label" style="width: 317px;">
+                <span class="p-float-label" style="width: 100%;">
                     <input type="email" pInputText id="email" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.correo_electronico" name="email"/>
                     <label for="email" [style.color]="color.TITLE_LOGIN">Correo electrónico</label>
                 </span>
-                <span class="p-float-label" style="width: 415px; margin-left: 23px;">
+                <span class="p-float-label" style="width: 100%; margin-left: 1em;">
                     <input pInputText id="place" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.lugar_nacimiento" name="place"/>
                     <label for="place" [style.color]="color.TITLE_LOGIN">Lugar de nacimiento</label>
                 </span>
             </div>
-            <span class="p-float-label" style="width: 755px;">
+            <span class="p-float-label" style="width: 100%;">
                 <input pInputText id="address" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.direccion" name="address"/>
                 <label for="address" [style.color]="color.TITLE_LOGIN">Dirección</label>
             </span> }
@@ -170,11 +179,11 @@
                 @if(dataExtra){
                 <button mat-raised-button (click)="hiddenExtraData()" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
                     class="hiddenDataExtra">Ocultar Datos Extras</button>
-                <span class="p-float-label" style="width: 249px; margin-left: 23px;">
+                <span class="p-float-label" style="width: 100%; margin-left: 1em;">
                     <input pInputText id="phone2" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.primer_tel_add" name="phone2"/>
                     <label for="phone2" [style.color]="color.TITLE_LOGIN">Telefono 2</label>
                 </span>
-                <span class="p-float-label" style="width: 249px; margin-left: 23px;">
+                <span class="p-float-label" style="width: 100%; margin-left: 1em;">
                     <input pInputText id="phone3" [style.color]="color.TITLE_LOGIN" [(ngModel)]="patient.segundo_tel_add"  name="phone3"/>
                     <label for="phone3" [style.color]="color.TITLE_LOGIN">Telefono 3</label>
                 </span> }@else {

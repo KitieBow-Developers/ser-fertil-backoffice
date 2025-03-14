@@ -1,4 +1,55 @@
 
+h1{
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #098F9E;
+}
+
+p{
+    font-family: Poppins;
+    font-weight: 300;
+    font-size: 15.08px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #B90607;
+}
+::ng-deep input {
+    width: 100% !important;
+    background-color: #EEEEEE !important;
+    color: #159CAB !important;
+    border-radius: 10px;
+    height: 33px;
+}
+
+.p-float-label {
+    margin-top: 23px;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+    font-size: 11px;
+    text-align: center;
+}
+ ::ng-deep .p-float-label input:focus~label,
+.p-float-label input.p-filled~label,
+.p-float-label textarea:focus~label,
+.p-float-label textarea.p-filled~label,
+.p-float-label .p-inputwrapper-focus~label,
+.p-float-label .p-inputwrapper-filled~label {
+    text-align: center;
+    color: #159CAB !important;
+    font-weight: 400 !important;
+    font-family: 'Poppins-Regular' !important;
+}
+
+.p-float-label>label {
+    color: #159CAB !important;
+}
+
+
 .buttonEnd {
     display: flex;
     width: 100%;
@@ -29,12 +80,3 @@
     }
 }
 
-::ng-deep .mat-mdc-dialog-container .mdc-dialog__title {
-    background-color: #056479;
-    color: white;
-    font-family: 'Poppins-bold' !important;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    height: 250px;
-}

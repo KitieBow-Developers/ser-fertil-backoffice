@@ -25,7 +25,7 @@ export class ReasonsService {
   getReasonsPage(authorization: string,search:string){
     const headers= new HttpHeaders().set('Authorization', authorization);
     return this.http.get(
-      ESystem.URL_TEMP + EManagement.BASE_MOTIVOS+"?pagina=1?search="+search, {'headers': headers, observe: 'response'}).pipe
+      ESystem.URL_TEMP + EManagement.BASE_MOTIVOS+"/?pagina=1&motivo="+search, {'headers': headers, observe: 'response'}).pipe
       (catchError(this.utilitiesService.handleError));
   }
 
@@ -39,7 +39,7 @@ export class ReasonsService {
   addReason(authorization: string, body: object){
     const headers= new HttpHeaders().set('Authorization', authorization);
     return this.http.post(
-      ESystem.URL_TEMP + EManagement.BASE_MOTIVOS,body,{'headers': headers, observe: 'response'}).pipe
+      ESystem.URL_TEMP + EManagement.BASE_MOTIVOS+"/",body,{'headers': headers, observe: 'response'}).pipe
       (catchError(this.utilitiesService.handleError));
   }
 
@@ -52,6 +52,11 @@ export class ReasonsService {
 
   deleteReason(authorization: string, idReason: string){
     const headers= new HttpHeaders().set('Authorization', authorization);
+    headers.append("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+    headers.append("Access-Control-Allow-Origin", "*");
+    headers.append("Access-Control-Allow-Headers", "X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+    headers.append("Allow", "GET, POST, OPTIONS, PUT, DELETE");
+    headers.append("Access-Control-Allow-Origin"," http://localhost:4200");
     return this.http.delete(
       ESystem.URL_TEMP + EManagement.BASE_MOTIVOS+"/"+idReason, {'headers': headers, observe: 'response'}).pipe
       (catchError(this.utilitiesService.handleError));

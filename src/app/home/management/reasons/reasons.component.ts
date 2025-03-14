@@ -36,20 +36,18 @@ export class ReasonsComponent implements OnInit {
 
   ngOnInit(): void {
     this.reasonsService.listarMotivos(sessionStorage.getItem('header')!,).subscribe((data: any) => {
-   
-       
         if (data?.body != null) {
           let arrayReasons = [];
-          for(let i = 0; i < data.body?.details.length; i++){
+
+          const arrayData= data.body?.detalles?.motivos;
+          for(let i = 0; i < arrayData.length; i++){
             arrayReasons.push({
-              id:i, 
-              reason:data.body?.details[i].motivo
+              id:arrayData[i].id, 
+              reason:arrayData[i].motivo
             }
             );
           }
          this.reasons = arrayReasons;
-         console.log(arrayReasons);
-
         }
     
       });
@@ -59,6 +57,7 @@ export class ReasonsComponent implements OnInit {
     if(this.timeoutId)
       clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(()=>{
+      this.reasons = [];
       this.getReasonsPage(this.inputSearch)
     }, 1000);
   }
@@ -67,17 +66,20 @@ export class ReasonsComponent implements OnInit {
   getReasonsPage(search:string){
     this.reasonsService.getReasonsPage(sessionStorage.getItem('header')!,search).subscribe((data: any) => {
       if (data?.body != null) {
-        let arrayReasons = [];
-        for(let i = 0; i < data.body?.details.length; i++){
-          arrayReasons.push({
-            id:i, 
-            reason:data.body?.details[i].motivo
+          let arrayReasons = [];
+
+          const arrayData= data.body?.detalles?.motivos;
+          for(let i = 0; i < arrayData.length; i++){
+            arrayReasons.push({
+              id:arrayData[i].id, 
+              reason:arrayData[i].motivo
+            }
+            );
           }
-          );
+         this.reasons = arrayReasons;
         }
-       this.reasons = arrayReasons;
-      }
-    });
+    
+      });
   }
 
   trackReason(index: number, reason: any) {
@@ -121,6 +123,7 @@ export class ReasonsComponent implements OnInit {
           this.reasonsService.deleteReason(sessionStorage.getItem('header')!,id.toString()).subscribe((data: any) => {
             if (data?.body != null) {
               this.toast.success('Motivo eliminado correctamente');
+              this.getReasonsPage("");
             }
           });
         }
@@ -132,6 +135,7 @@ export class ReasonsComponent implements OnInit {
           if (data?.body != null) {
             this.inputAddReason = '';
             this.toast.success('Motivo agregado correctamente');
+            this.getReasonsPage("");
           }
       });
     }

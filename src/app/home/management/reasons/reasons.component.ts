@@ -78,6 +78,10 @@ export class ReasonsComponent implements OnInit {
           }
          this.reasons = arrayReasons;
         }
+      else{
+        this.reasons = [];
+
+      }
     
       });
   }

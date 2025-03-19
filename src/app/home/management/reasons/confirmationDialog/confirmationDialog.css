@@ -56,7 +56,6 @@ p{
     justify-content: space-between;
     bottom: 23px;
     .clean,
-    .disabled,
     .cancel {
         font-family: 'Poppins-Bold' !important;
         font-size: 12px;
@@ -70,7 +69,7 @@ p{
         color: #EEEEEE !important;
         width: 103px;
     }
-    .disabled {
+    .clean:disabled {
         background: #D9D9D9;
     }
     .cancel {

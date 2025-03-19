@@ -9,9 +9,9 @@
             @for (reason of reasons; track reason.id) {
                 @if(activeEditId === reason.id){
                     <div class="reasonContainer">
-                        <input matInput placeholder="Nuevo Motivo" [(ngModel)]="inputUpdateReason" value="{{reason.reason}}"/>
-                        <span style="display: flex; justify-content: flex-end;">
-                            <button mat-icon-button matTooltip="Guardar" disabled="{{inputUpdateReason === reason.reason }}" [ngClass]="inputUpdateReason === reason.reason ? 'disabled' : 'saveIcon'"  (click)="saveEdit()">
+                        <input class="inputReason" matInput placeholder="Nuevo Motivo" [(ngModel)]="inputUpdateReason" value="{{reason.reason}}"/>
+                        <span style="display: flex; justify-content: flex-end; align-items: center;">
+                            <button mat-icon-button matTooltip="Guardar" disabled="{{inputUpdateReason === reason.reason }}"  class="saveIcon" (click)="saveEdit()">
                                 <svg>
                                     <use xlink:href="../../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-guardar"></use>
                                 </svg>
@@ -26,8 +26,8 @@
                 }
                 @else {
                     <div class="reasonContainer">
-                        <p>{{reason.reason}} </p>
-                        <span style="display: flex; justify-content: flex-end;">
+                        <p class="textReason">{{reason.reason}} </p>
+                        <span style="display: flex; justify-content: flex-end; align-items: center;">
                             <button mat-icon-button matTooltip="Editar" (click)="editReason(reason.id, reason.reason)" class="editIcon">
                                 <svg>
                                     <use xlink:href="../../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-editar"></use>
@@ -41,10 +41,14 @@
                         </span>
                     </div>
                 }
-                
-            
-                
+
             }
+            @if(reasons.length <= 0){
+                <div class="content-image">
+                    <img class="img_search" src='../../../assets/serfertil-app-icons/no_registers.png' alt='image'> 
+                    <p class="pos_fixed">No se encontraron registros</p>
+                </div>
+            } 
             
         </mat-list>
         <div style="display: flex;">
@@ -56,10 +60,5 @@
             <button mat-flat-button (click)="addReason()" class="add" >Guardar</button>
         </div>
     </div>
-       <!-- <div class="buttonContainer">
-            <button mat-flat-button class="delete" >Eliminar</button>
-            <button mat-flat-button class="edit" >Editar</button>
-            <button mat-flat-button class="add" >Guardar</button>
-       </div> -->
 </div>
 

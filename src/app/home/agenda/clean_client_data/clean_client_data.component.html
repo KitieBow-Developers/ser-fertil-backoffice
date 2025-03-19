@@ -13,7 +13,7 @@
     </span>
 
     <div class="buttonEnd">
-        <button [disabled]="isDisabled" mat-raised-button [style]="{'bordercolor': color.BORDER_TOP_COLOR_BUTTON_CLEAN}" [ngClass]="isDisabled ? 'disabled' : 'clean'" (click)="cleanData()">Confirmar</button>
+        <button [disabled]="isDisabled" mat-raised-button [style]="{'bordercolor': color.BORDER_TOP_COLOR_BUTTON_CLEAN}" class="clean" (click)="cleanData()">Confirmar</button>
         <div class="botonesAgendar">
             <button enable mat-raised-button [style]="{'border-color': color.BORDER_TOP_COLOR_BUTTON}" class="cancel" mat-dialog-close>Cancelar</button>
         </div>

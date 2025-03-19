@@ -13,7 +13,7 @@
     </span>
 
     <div class="buttonEnd">
-        <button [disabled]="isDisabled" mat-raised-button [ngClass]="isDisabled ? 'disabled' : 'clean'" (click)="cleanData()">Eliminar</button>
+        <button [disabled]="isDisabled" class="clean" mat-raised-button (click)="cleanData()">Eliminar</button>
         <div class="botonesAgendar">
             <button enable mat-raised-button class="cancel" mat-dialog-close>Cancelar</button>
         </div>

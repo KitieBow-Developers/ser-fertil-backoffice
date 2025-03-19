@@ -1,14 +1,11 @@
 p {
-    position: realtive;
+    position: relative;
     padding: 1em 0;
     margin: 0;
     text-align:center;
     font-size: 15px;
 }
 
-.disabled {
-    fill: #D9D9D9;
-}
 
 .container{
     width: 100%;
@@ -26,6 +23,15 @@ p {
     margin-right: 10px;
     max-height: 650px;
     overflow-y: auto;
+    min-height: 610px;
+}
+.textReason{
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #098F9E;    
 }
 
 .headerTitle{
@@ -60,11 +66,23 @@ input {
 }
 ::ng-deep input {
     width: 100% !important;
-    background-color: #EEEEEE !important;
+    background-color: white !important;
     color: #159CAB !important;
     border-radius: 10px;
     height: 33px;
 }
+
+.inputReason{
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #098F9E;    
+    background-color: white !important;
+    height: 72px;
+}
+
 
 .p-float-label {
     margin-top: 23px;
@@ -115,6 +133,10 @@ input {
 .saveIcon{
     fill: #098F9E;
 }
+.saveIcon:disabled{
+    fill: #D9D9D9;
+}
+
 .edit {
     border-color: #098F9E;
     color: #098F9E !important;
@@ -133,4 +155,24 @@ input {
     justify-content: space-between; 
     padding-left: 10px;
     padding-right: 10px;
+    align-items: center;
 }
+
+.content-image{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    height: 610px;
+  }
+  
+  .img_search{
+    width: 65px;
+    height: 65px;
+  }
+  .pos_fixed {
+    padding: 1em 0;
+    text-align:center !important;
+  }
+  
+

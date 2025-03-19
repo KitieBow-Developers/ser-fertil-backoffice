@@ -44,7 +44,9 @@ export class ReasonsService {
   }
 
   updateReason(authorization: string, idReason: string, body: object){
-    const headers= new HttpHeaders().set('Authorization', authorization);
+    const headers= new HttpHeaders().set('Authorization', authorization)
+   
+    console.log(headers);
     return this.http.put(
       ESystem.URL_TEMP + EManagement.BASE_MOTIVOS+"/"+idReason, body, {'headers': headers, observe: 'response'}).pipe
       (catchError(this.utilitiesService.handleError));
@@ -52,11 +54,8 @@ export class ReasonsService {
 
   deleteReason(authorization: string, idReason: string){
     const headers= new HttpHeaders().set('Authorization', authorization);
-    headers.append("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-    headers.append("Access-Control-Allow-Origin", "*");
-    headers.append("Access-Control-Allow-Headers", "X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-    headers.append("Allow", "GET, POST, OPTIONS, PUT, DELETE");
-    headers.append("Access-Control-Allow-Origin"," http://localhost:4200");
+
+    
     return this.http.delete(
       ESystem.URL_TEMP + EManagement.BASE_MOTIVOS+"/"+idReason, {'headers': headers, observe: 'response'}).pipe
       (catchError(this.utilitiesService.handleError));

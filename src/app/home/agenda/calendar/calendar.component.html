@@ -1,0 +1,27 @@
+<div class="calendar" oncontextmenu="return false;">
+    <div class="month">
+        <p>{{ selectedDate }} {{ monthNames[date.getMonth()] }} {{ date.getFullYear() }}</p>
+        <button mat-icon-button class="prev" (click)="prevMonth()">
+            <svg>
+                <use xlink:href="../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-abajo-c">
+                </use>
+            </svg>
+        </button>
+        <button mat-icon-button class="next" (click)="nextMonth()">
+            <svg>
+                <use xlink:href="../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-arriba-c">
+                </use>
+            </svg>
+        </button>
+    </div>
+    <ul class="weekdays">
+        @for (day of weekdays; track day) {
+        <li>{{ day }}</li>
+        }
+    </ul>
+    <ul class="days">
+        @for (day of days; track day; let i = $index) {
+        <li [class.outside-month]="day.outside" [class.selected]="isSelected(day)" (click)="selectDate(day)" (contextmenu)="prueba($event)">{{ day.date }}</li>
+        }
+    </ul>
+</div>

@@ -161,6 +161,13 @@ input {
     font-family: 'Poppins-Regular' !important;
 }
 
+.codeVefication{
+    margin: 0 auto;
+    ::ng-deep input{
+        height: 46px !important;
+        width: 46px !important;
+    }
+}
 .p-float-label {
     margin-top: 30px;
     margin-bottom: 30px;

@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../../../assets/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../../../assets/fonts/Poppins-Regular.ttf');
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__title {
+    background-color: #056479;
+    color: white;
+    font-family: 'Poppins-bold' !important;
+    font-size: 16px;
+    height: 33px;
+    display: flex;
+}
+.headerTittle{
+    p{
+        margin: 0 0 0 auto;
+        text-align: end;
+        cursor: pointer;
+    }
+}
+
+.appointmentData{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.rowData{
+    display: flex;
+    flex-direction: row;
+}
+
+.columnData{
+   min-width: 40%;
+}
+.filter {
+    fill: #159CAB;
+    margin-top: 25px;
+  }
+.p_content{
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.mat-divider {
+    border-top-color: #098F9E;
+    height: 5px;
+    border-top-width: 2px;
+}

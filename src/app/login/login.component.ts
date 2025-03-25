@@ -64,8 +64,11 @@ export class LoginComponent implements OnInit {
     private router: Router) {
     this.user = new User(); // Inicializa la instancia de User
     this.color = EClassCollor; // Asigna un valor a la variable color desde la enumeración EClassCollor
-    if (sessionStorage.getItem("user")) {
-      this.router.navigate(["home"]);
+    
+    if (typeof window !== "undefined") {  
+      if (sessionStorage.getItem("user")) {
+        this.router.navigate(["home"]);
+      }
     }
   }
 

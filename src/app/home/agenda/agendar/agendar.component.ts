@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, Output,EventEmitter } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { EClassCollor } from '../../../domain/enums/eclass-collor';
 import { CalendarModule } from 'primeng/calendar';
@@ -23,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import {MatDividerModule} from '@angular/material/divider';
+import { get } from 'node:http';
 
 @Component({
   selector: 'app-agendar',
@@ -46,28 +47,29 @@ import {MatDividerModule} from '@angular/material/divider';
   templateUrl: './agendar.component.html',
   styleUrl: './agendar.component.css'
 })
-export class AgendarComponent implements OnInit, OnChanges {
+export class AgendarComponent implements OnInit {
   color: any; // Variable que almacena algún tipo de color
-  orientation: boolean = false;
   dataExtra: boolean = false;
   patient: PatientDTO;
   appointment: AppointmentBasicInfoDto;
+  @Output() appoimentDateEmmiter = new EventEmitter<Date>();
 
   age!: number;
   patientSelected:boolean = false;
-  patientID:string = '';
+  spouseSelected:boolean = false;
 
   onRequest: boolean = false;
   submited:boolean = false;
 
+
   onPatientRequest: boolean = false;
-  patientsArray: Array<PatientDTO> = []
+  patientsArray: Array<{id: string, name: string}> = [];
 
   onDoctorRequest: boolean = false;
-  doctorsArray: Array<{id: string, name: string}> = []
+  doctorsArray: Array<{id: string, name: string}> = [];
 
   onReasonsRequest: boolean = false;
-  reasonsArray: Array<{id: string, name: string}> = []
+  reasonsArray: Array<{id: string, name: string}> = [];
 
   eventDialog: any;
   timeoutId : any;
@@ -111,83 +113,136 @@ pickerTwo: any;
   ngOnInit(): void {
   }
 
-  openPatientSearch(){
-    this.patientsArray = []
+  changeToPatient() {
+    this.spouseSelected = false;
+    this.patient = new PatientDTO();
+    this.getSelectedPatientData(this.appointment.id_paciente);
   }
 
-  patientSearchChange(search: string) {
-    if(search === "")
+  
+  changeToSpouse() {
+    this.spouseSelected = true;
+    const tempPatientID= this.patient.id;
+    this.patient = new PatientDTO();
+    this.patient.id_paciente_conyugue = tempPatientID;
+  }
+
+  patientSelectedChange(event: any){
+
+    this.getSelectedPatientData(event.value);
+  }
+
+  getSelectedPatientData(id:any){
+    this.onRequest = true;
+    this.citaMedicaService.getInfoPatient(sessionStorage.getItem('header')!,id).subscribe((data: any) => {
+      this.onRequest = false;
+      if (data?.body != null) { 
+        this.patient = data.body.detalles;
+        this.patientSelected = true;
+        this.patient.sexo = this.patient.sexo ? "true":"false";
+        this.patient.fecha_nacimiento = new Date(this.patient.fecha_nacimiento);
+      } 
+    });
+  }
+
+  openPatientSearch(isOpened:boolean){
+    if(isOpened){
+      this.patientSelected = false;
+      this.patient = new PatientDTO();
+      this.appointment.id_paciente = String();
+      this.patientSearchChange("", 0);
+    }
+  }
+
+  patientSearchChange(search: string,  debounce: number = 1000) {
+    if(search.trim().length === 0 && debounce > 0){
       return;
+    }
+
     if(this.timeoutId)
       clearTimeout(this.timeoutId);
+
+    this.patientsArray = []
     this.timeoutId = setTimeout(()=>{
       this.onPatientRequest=true;
-      this.openPatientSearch();
       this.citaMedicaService.searchPagePatients(sessionStorage.getItem('header')!,search).subscribe((data: any) => {
         this.onPatientRequest=false;
 
         if (data?.body != null) {
-          console.log(data.body);
-          // let tempArr = [];
-          // for (let i = 0; i < data.body.detalles.length; i++) {
-          //       tempArr.push({
-          //         id :data.body.detalles[i].id,
-          //         name :data.body.detalles[i].nombre
-          //       })
-          // }
-          // this.patientsArray = tempArr;
+            const dataPatients = data?.body?.detalles.patients;
+            let tempArr = [];
+            for (let i = 0; i < dataPatients.length; i++) {
+                tempArr.push({
+                    id :dataPatients[i].id,
+                    name :dataPatients[i].nombre
+                  })
+            }
+            this.patientsArray = tempArr;
           }
             
       });
-    }, 1000);
+    }, debounce);
   }
 
-  openDoctorSearch(){
-    this.doctorsArray = []
+  openDoctorSearch(isOpened:boolean){
+    if(isOpened){
+      this.appointment.id_cuenta_med = String();
+      this.doctorSearchChange("", 0);
+    }
   }
 
-  doctorSearchChange() {
+  doctorSearchChange(search: string,  debounce: number = 1000) {
+    if(search.trim().length === 0 && debounce > 0){
+      return;
+    }
+    
     if(this.timeoutId)
       clearTimeout(this.timeoutId);
+    this.doctorsArray = []
     this.timeoutId = setTimeout(()=>{
       this.onDoctorRequest=true;
-      this.openDoctorSearch();
-      this.doctorsService.listMedical(sessionStorage.getItem('header')!).subscribe((data: any) => {
+      this.doctorsService.getDoctorsPage(sessionStorage.getItem('header')!,search).subscribe((data: any) => {
         this.onDoctorRequest=false;
-
         if (data?.body != null) {
+          const dataDoctors = data?.body?.detalles?.medicos;
           let tempArr = [];
-          for (let i = 0; i < data.body.detalles.length; i++) {
+          for (let i = 0; i < dataDoctors.length; i++) {
                 tempArr.push({
-                  id :data.body.detalles[i].id,
-                  name :data.body.detalles[i].nombre
+                  id :dataDoctors[i].id,
+                  name :dataDoctors[i].nombre
                 })
           }
           this.doctorsArray = tempArr;
           }
             
       });
-    }, 1000);
+    }, debounce);
   }
 
   
-  openReasonChange(){
-    this.reasonsArray = []
+  openReasonChange(isOpened:boolean){
+    if(isOpened){
+      this.appointment.motivo = String();
+      this.reasonSearchChange("", 0);
+    }
   }
 
-  reasonSearchChange(search: string) {
-    if(search === "")
+  reasonSearchChange(search: string, debounce: number = 1000) {
+    if(search.trim().length === 0 && debounce > 0){
       return;
+    }
+    
     if(this.timeoutId)
       clearTimeout(this.timeoutId);
+      this.reasonsArray = [];
       this.timeoutId = setTimeout(()=>{
       this.onReasonsRequest=true;
-      this.openReasonChange();
+
       this.reasonsService.getReasonsPage(sessionStorage.getItem('header')!,search).subscribe((data: any) => {
         this.onReasonsRequest=false;
-
+        let tempArr = [];
         if (data?.body != null) {
-          let tempArr = [];
+     
           const arrayData= data.body?.detalles?.motivos;
           for(let i = 0; i < arrayData.length; i++){
                 tempArr.push({
@@ -199,25 +254,10 @@ pickerTwo: any;
           }
             
       });
-    }, 1000);
+    }, debounce);
   }
 
   
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['dataPatient'] && changes['dataPatient'].currentValue) {
-      
-      console.log('Datos del paciente recibidos:', this.dataPatient);
-    }
-  }
-
-  changeSelectRelation() {
-    if (this.orientation) {
-      this.orientation = false;
-    } else {
-      this.orientation = true;
-    }
-  }
-
   onUpload(event: any) {
     console.log(event)
   }
@@ -250,9 +290,7 @@ pickerTwo: any;
      
       if (data?.body != null) {
         this.toast.success('Paciente registrado correctamente');
-        this.patientID = data.body?.detalles?.id_generado; 
-        console.log(data.body);
-        this.appointment.nombre_med =JSON.parse(sessionStorage.getItem('user')!)?.nombre;
+        this.appointment.id_paciente = data.body?.detalles?.id_generado; 
         this.submitAgendar();
       }
   
@@ -260,29 +298,45 @@ pickerTwo: any;
   }
 
   editPatient() {
+    this.onRequest = true;
+    this.patient.sexo = Boolean(this.patient.sexo);
+    this.patient.fecha_nacimiento = new Date(this.patient.fecha_nacimiento).toISOString().split('T')[0]
+    this.citaMedicaService.updateInfoPatient(sessionStorage.getItem('header')!,this.patient.id,this.patient).subscribe((data: any) => {
+      this.onRequest = false;
+       
+        if (data?.body != null) {
+          this.toast.success('Paciente actualizado correctamente');
+          this.getSelectedPatientData(this.appointment.id_paciente);
+          this.patientSearchChange("", 0);
 
-  }
+        }
+    
+      });
+  } 
   
   submitAgendar(){
 
     let date = new Date(this.appointment.fecha);
     let hours  = this.appointment.hora.split(':');
     date.setHours(parseInt(hours[0]),parseInt(hours[1]));
-
+   
     const citaData = {
-      id_paciente: this.patientID,
-      id_cuenta_med:  JSON.parse(sessionStorage.getItem('user')!)?.id?.$oid,
-      fecha_hora: date,
+      id_paciente: this.appointment.id_paciente,
+      id_cuenta_med: this.appointment.id_cuenta_med,
+      fecha_hora: new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes())),
       motivo: this.appointment.motivo,
       estado: this.appointment.estado,
     }
 
-    console.log(citaData);
     this.citaMedicaService.addCitaMedica(sessionStorage.getItem('header')!,citaData).subscribe((data: any) => {
       if (data?.body != null) {
+        this.appoimentDateEmmiter.emit(new Date(this.appointment.fecha));
         this.toast.success('Cita agendada correctamente');
         this.patient = new PatientDTO();
         this.appointment = new AppointmentBasicInfoDto();
+        this.appointment.hora = `${new Date().getHours()}:${(new Date().getMinutes()<10?'0':'') + new Date().getMinutes()}`;
+        this.patientSelected = false;
+        this.spouseSelected = false;
       }
     });
   }

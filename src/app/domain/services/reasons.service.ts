@@ -25,7 +25,7 @@ export class ReasonsService {
   getReasonsPage(authorization: string,search:string){
     const headers= new HttpHeaders().set('Authorization', authorization);
     return this.http.get(
-      ESystem.URL_TEMP + EManagement.BASE_MOTIVOS+"/?pagina=1&motivo="+search, {'headers': headers, observe: 'response'}).pipe
+      ESystem.URL_TEMP + EManagement.BASE_MOTIVOS+"/?pagina=1&busqueda="+search, {'headers': headers, observe: 'response'}).pipe
       (catchError(this.utilitiesService.handleError));
   }
 

@@ -11,7 +11,7 @@ export class PatientDTO extends Generic{
     /*principalPhone*/
     tel_principal!: string;
     /*gender*/
-    sexo!: boolean;
+    sexo!: any;
     /*urlImage*/
     url_imagen!: string;
     /*profession*/
@@ -19,7 +19,7 @@ export class PatientDTO extends Generic{
     /*referedBy*/
     referido_por!: string;
     /*dateOfBirth*/
-    fecha_nacimiento!: string;
+    fecha_nacimiento!: any;
     /*numMedicalHistory*/
     num_historia_clinica!: string;
     /*numRuc*/

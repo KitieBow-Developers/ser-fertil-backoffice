@@ -12,7 +12,6 @@ import { NgClass } from '@angular/common';
     MatButtonModule,
     MatButtonToggleModule,
     MatMenuModule,
-    NgClass
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -24,11 +23,11 @@ export class HomeComponent implements OnInit {
   isMenuOpen: boolean = false;
 
   constructor(public route: ActivatedRoute, private router: Router) {
-
-   if(!sessionStorage.getItem('user')){
-      this.router.navigate(['']);
+    if (typeof window !== "undefined") {  
+      if(!sessionStorage.getItem('user')) {
+          this.router.navigate(['']);
+      }
     }
-
   }
 
   changeSelection(selection: string) {

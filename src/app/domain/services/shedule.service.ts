@@ -28,4 +28,11 @@ export class SheduleService implements Action{
       ESystem.URL_TEMP+ECitaMedical.LISTAR_MEDICO, {'headers': headers, observe: 'response'}).
       pipe(catchError(this.utilitiesService.handleError))
   }
+
+  getDoctorsPage(authorization: string,search:string){
+      const headers= new HttpHeaders().set('Authorization', authorization);
+      return this.http.get(
+        ESystem.URL_TEMP + ECitaMedical.LISTAR_MEDICO+"?pagina=1&busqueda="+search, {'headers': headers, observe: 'response'}).pipe
+        (catchError(this.utilitiesService.handleError));
+    }
 }

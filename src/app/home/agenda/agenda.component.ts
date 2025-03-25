@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe, NgClass } from '@angular/common';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core'
+import { Component, HostListener, OnDestroy, OnInit,ViewChild } from '@angular/core'
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +20,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MedicalAppointmentDTO } from '../../domain/class/medical-appointment-dto';
+import { app } from '../../../../server';
 
 @Component({
   selector: 'app-agenda',
@@ -64,6 +65,13 @@ export class AgendaComponent implements OnInit, OnDestroy {
   waitingTimeText: string = '0 Minutos';
   timer: any;
 
+  inputSearch: string = '';
+  timeoutId : any;
+
+  @ViewChild(CalendarComponent)
+  calendar!: CalendarComponent;
+
+
   private lastDate!: string;
   constructor(private agendarService: SheduleService, public dialog: MatDialog, private citaMedicaService: CitaMedicalService) {
     this.color = EClassCollor; // Asigna un valor a la variable color desde la enumeración EClassCollor
@@ -77,6 +85,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
     }
     this.user = JSON.parse(sessionStorage.getItem('user')!);
   }
+  
   ngOnDestroy(): void {
     if (this.timer) {
       clearInterval(this.timer);
@@ -88,15 +97,33 @@ export class AgendaComponent implements OnInit, OnDestroy {
       this.id = this.user.id.$oid;
     }
     this.agendarService.listMedical(sessionStorage.getItem('header')!).subscribe((data: any) => {
-      for (let i = 0; i < data.body.detalles.length; i++) {
+      if(data?.body === undefined) return;
+      const arrayMedicos = data.body.detalles.medicos;
+      for (let i = 0; i <arrayMedicos.length; i++) {
         let medico = new MedicalDto();
-        medico.name = data.body.detalles[i].nombre;
-        medico.id = data.body.detalles[i].id;
+        medico.name = arrayMedicos[i].nombre;
+        medico.id = arrayMedicos[i].id;
         this.medicos.push(medico);
       }
-      console.log(this.medicos)
     });
     this.startWaitingTimeUpdater();
+  }
+
+
+  searchChange() {
+      if(this.timeoutId)
+        clearTimeout(this.timeoutId);
+      this.timeoutId = setTimeout(()=>{
+        this.medicalAppointments = [];
+        let temDate= new Date(this.selectDate).toISOString().split('T')[0];
+        this.citaMedicaService.listarCitaMedicaWithFilter(sessionStorage.getItem('header')!, this.id, temDate,this.inputSearch).subscribe((data: any) => {
+          this.processMedicalAppointmentsData(data);
+        });
+      }, 1000);
+  }
+
+  appointmentDoneEmmiter(event: any) {
+   this.calendar.setFecha(event);
   }
 
   emiitChildAgent(date: string) {
@@ -137,31 +164,44 @@ export class AgendaComponent implements OnInit, OnDestroy {
   searchListMedical(id: string, date: string) {
     this.medicalAppointments = [];
     this.citaMedicaService.listarCitaMedica(sessionStorage.getItem('header')!, id, date).subscribe((data: any) => {
-      if (data.body != null) {
-        const lista= data.body.detalles.lista;
-        for (let i = 0; i < lista.length; i++) {
-          let medicalAppointment = new MedicalAppointmentDTO();
-          medicalAppointment.dt_final = new Date(lista[i].dt_cita_med);
-          medicalAppointment.dt_start = new Date(lista[i].dt_cita_med);
-          medicalAppointment.state = lista[i].estado;
-          medicalAppointment.id = lista[i].id;
-          medicalAppointment.motive = lista[i].motivo;
-          if (lista[i].id_paciente) {
-            medicalAppointment.id_paciente = lista[i].id_paciente;
-          }
-          medicalAppointment.patientName = lista[i].nombre_paciente;
-          medicalAppointment.dt_cita_med = lista[i].dt_cita_med;
-          if (lista[i].resumen) {
-            medicalAppointment.summary.arrivalTime = lista[i].resumen.hora_llegada;
-            medicalAppointment.summary.phone = lista[i].resumen.telefono;
-            medicalAppointment.summary.identification = lista[i].resumen.cedula;
-          }
-          this.medicalAppointments.push(medicalAppointment);
-        }
-      } else {
-        this.medicalAppointments = [];
-      }
+      this.processMedicalAppointmentsData(data);
     });
+  }
+
+  processMedicalAppointmentsData(data: any) {
+    if (data.body != null) {
+      const lista= data.body.detalles.lista;
+      for (let i = 0; i < lista.length; i++) {
+        let medicalAppointment = new MedicalAppointmentDTO();
+        medicalAppointment.dt_final = new Date(lista[i].dt_cita_med);
+        medicalAppointment.dt_start = new Date(lista[i].dt_cita_med);
+        medicalAppointment.state = lista[i].estado;
+        medicalAppointment.id = lista[i].id;
+        medicalAppointment.motive = lista[i].motivo;
+        if (lista[i].id_paciente) {
+          medicalAppointment.id_paciente = lista[i].id_paciente;
+        }
+        medicalAppointment.patientName = lista[i].nombre_paciente;
+        medicalAppointment.dt_cita_med = lista[i].dt_cita_med;
+        if (lista[i].resumen) {
+          medicalAppointment.summary.arrivalTime = lista[i].resumen.hora_llegada;
+          medicalAppointment.summary.phone = lista[i].resumen.telefono;
+          medicalAppointment.summary.identification = lista[i].resumen.cedula;
+        }
+        this.medicalAppointments.push(medicalAppointment);
+      }
+    } else {
+      this.medicalAppointments = [];
+    }
+  }
+
+  parseDate(dateString: string) {
+   return new Date(dateString).toLocaleDateString("es-MX",{
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   }
 
   convertirFecha(fechaStr: string): Date | null {

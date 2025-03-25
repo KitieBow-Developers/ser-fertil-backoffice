@@ -99,30 +99,16 @@
     <div class="section-2">
         <mat-card>
             <div class="consultar">
-                <span class="p-float-label" style="width: 197px; margin-left: 23px;">
-                    <input pInputText id="nombre" [style.color]="color.TITLE_LOGIN" />
-                    <label for="nombre" [style.color]="color.TITLE_LOGIN">Nombre</label>
+                <H1>Agenda Listado</H1>
+                <div class="date-container">
+                    <p class="date">{{ parseDate(date) }}</p>
+                </div>
+                <span class="p-float-label" style="width: 100%;">
+                    <input pInputText id="search" [(ngModel)]="inputSearch" (input)="searchChange()" [style.color]="color.TITLE_LOGIN" />
+                    <label for="Search" [style.color]="color.TITLE_LOGIN">Buscar Cita</label>
                 </span>
-                <button mat-icon-button class="filter">
-                    <svg>
-                        <use xlink:href="../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-filtro">
-                        </use>
-                    </svg>
-                </button>
-                <span class="p-float-label" style="width: 99px; margin-right: 23px;">
-                    <input pInputText id="cedula" [style.color]="color.TITLE_LOGIN" />
-                    <label for="cedula" [style.color]="color.TITLE_LOGIN">Cédula</label>
-                </span>
-                <span class="p-float-label" style="width: 100px; margin-right: 23px;">
-                    <input pInputText id="hClinica" [style.color]="color.TITLE_LOGIN" />
-                    <label for="hClinica" [style.color]="color.TITLE_LOGIN">H.Clinica</label>
-                </span>
-                <button mat-raised-button [style.background-color]="color.BACKGROUND" [style]="{'border-top-color': color.BORDER_TOP_COLOR_BUTTON, 'border-left-color': color.BORDER_TOP_COLOR_BUTTON, 'border-right-color': color.BORDER_BUTTON_COLOR_BUTTON, 'border-bottom-color': color.BORDER_BUTTON_COLOR_BUTTON}"
-                    class="aceptar">Buscar</button>
             </div>
-            <div class="date-container">
-                <p class="date">{{date}}</p>
-            </div>
+            
             <div class="medico">
                 <button mat-icon-button (click)="indiceActual = indiceActual - 1 >= 0 ? indiceActual - 1 : medicos.length - 3" class="flecha">
                     <svg>
@@ -240,7 +226,7 @@
     </div>
     <mat-card>
         @switch (validateMatCard) { @case ("agendar"){
-        <app-agendar [dataPatient]="resumeDataPatient"></app-agendar>
+        <app-agendar (appoimentDateEmmiter)="appointmentDoneEmmiter($event)"  [dataPatient]="resumeDataPatient"></app-agendar>
         } }
     </mat-card>
 </div>

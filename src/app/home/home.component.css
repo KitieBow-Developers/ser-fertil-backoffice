@@ -209,7 +209,7 @@ header {
 }
 
 .mode-black {
-    margin-bottom: 50px;
+
 }
 
 .select-menu {
@@ -240,7 +240,6 @@ header {
 .log-out {
     color: white;
     font-size: 20px;
-    border-bottom: 1px solid white;
     padding-top: 10px;
     background-color: #B13030;
     position: relative;
@@ -260,12 +259,15 @@ header {
     }
 }
 
-.log-out::hover {
-    color: white;
+.log-out:hover {
+    color: #B13030;
     font-size: 20px;
-    border-bottom: 1px solid white;
     padding-top: 10px;
-    background-color: #B13030;
+    background-color: white;
+    svg {
+
+        fill: #B13030;
+    }
 }
 
 .hamburguer-menu {

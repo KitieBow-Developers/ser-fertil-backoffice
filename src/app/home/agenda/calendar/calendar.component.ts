@@ -34,6 +34,20 @@ export class CalendarComponent implements OnInit {
     this.childEmitter.emit(fecha.toString());
   }
 
+  setFecha(fecha: Date) {
+  
+    console.log(fecha);
+    this.date.setMonth(fecha.getMonth());
+    this.getDays(fecha.getMonth(), fecha.getFullYear());
+    this.selectedDate = fecha.getDate();
+    console.log(this.selectedDate);
+    let temp = this.selectedDate + " " + this.monthNames[this.date.getMonth()] + " " + this.date.getFullYear();
+    console.log(temp);
+    console.log(temp.toString());
+    this.childEmitter.emit(temp.toString());
+   }
+  
+
   getDays(month: any, year: any) {
     let start = new Date(year, month, 1);
     let end = new Date(year, month + 1, 0);

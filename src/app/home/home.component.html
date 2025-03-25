@@ -47,20 +47,20 @@
             </button>
         </div>
         <mat-menu #user="matMenu">
-            <button mat-menu-item class="select-menu">
+          <button disabled mat-menu-item class="select-menu">
                 <svg>
                     <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-ajustes">
                     </use>
                 </svg>
                 <p>Mi cuenta</p>
             </button>
-            <button mat-menu-item class="select-menu mode-black">
+            <button disabled mat-menu-item class="select-menu mode-black">
                 <svg>
                     <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-modo-oscuro">
                     </use>
                 </svg>
                 <p>Modo oscuro</p>
-            </button>
+            </button> 
             <button mat-menu-item class="log-out" (click)="logout()">
                 <svg>
                     <use xlink:href="../../assets/serfertil-app-icons/symbol-defs.svg#sficon-cerrar-sesion">

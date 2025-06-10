@@ -1,0 +1,369 @@
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../../../assets/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../../../assets/fonts/Poppins-Regular.ttf');
+}
+
+.agendar {
+    width: 100%;
+    padding: 10px;
+    .buttonRlationE {
+        display: inline-flex;
+        width: 100%;
+        margin-top: 15px;
+        button {
+            border-radius: 10px;
+        }
+        .select {
+            font-family: 'Poppins-Bold' !important;
+            color: #098F9E !important;
+            width: 100%;
+            height: 40px !important;
+            border: 3px solid;
+            font-weight: 700 !important;
+        }
+        .selectn {
+            font-family: 'Poppins-Bold' !important;
+            color: #EEEEEE !important;
+            width: 100%;
+            height: 40px !important;
+            border: 3px solid;
+            font-weight: 700 !important;
+            background-color: #056479;
+        }
+        .flecha {
+            fill: #159CAB;
+        }
+    }
+    .mat-form-field.mat-focused .mat-form-field-ripple {
+        background-color: red !important;
+      }
+   
+    .contendoIntputsSup {
+        display: inline-flex;
+        .contentPrincipalForm {
+            .p-float-label {
+                margin-top: 23px;
+                font-weight: 400 !important;
+                font-family: 'Poppins-Regular' !important;
+                font-size: 11px;
+                text-align: center;
+            }
+             ::ng-deep .p-float-label input:focus~label,
+            .p-float-label input.p-filled~label,
+            .p-float-label textarea:focus~label,
+            .p-float-label textarea.p-filled~label,
+            .p-float-label .p-inputwrapper-focus~label,
+            .p-float-label .p-inputwrapper-filled~label {
+                width: 96%;
+                text-align: center;
+                color: #159CAB !important;
+                font-weight: 400 !important;
+                font-family: 'Poppins-Regular' !important;
+            }
+            input {
+                border: 2px solid #098F9E;
+                font-weight: 300 !important;
+                color: #159CAB !important;
+                background-color: #EEEEEE !important;
+                font-weight: 400 !important;
+                font-family: 'Poppins-Regular' !important;
+            }
+             ::ng-deep input {
+                width: 100% !important;
+                background-color: #EEEEEE !important;
+                color: #159CAB !important;
+                border-radius: 10px;
+                height: 33px;
+            }
+          
+            .select_input{
+                font-weight: 400 !important;
+                font-family: 'Poppins-Regular' !important;
+                font-size: 11px;
+                width: 100%; 
+                margin-left: 5px; 
+                margin-top: 3px;
+                color: #159CAB !important;
+                .mat-select-content{
+                    font-weight: 400 !important;
+                    font-family: 'Poppins-Regular' !important;
+                    font-size: 12px;
+                    background-color: #EEEEEE !important;
+                    height: 33px;
+                    border: 2px solid #098F9E;
+                    border-radius: 10px;
+                    text-align: center;
+                    color: #159CAB !important;
+                    padding: 4px;
+
+                   
+                }
+                .mat-option {
+                    font-weight: 400 !important;
+                    font-family: 'Poppins-Regular' !important;
+                    font-size: 12px;
+                    background-color: red !important;
+                } 
+            }
+
+          
+        
+            .hour_input{
+                font-weight: 400 !important;
+                font-family: 'Poppins-Regular' !important;
+                font-size: 11px;
+                text-align: center;
+                width: 100%; 
+                margin-left: 1em; 
+                margin-top: 3px;
+            }
+            .contenttwoInputs {
+                display: inline-flex;
+                width: 100%;
+            }
+            .contenttwoInputs>div {
+                display: inline-flex;
+            }
+            p-calendar {
+                 ::ng-deep input {
+                    background-color: #EEEEEE !important;
+                    font-weight: 400 !important;
+                    font-family: 'Poppins-Regular' !important;
+                    border: 2px solid #098F9E;
+                    height: 33px;
+                    width: 100% !important;
+                    background-color: #EEEEEE !important;
+                    color: #159CAB !important;
+                    border-radius: 10px;
+                    height: 33px;
+                    font-weight: 300 !important;
+                    text-align: center;
+                }
+            }
+            .p-float-label>label {
+                color: #159CAB !important;
+            }
+        }
+        .uploadImage {
+            width: 111px;
+            height: 145px;
+            .uploadImage {
+                background-color: #D9D9D9;
+                position: relative;
+                height: 120px;
+                margin-top: 18px;
+                border: 1px solid white;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                -webkit-box-shadow: 2px 2px 0px 1px rgba(0, 0, 0, 0.17);
+                -moz-box-shadow: 2px 2px 0px 1px rgba(0, 0, 0, 0.17);
+                box-shadow: 2px 2px 0px 1px rgba(0, 0, 0, 0.17);
+                svg {
+                    width: 80px;
+                    fill: white;
+                    position: relative;
+                    top: -3px;
+                    left: 15px;
+                }
+            }
+             ::ng-deep .p-button.p-fileupload-choose {
+                height: 33px;
+                background-color: #056479;
+                border-bottom-left-radius: 13px;
+                border-bottom-right-radius: 13px;
+                width: 111px;
+            }
+             ::ng-deep .p-icon-wrapper {
+                display: none !important;
+            }
+            .gender {
+                display: inline-flex;
+                border: 2px solid #098F9E;
+                border-radius: 5px;
+                margin-top: 15px;
+            }
+             ::ng-deep .mdc-form-field {
+                font-family: 'Poppins-Bold' !important;
+                font-size: 16px !important;
+                color: #098F9E !important;
+                height: 33px;
+            }
+             ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle {
+                border-color: #098F9E !important;
+            }
+             ::ng-deep .mdc-form-field--align-end>label {
+                position: relative;
+                left: 8px;
+            }
+        }
+    }
+    .extraData {
+        .p-float-label {
+            margin-top: 23px;
+            font-weight: 400 !important;
+            font-family: 'Poppins-Regular' !important;
+            font-size: 11px;
+            text-align: center;
+        }
+         ::ng-deep .p-float-label input:focus~label,
+        .p-float-label input.p-filled~label,
+        .p-float-label textarea:focus~label,
+        .p-float-label textarea.p-filled~label,
+        .p-float-label .p-inputwrapper-focus~label,
+        .p-float-label .p-inputwrapper-filled~label {
+            width: 100%;
+            text-align: center;
+            color: #159CAB !important;
+            font-weight: 400 !important;
+            font-family: 'Poppins-Regular' !important;
+        }
+        input {
+            font-weight: 300 !important;
+            color: #159CAB !important;
+            background-color: #D9D9D9 !important;
+            font-weight: 400 !important;
+            font-family: 'Poppins-Regular' !important;
+        }
+         ::ng-deep input {
+            width: 100% !important;
+            background-color: #D9D9D9 !important;
+            color: #159CAB !important;
+            border-radius: 10px;
+            height: 33px;
+        }
+        p-calendar {
+             ::ng-deep input {
+                font-weight: 400 !important;
+                font-family: 'Poppins-Regular' !important;
+                height: 33px;
+                width: 100% !important;
+                background-color: #D9D9D9 !important;
+                color: #159CAB !important;
+                border-radius: 10px;
+                height: 33px;
+                font-weight: 300 !important;
+            }
+        }
+        .contenttwoInputs {
+            display: inline-flex;
+            width: 100%;
+            .p-float-label>label {
+                color: #159CAB !important;
+            }
+        }
+        .ocultarDataExtra {
+            display: inline-flex;
+            width: 100%;
+            .hiddenDataExtra {
+                margin-top: 23px;
+                font-family: 'Poppins-Bold' !important;
+                color: #EEEEEE !important;
+                min-width: 200px;
+                height: 33px !important;
+                border: 3px solid;
+                font-weight: 700 !important;
+                background-color: #056479;
+                border-radius: 10px;
+                font-size: 12px !important;
+            }
+            .next {
+                margin-top: 23px;
+                font-family: 'Poppins-Bold' !important;
+                color: #098F9E !important;
+                width: 100%;
+                height: 33px !important;
+                border: 3px solid;
+                font-weight: 700 !important;
+                background-color: white;
+                border-radius: 10px;
+                margin: 23px 0 0 auto;
+            }
+        }
+        .next {
+            display: inline-flex;
+            width: 100%;
+            .hiddenDataExtra {
+                margin-top: 23px;
+                font-family: 'Poppins-Bold' !important;
+                color: #098F9E !important;
+                width: 100%;
+                height: 33px !important;
+                border: 3px solid;
+                font-weight: 700 !important;
+                background-color: white;
+                border-radius: 10px;
+                margin: 23px 0 0 auto;
+            }
+        }
+    }
+    .buttonEnd {
+        display: flex;
+        width: 100%;
+        position: absolute;
+        bottom: 23px;
+        .clean,
+        .registeNew,
+        .edit,
+        .schedule {
+            margin-top: 23px;
+            font-family: 'Poppins-Bold' !important;
+            font-size: 12px;
+            height: 33px !important;
+            border: 3px solid;
+            font-weight: 700 !important;
+            border-radius: 10px;
+        }
+        .clean {
+            background-color: #B13030;
+            color: #EEEEEE !important;
+            width: 103px;
+        }
+        .botonesAgendar {
+            display: flex;
+            justify-content: flex-end;
+            margin: 0 0 0 auto;
+            width: 100%;
+        }
+        .registeNew {
+            width: 200px;
+            background-color: #056479;
+            color: #EEEEEE !important;
+            margin-right: 20px;
+        }
+        .edit {
+            width: 200px;
+        }
+        .edit {
+            background-color: white;
+            color: #098F9E;
+            margin-left: 23px;
+        }
+        .schedule {
+            margin-right: 20px;
+            background-color: #056479;
+            color: #EEEEEE !important;
+            width: 110px;
+            margin-left: 23px;
+        }
+    }
+
+    .contentSelect{
+        display: flex;
+        flex-direction: column;
+        margin-right:1em;
+    }
+
+    .mat-divider {
+        border-top-color: #098F9E;
+        height: 5px;
+        margin-top: 20px;
+        border-top-width: 2px;
+    }
+    
+
+}

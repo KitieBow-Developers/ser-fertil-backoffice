@@ -9,18 +9,18 @@
 
 /* ==========================================
 Single-colored icons can be modified like so:
-.sficon-name {
+.name {
   font-size: 32px;
   color: red;
 }
 ========================================== */
 
 .sficon-abajo {
-  width: 1.8232421875em;
+  width: 1.82421875em;
 }
 
 .sficon-abajo-c {
-  width: 1.6572265625em;
+  width: 1.6552734375em;
 }
 
 .sficon-agenda {
@@ -28,19 +28,23 @@ Single-colored icons can be modified like so:
 }
 
 .sficon-arriba {
-  width: 1.8232421875em;
+  width: 1.82421875em;
 }
 
 .sficon-arriba-c {
-  width: 1.6572265625em;
+  width: 1.6552734375em;
 }
 
 .sficon-ayuda {
   width: 1.2265625em;
 }
 
-.sficon-chat {
-  width: 1.23828125em;
+.sficon-carpeta {
+  width: 1.384765625em;
+}
+
+.sficon-cerrar-sesion {
+  width: 0.78515625em;
 }
 
 .sficon-copiar {
@@ -48,15 +52,19 @@ Single-colored icons can be modified like so:
 }
 
 .sficon-der {
-  width: 0.548828125em;
+  width: 0.5478515625em;
 }
 
-.sficon-discoduro {
+.sficon-disco-duro {
   width: 0.7177734375em;
 }
 
 .sficon-escudo {
   width: 0.955078125em;
+}
+
+.sficon-filtro {
+  width: 1.1767578125em;
 }
 
 .sficon-flecha-abajo {
@@ -68,11 +76,23 @@ Single-colored icons can be modified like so:
 }
 
 .sficon-izq {
-  width: 0.548828125em;
+  width: 0.5478515625em;
 }
 
-.sficon-log-out {
-  width: 0.78515625em;
+.sficon-menu {
+  width: 1.3359375em;
+}
+
+.sficon-modo-oscuro {
+  width: 0.8505859375em;
+}
+
+.sficon-notas {
+  width: 0.85546875em;
+}
+
+.sficon-nube {
+  width: 1.7578125em;
 }
 
 .sficon-ojo-abierto {
@@ -84,15 +104,15 @@ Single-colored icons can be modified like so:
 }
 
 .sficon-ram {
-  width: 2.3359375em;
+  width: 2.3369140625em;
 }
 
 .sficon-red {
-  width: 0.998046875em;
+  width: 0.99609375em;
 }
 
 .sficon-temp {
-  width: 0.8515625em;
+  width: 0.84765625em;
 }
 
 .sficon-usuario {

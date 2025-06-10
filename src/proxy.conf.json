@@ -1,0 +1,6 @@
+{
+    "/app": {
+      "target": "https://serfertil-api.kitiebow.com",
+      "secure": false
+    }
+  }

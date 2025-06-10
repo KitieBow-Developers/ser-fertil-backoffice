@@ -1,0 +1,10 @@
+.mainContainer {
+    display: flex;
+    gap: 1em;
+}
+.accounts {
+    width: 66%;
+}
+.reasons {
+    width: 33%;
+}

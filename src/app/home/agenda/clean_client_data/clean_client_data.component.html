@@ -1,0 +1,21 @@
+<mat-dialog-content>
+    <h1>Limpiar todos los campos de citas</h1>
+    <p>
+         <b>Al hacer esto, borraremos todos los datos sin guardarlos.</b>
+    </p>
+    <p>
+        Escribe "<b>borrar</b>" para confirmar esta acción.
+    </p>
+
+    <span class="p-float-label" style="margin-top: 2em; margin-bottom: 1em;">
+        <input pInputText id="nombre" (change)="changeDelete($event)"/>
+        <label for="nombre" >Texto de confirmación</label>
+    </span>
+
+    <div class="buttonEnd">
+        <button [disabled]="isDisabled" mat-raised-button [style]="{'bordercolor': color.BORDER_TOP_COLOR_BUTTON_CLEAN}" class="clean" (click)="cleanData()">Confirmar</button>
+        <div class="botonesAgendar">
+            <button enable mat-raised-button [style]="{'border-color': color.BORDER_TOP_COLOR_BUTTON}" class="cancel" mat-dialog-close>Cancelar</button>
+        </div>
+    </div>
+</mat-dialog-content>

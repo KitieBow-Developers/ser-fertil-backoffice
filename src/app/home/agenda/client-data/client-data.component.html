@@ -1,0 +1,43 @@
+<h2 mat-dialog-title class="headerTittle">{{date}}
+    <p mat-dialog-close>x</p>
+</h2>
+<mat-dialog-content >
+    <div class="appointmentData">
+        <p class="p_content" [style.color]="color.TITLE_LOGIN">
+            Hour
+        </p>
+
+        <div class="rowData">
+            <div class="columnData">
+                <label [style.color]="color.TITLE_LOGIN">Estado</label>
+                <p class="p_content" [style.color]="color.TITLE_LOGIN">Estado value</p>
+            </div>
+            <div class="columnData">
+                <label [style.color]="color.TITLE_LOGIN"> Cedula</label>
+                <p class="p_content" [style.color]="color.TITLE_LOGIN">Cedula Value</p>
+            </div>
+        </div>
+
+
+        <div class="rowData">
+            <div class="columnData">
+                <label [style.color]="color.TITLE_LOGIN">Estado</label>
+                <p class="p_content" [style.color]="color.TITLE_LOGIN">Nombre Value</p>
+                
+            </div>
+            <div class="columnData">
+                <label [style.color]="color.TITLE_LOGIN"> motivo</label>
+                <p class="p_content" [style.color]="color.TITLE_LOGIN"> Motivo Value</p>
+            </div>
+
+            <button mat-icon-button class="filter">
+                <svg>
+                    <use xlink:href="../../../assets/serfertil-app-icons/symbol-defs.svg#sficon-editar">
+                    </use>
+                </svg>
+            </button>
+
+        </div>
+        <mat-divider></mat-divider>
+    </div>    
+</mat-dialog-content>

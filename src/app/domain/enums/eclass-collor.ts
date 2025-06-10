@@ -6,4 +6,5 @@ export enum EClassCollor {
     TITLE_LOGIN = "#159CAB",
     BORDER_TOP_COLOR_BUTTON = "#098F9E",
     BORDER_BUTTON_COLOR_BUTTON = "#034756",
+    BUTTON_DISABLED = "#7F7F7F"
 }
